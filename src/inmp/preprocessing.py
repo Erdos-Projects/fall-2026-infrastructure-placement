@@ -12,3 +12,26 @@ def to_reports(gdf):
         geometry=("geometry", "first")
     )
     return gpd.GeoDataFrame(reports, geometry="geometry", crs=gdf.crs)
+
+
+def flag_implausible(gdf, whis=3, min_removed=5, ratio_cap=50):
+    reports = gdf.copy()
+    applied = reports["total_nitrogen_applied__lbs_ran"]
+    removed = -reports["total_nitrogen_removed__lbs_ran"]
+
+    q1_a, q3_a = applied.quantile([0.25,0.75])
+    iqr_a = q3_a-q1_a
+    fence_a = q3_a+whis*iqr_a
+    reports["flag_box_app"] = (applied > fence_a)
+
+    q1_r, q3_r = removed.quantile([0.25,0.75])
+    iqr_r = q3_r-q1_r
+    fence_r = q3_r+whis*iqr_r
+    reports["flag_box_rem"] = (removed > fence_r)
+
+    reports["flag_box"] = (reports[["flag_box_app", "flag_box_rem"]]).any(axis=1)
+
+    reports["flag_ratio"] = (removed >= min_removed) & (reports["a_r_ratio"] > ratio_cap)
+    
+    gdf["implausible"] = reports[["flag_ratio", "flag_box"]].any(axis=1)
+    return gdf

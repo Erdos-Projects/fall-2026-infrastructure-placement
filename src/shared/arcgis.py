@@ -2,7 +2,6 @@ import pandas as pd
 import json
 import geopandas as gpd
 import requests
-from . import io
 from pathlib import Path
 
 
