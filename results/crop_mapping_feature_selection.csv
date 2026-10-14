@@ -1,0 +1,66 @@
+feature,step,decision,reason
+pct_urban_1000m_1997,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2014,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2016,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2018,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2020,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2022,domain,drop,urban only mapped in 1997
+pct_urban_500m_2023,domain,drop,urban only mapped in 1997
+pct_urban_1000m_2023,domain,drop,urban only mapped in 1997
+pct_vineyard_1000m_1997,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_1997,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_1997,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_1997,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_1997,domain,drop,history only kept for vegetables/berries
+pct_vineyard_1000m_2014,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_2014,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_2014,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_2014,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_2014,domain,drop,history only kept for vegetables/berries
+pct_vineyard_1000m_2016,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_2016,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_2016,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_2016,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_2016,domain,drop,history only kept for vegetables/berries
+pct_vineyard_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_2018,domain,drop,history only kept for vegetables/berries
+crop_cycles_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_multicrop_1000m_2018,domain,drop,history only kept for vegetables/berries
+pct_vineyard_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_2020,domain,drop,history only kept for vegetables/berries
+crop_cycles_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_multicrop_1000m_2020,domain,drop,history only kept for vegetables/berries
+pct_vineyard_1000m_2022,domain,drop,history only kept for vegetables/berries
+pct_orchard_1000m_2022,domain,drop,history only kept for vegetables/berries
+pct_grain_field_pasture_1000m_2022,domain,drop,history only kept for vegetables/berries
+pct_idle_fallow_1000m_2022,domain,drop,history only kept for vegetables/berries
+pct_cropland_1000m_2022,domain,drop,history only kept for vegetables/berries
+crop_cycles_1000m_2022,domain,drop,history only kept for vegetables/berries
+pct_multicrop_1000m_2022,domain,drop,history only kept for vegetables/berries
+nitrate_mean_mgL,leakage,drop,"another summary of the target, or the location"
+nitrate_max_mgL,leakage,drop,"another summary of the target, or the location"
+frac_samples_over_10,leakage,drop,"another summary of the target, or the location"
+n_nondetect,leakage,drop,"another summary of the target, or the location"
+latitude,leakage,drop,"another summary of the target, or the location"
+longitude,leakage,drop,"another summary of the target, or the location"
+x_m,leakage,drop,"another summary of the target, or the location"
+y_m,leakage,drop,"another summary of the target, or the location"
+pct_orchard_500m_2023,low information,drop,"absent around 80%+ of wells, no link to nitrate"
+pct_orchard_1000m_2023,low information,drop,"absent around 80%+ of wells, no link to nitrate"
+pct_multicrop_500m_2023,redundancy,drop,correlation > 0.85 with a kept feature
+crop_cycles_1000m_2023,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2020,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2014,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2018,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2016,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2022,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_2023,redundancy,drop,correlation > 0.85 with a kept feature
+pct_cropland_1000m_2023,redundancy,drop,correlation > 0.85 with a kept feature
+pct_vineyard_500m_2023,redundancy,drop,correlation > 0.85 with a kept feature
+pct_veg_berry_1000m_1997,manual,drop,prefer present-day crop map like rest of features

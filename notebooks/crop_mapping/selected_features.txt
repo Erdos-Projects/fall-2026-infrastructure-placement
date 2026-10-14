@@ -1,0 +1,12 @@
+Each "pct" feature is the percent of a circle around the well covered by that land type. The circle radius (500 m or 1000 m) and the map year are in the name.
+
+- pct_veg_berry_500m_2023: vegetables and berries within 500 m in 2023
+- pct_grain_field_pasture_500m_2023: grain, hay, field crops and pasture within 500 m in 2023
+- pct_idle_fallow_500m_2023: idle or fallow fields within 500 m in 2023
+- pct_cropland_500m_2023: all farmed land added up within 500 m in 2023
+- crop_cycles_500m_2023: average number of crops planted per year on the farmland within 500 m in 2023
+- pct_vineyard_1000m_2023: vineyards within 1 km in 2023
+- pct_grain_field_pasture_1000m_2023: grain, hay, field crops and pasture within 1 km in 2023
+- pct_idle_fallow_1000m_2023: idle or fallow fields within 1 km in 2023
+- pct_multicrop_1000m_2023: land planted two or more times in 2023, within 1 km
+- dist_veg_berry_m_2023: distance in meters to the nearest vegetable or berry field in 2023
