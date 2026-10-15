@@ -1,2 +1,22 @@
 groundwater_nitrate_clean.csv
 NHD_H_18060005_HU8_GDB/
+# Local configuration and notebook recovery files
+.env
+.ipynb_checkpoints/
+__pycache__/
+.idea/
+.vscode/
+# Shared CSVs require explicit provenance and sensitivity review
+/data/processed/*.csv
+
+# Specific local spatial/groundwater outputs; review before publication
+/notebooks/groundwater/groundwater_nitrate_clean.csv
+/notebooks/groundwater/groundwater_chemistry_raw.csv
+/notebooks/groundwater/groundwater_nitrate_clean.gpkg
+/notebooks/groundwater/groundwater_well_buffers_500m.csv
+/notebooks/groundwater/groundwater_well_buffers_500m.gpkg
+/notebooks/soils/soils_huc8_attributes.gpkg
+/notebooks/precipitation/cimis_stations.gpkg
+/notebooks/precipitation/climate_monthly_clean.gpkg
+/notebooks/precipitation/prism_points.gpkg
+/notebooks/elevation/dem_watershed_10m.tif
