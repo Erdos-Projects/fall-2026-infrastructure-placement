@@ -1,0 +1,81 @@
+import numpy as np
+import pandas as pd
+import geopandas as gpd
+from sklearn.model_selection import StratifiedGroupKFold
+
+
+EQUAL_AREA_CRS = "EPSG:3310"
+
+
+def _to_equal_area_points(df, lat_col, lon_col, df_crs, eq_crs=EQUAL_AREA_CRS):
+    if isinstance(df, gpd.GeoDataFrame):
+        if df.crs is None:
+            raise ValueError("GeoDataFrame has no CRS; set one with .set_crs(...) first.")
+        return df.geometry.to_crs(eq_crs)
+    points = gpd.points_from_xy(df[lon_col], df[lat_col])
+    return gpd.GeoSeries(points, crs=df_crs, index=df.index).to_crs(eq_crs)
+
+
+def assign_grid_cells(df, lat_col="gm_latitude", lon_col="gm_longitude", cell_size_m=10_000, eq_crs=EQUAL_AREA_CRS, df_crs="EPSG:4326"):
+    """Takes in a dataframe with indicated latitude and longitude columns and returns a dataframe assigning each row to a cell."""  
+    points = _to_equal_area_points(df, lat_col, lon_col, df_crs=df_crs, eq_crs=eq_crs)
+    cell_x = np.floor(points.x / cell_size_m).astype(int)
+    cell_y = np.floor(points.y / cell_size_m).astype(int)
+    return pd.DataFrame({
+        "cell_x": cell_x,
+        "cell_y": cell_y,
+        "cell": cell_x.astype(str) + "_" + cell_y.astype(str)
+    }, index=df.index)
+
+
+def spatial_folds(cells, exceeds, n_splits=5, seed=0):
+    """Splits the data into folds, keeping cells together and distributing cells so that each fold has a similar share of samples that exceed the (nitrate) threshold. Returns a column that assigns each row to an int in range(n_splits) indicating its fold."""
+    cells = np.asarray(cells)
+    folds = np.empty(len(cells), dtype=int)
+    splitter = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=seed)
+    for k, (_, test) in enumerate(splitter.split(np.zeros(len(cells)), exceeds, groups=cells)):
+        folds[test] = k
+    return folds
+
+
+def iter_folds(folds):
+    """One (train, test) pair of True/False masks per fold."""
+    folds = np.asarray(folds)
+    pairs = []
+    for k in np.unique(folds):
+        test = (folds == k)
+        pairs.append((~test, test))
+    return pairs
+
+
+def declustering_weights(cells):
+    """Assigns a weight to each row so that each cell is counted equally in the score, regardless of how many samples it contains. (See `Estimation of aquifer scale proportion using equal area grids: Assessment of regional scale groundwater quality` by Belitz et al.)"""
+    cells = pd.Series(cells)
+    w = 1.0 / cells.map(cells.value_counts())
+    return (w / w.mean()).to_numpy()
+
+
+def check_split(df, train, test, cols=("gm_well_id", "cell")):
+    """Check to make sure that the splits are done correctly and there are no rows assigned to both train and test."""
+    for col in cols:
+        shared = set(df.loc[train, col]) & set(df.loc[test,col])
+        if shared:
+            raise AssertionError(f"... e.g. {next(iter(shared))}")
+    if (train & test).any():
+        raise AssertionError("Some rows are in both train and test.")
+
+
+
+def time_split(dates, test_years):
+    """Splits data by year for time series prediction for known wells."""
+    years = pd.to_datetime(dates).dt.year
+    test = years.isin(test_years).to_numpy()
+    train = (years < min(test_years)).to_numpy()
+    return train, test
+
+
+def space_time_split(dates, cells, test_years, test_cells):
+    """Splits data both spatially and temporally to predict future values at previously unsampled locations."""
+    train_t, test_t = time_split(dates, test_years)
+    in_test_cells = pd.Series(cells).isin(test_cells).to_numpy()
+    return train_t & ~in_test_cells, test_t & in_test_cells
