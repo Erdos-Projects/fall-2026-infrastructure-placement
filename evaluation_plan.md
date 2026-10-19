@@ -4,7 +4,7 @@
 Data is arranged geographically and temporally (2022 - 2025). 
 
 ## Data split strategy:
-Models without forecasting will take the average measurement per specific time period.
+Models without forecasting will take the average measurement for a given well over a specific time period.
 
 ### Splitting methods:
 
