@@ -40,7 +40,7 @@ def summarize(
     return {
         f"rmse_{scale_name}_location_only": rmse_loc,
         f"rmse_{scale_name}_no_information": rmse_mean,
-        "skill": 1 - (rmse_loc / rmse_mean),
+        "estimated_leakage": 1 - (rmse_loc / rmse_mean),
         "accuracy_location_only": accuracy_score(exceeds, to_mg_l(loc_pred) > threshold, sample_weight=sample_weight),
         "accuracy_majority_class": max(share, 1-share),
     }
