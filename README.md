@@ -15,4 +15,4 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 [6] California DWR crop mapping: https://data.cnra.ca.gov/dataset/statewide-crop-mapping ; USDA Cropland Data Layer: https://data.nass.usda.gov/Research_and_Science/Cropland/sarsfaqs2.php
 [7] PRISM Climate Group: https://prism.oregonstate.edu/
 [8] GAMA - Irrigated Lands Regulatory Program: https://devodp.technology.ca.gov/dataset/ground-water-water-quality-results/resource/c97e1fcf-8ad0-4913-9234-ba682ea73bc4
-[9] ILRP/INMP source [?].
+[9] ILRP/INMP source: https://gispublic.waterboards.ca.gov/portalserver/rest/services/Hosted/Region_3_INMP_Data_Map/FeatureServer.
