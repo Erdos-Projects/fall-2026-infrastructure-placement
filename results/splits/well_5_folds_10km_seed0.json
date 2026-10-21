@@ -1,0 +1,10 @@
+{
+  "source": "notebooks/groundwater/groundwater_nitrate_clean.csv",
+  "source_rows": 5280,
+  "cell_size_m": 10000,
+  "n_splits": 5,
+  "seed": 0,
+  "threshold_mg_L": 10,
+  "holdout_fold": 4,
+  "created": "2026-10-22"
+}

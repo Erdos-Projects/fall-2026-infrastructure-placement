@@ -79,3 +79,31 @@ def space_time_split(dates, cells, test_years, test_cells):
     train_t, test_t = time_split(dates, test_years)
     in_test_cells = pd.Series(cells).isin(test_cells).to_numpy()
     return train_t & ~in_test_cells, test_t & in_test_cells
+
+
+
+
+def well_fold_table(df, cell_size_m=10_000, n_splits=5, seed=0, threshold=10, well_col="gm_well_id", target_col="nitrate_mg_L", **cell_kwargs):
+    """Creates a table with one row per well and the fold each well belongs to. Folds are computed on the samples (stratified on target > threshold) and then reduced to one fold per well."""
+    cells = assign_grid_cells(df, cell_size_m=cell_size_m, **cell_kwargs)
+    folds = spatial_folds(cells["cell"], df[target_col] > threshold, n_splits=n_splits, seed=seed)
+    table = (
+        pd.DataFrame({well_col: df[well_col].to_numpy(), "cell": cells["cell"].to_numpy(), "fold": folds})
+        .drop_duplicates()
+        .sort_values(well_col)
+        .reset_index(drop=True)
+    )
+    if table[well_col].duplicated().any():
+        raise ValueError("A well was assigned to more than one cell or fold.")
+    return table
+
+
+def attach_folds(df, fold_path, well_col="gm_well_id"):
+    """Add the shared `cell` and `fold` columns to any table with a well-ID column."""
+    folds = pd.read_csv(fold_path, dtype={well_col: "string"})
+    out = df.merge(folds, on=well_col, how="left", validate="many_to_one")
+    missing = out["fold"].isna().sum()
+    if missing:
+        raise ValueError(f"{missing} rows have wells that are not in the fold table.")
+    out["fold"] = out["fold"].astype(int)
+    return out
