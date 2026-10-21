@@ -1,0 +1,152 @@
+feature,group,step,decision,reason,spearman_with_nitrate
+gm_well_id,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",
+gm_well_category,metadata,final,keep,"passed domain, low-information and redundancy screening",
+gm_samp_collection_date,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",
+gm_latitude,metadata,domain,drop,"raw coordinates; location alone showed no skill under 10 km spatial folds, and coordinates can let the model memorize areas instead of learning from land conditions",0.23417296626605005
+gm_longitude,metadata,domain,drop,"raw coordinates; location alone showed no skill under 10 km spatial folds, and coordinates can let the model memorize areas instead of learning from land conditions",-0.1933155450938045
+nitrate_mg_L,target,target,target,,
+year,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",-0.014930057228585883
+source_csv_row,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",-0.07659440788281688
+observation_id,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",
+soil_mapped_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.08890593964176548
+soil_slopegradwta,soils,final,keep,"passed domain, low-information and redundancy screening",-0.33217757211796545
+soil_slopegradwta_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.08890593964176548
+soil_brockdepmin,soils,low_information,drop,more than 50% missing values,0.057515500031414264
+soil_brockdepmin_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",-0.3966772584993217
+soil_aws0150wta,soils,final,keep,"passed domain, low-information and redundancy screening",0.1131632061500056
+soil_aws0150wta_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.06186114310933982
+soil_drclassdcd_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.14890819845241787
+soil_drclassdcd_pct_excessively_drained,soils,domain,combine,merged into soil_drainage_rapid_pct (grouped by drainage speed),-0.026724134219320052
+soil_drclassdcd_pct_moderately_well_drained,soils,domain,combine,merged into soil_drainage_moderate_pct (grouped by drainage speed),-0.12889977012422785
+soil_drclassdcd_pct_poorly_drained,soils,domain,combine,merged into soil_drainage_slow_pct (grouped by drainage speed),-0.061252770729899396
+soil_drclassdcd_pct_somewhat_excessively_drained,soils,domain,combine,merged into soil_drainage_rapid_pct (grouped by drainage speed),0.04611518365452388
+soil_drclassdcd_pct_somewhat_poorly_drained,soils,domain,combine,merged into soil_drainage_slow_pct (grouped by drainage speed),-0.057534952935335414
+soil_drclassdcd_pct_very_poorly_drained,soils,domain,combine,merged into soil_drainage_slow_pct (grouped by drainage speed),-0.0580939551483829
+soil_drclassdcd_pct_well_drained,soils,domain,combine,merged into soil_drainage_moderate_pct (grouped by drainage speed),0.03456332112692764
+soil_hydgrpdcd_coverage_pct,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.34097114615877794
+soil_hydgrpdcd_pct_a,soils,final,keep,"passed domain, low-information and redundancy screening",0.2237612927709114
+soil_hydgrpdcd_pct_b,soils,final,keep,"passed domain, low-information and redundancy screening",0.1551541413811479
+soil_hydgrpdcd_pct_c,soils,final,keep,"passed domain, low-information and redundancy screening",-0.22955533851638601
+soil_hydgrpdcd_pct_c_d,soils,domain,combine,merged into soil_hydgrp_d_pct; C/D soils behave as D when undrained (USDA convention),-0.05862971550021166
+soil_hydgrpdcd_pct_d,soils,domain,combine,merged into soil_hydgrp_d_pct; C/D soils behave as D when undrained (USDA convention),-0.08333959507838243
+elevation_m,terrain,final,keep,"passed domain, low-information and redundancy screening",-0.21672313107388547
+topographic_position,terrain,final,keep,"passed domain, low-information and redundancy screening",0.058045289696861374
+crop_year,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",-0.014930057228585883
+measurement_year,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",-0.014930057228585883
+dwr_map_status,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",
+change_base_year,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",-0.014930057228585883
+pct_veg_berry_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.31886502370317343
+pct_veg_berry_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.3146997351065573
+pct_vineyard_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.25201803994044497
+pct_vineyard_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.29713869413911326
+pct_orchard_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.22854888587396135
+pct_orchard_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.23032851605953183
+pct_grain_field_pasture_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.00652501206190577
+pct_grain_field_pasture_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.0012289271301985554
+pct_idle_fallow_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.1433273429194817
+pct_idle_fallow_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.16282244541185797
+pct_urban_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.09051220862790398
+pct_urban_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.08816262764072663
+pct_cropland_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.23545315538774042
+pct_cropland_of_mapped_500m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.0982808594667417
+crop_cycles_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.3583942744762546
+pct_multicrop_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.3381865083065749
+buffer_area_m2_500m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.2086786855490904
+dwr_polygon_area_m2_500m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.2613661964001845
+dwr_polygon_footprint_pct_500m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.26136628500649856
+outside_dwr_polygons_pct_500m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.2613660239685594
+dwr_polygon_status_500m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+pct_veg_berry_1000m,land_use_current,redundancy,drop,Spearman rho > 0.9 with the 500 m version; 500 m kept,0.32131844694873946
+pct_veg_berry_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.3056062637482443
+pct_vineyard_1000m,land_use_current,redundancy,drop,Spearman rho > 0.9 with the 500 m version; 500 m kept,-0.21004995008951408
+pct_vineyard_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.2825251058060637
+pct_orchard_1000m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.25642034975782574
+pct_orchard_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.26361466774695147
+pct_grain_field_pasture_1000m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.0008404206035702771
+pct_grain_field_pasture_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.028385718964738328
+pct_idle_fallow_1000m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.11267702790618396
+pct_idle_fallow_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",-0.16513088780171067
+pct_urban_1000m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",0.0867390853628121
+pct_urban_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.0815645820585303
+pct_cropland_1000m,land_use_current,redundancy,drop,Spearman rho > 0.9 with the 500 m version; 500 m kept,0.26270519430711764
+pct_cropland_of_mapped_1000m,land_use_current,redundancy,drop,"share of DWR-mapped area; pct (share of whole buffer) is used instead, with outside_dwr_polygons_pct describing the unmapped share",0.11088959011575875
+crop_cycles_1000m,land_use_current,redundancy,drop,Spearman rho > 0.9 with the 500 m version; 500 m kept,0.369939185557152
+pct_multicrop_1000m,land_use_current,redundancy,drop,Spearman rho > 0.9 with the 500 m version; 500 m kept,0.34583970759475824
+buffer_area_m2_1000m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.3919707884485558
+dwr_polygon_area_m2_1000m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.28693547427765853
+dwr_polygon_footprint_pct_1000m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.28693539844543053
+outside_dwr_polygons_pct_1000m,land_use_current,final,keep,"passed domain, low-information and redundancy screening",-0.28693553277538864
+dwr_polygon_status_1000m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+pct_veg_berry_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.32083773685883743
+pct_veg_berry_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.3216122174607974
+pct_vineyard_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.2507701076347752
+pct_vineyard_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.2968830691047354
+pct_orchard_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.23025458125551743
+pct_orchard_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.2320297510773024
+pct_grain_field_pasture_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.02219333199494087
+pct_grain_field_pasture_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.027719143472145037
+pct_idle_fallow_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.15381116528915928
+pct_idle_fallow_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.17065096220113804
+pct_urban_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.086166761606236
+pct_urban_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.08391967879758966
+pct_cropland_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.24067302736722765
+pct_cropland_of_mapped_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.10237618162906365
+crop_cycles_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.3581658333190556
+pct_multicrop_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.33703371436518936
+buffer_area_m2_500m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.2086786855490904
+dwr_polygon_area_m2_500m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.2624923951888807
+dwr_polygon_footprint_pct_500m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.2624922935610952
+outside_dwr_polygons_pct_500m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.26249189909885806
+dwr_polygon_status_500m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+pct_veg_berry_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.32286889483710784
+pct_veg_berry_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.3137847301238949
+pct_vineyard_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.20731306295699195
+pct_vineyard_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.28206700162619025
+pct_orchard_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.2583478391218142
+pct_orchard_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.2653594770058729
+pct_grain_field_pasture_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.030127721016588654
+pct_grain_field_pasture_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.0541355341274922
+pct_idle_fallow_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.1335072848900169
+pct_idle_fallow_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.18047134764114517
+pct_urban_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.07954890135527735
+pct_urban_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.07478272254204886
+pct_cropland_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.26907205539715595
+pct_cropland_of_mapped_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.12437295292614765
+crop_cycles_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.36390539401755195
+pct_multicrop_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",0.3438246498019842
+buffer_area_m2_1000m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.3919707884485558
+dwr_polygon_area_m2_1000m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.28725656071901323
+dwr_polygon_footprint_pct_1000m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",0.28725647371495244
+outside_dwr_polygons_pct_1000m__previous,land_use_previous,redundancy,drop,"t-2 land use; equals current minus delta exactly, so current + delta keep the same information",-0.28725635372936065
+dwr_polygon_status_1000m__previous,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+annual_change_status_500m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+delta_veg_berry_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.024652048943577146
+delta_vineyard_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.005147134073250068
+delta_orchard_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.010912117035536939
+delta_grain_field_pasture_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.027541687722079322
+delta_idle_fallow_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.013748879897664951
+delta_urban_pp_500m,land_use_delta,low_information,drop,one value in more than 95% of rows,0.021296986221757987
+delta_cropland_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.009077402030670591
+delta_multicrop_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.006213113979549041
+delta_dwr_polygon_footprint_pp_500m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.0034445616707996433
+annual_change_status_1000m,qc_coverage,domain,drop,"data-quality or coverage column; documents processing, not land conditions",
+delta_veg_berry_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.07589840502426522
+delta_vineyard_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.004169853809226572
+delta_orchard_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.022763614528840147
+delta_grain_field_pasture_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.02561111794595032
+delta_idle_fallow_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.04110720816554024
+delta_urban_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",0.058505606234380024
+delta_cropland_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.061793661606673385
+delta_multicrop_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.009427386008903414
+delta_dwr_polygon_footprint_pp_1000m,land_use_delta,final,keep,"passed domain, low-information and redundancy screening",-0.0550249053249007
+crop_source_match,metadata,domain,drop,"identifier, date or bookkeeping column; not an environmental predictor",
+historical_mean_annual_precip_mm,climate,final,keep,"passed domain, low-information and redundancy screening",-0.3766067102006476
+previous_3_complete_months_precip_mm,climate,final,keep,"passed domain, low-information and redundancy screening",-0.0722683814236966
+previous_12_complete_months_precip_mm,climate,final,keep,"passed domain, low-information and redundancy screening",-0.14030243743817297
+historical_mean_temperature_c,climate,final,keep,"passed domain, low-information and redundancy screening",0.038027873469164745
+previous_3_complete_months_temperature_c,climate,final,keep,"passed domain, low-information and redundancy screening",0.17743438047300242
+previous_12_complete_months_temperature_c,climate,final,keep,"passed domain, low-information and redundancy screening",-0.03469450933266084
+soil_drainage_rapid_pct,soils,final,keep,"passed domain, low-information and redundancy screening",0.046349944876331504
+soil_drainage_moderate_pct,soils,final,keep,"passed domain, low-information and redundancy screening",-0.009149053708136087
+soil_drainage_slow_pct,soils,final,keep,"passed domain, low-information and redundancy screening",-0.06191031921494137
+soil_hydgrp_d_pct,soils,final,keep,"passed domain, low-information and redundancy screening",-0.08345942962254017
