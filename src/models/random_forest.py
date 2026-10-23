@@ -1,13 +1,13 @@
 from src.evaluation import splits
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import GridSearchCV
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import RandomForestClassifier 
-from sklearn.ensemble import ExtraTreesRegressor
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.dummy import DummyRegressor
-from sklearn.metrics import root_mean_squared_error
+import numpy as np # type: ignore
+import pandas as pd # type: ignore
+from sklearn.model_selection import GridSearchCV # type: ignore
+from sklearn.ensemble import RandomForestRegressor # type: ignore
+from sklearn.ensemble import RandomForestClassifier  # type: ignore
+from sklearn.ensemble import ExtraTreesRegressor # type: ignore
+from sklearn.ensemble import ExtraTreesClassifier# type: ignore
+from sklearn.dummy import DummyRegressor# type: ignore
+from sklearn.metrics import root_mean_squared_error # type: ignore
 
 
 def make_inner_subfolds(data, FEATURES, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEED = 77):
@@ -57,7 +57,7 @@ def make_inner_subfolds(data, FEATURES, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEE
     return development, X_dev, y_dev
 
 
-def make_search(inner_cv, param_grid, SEED=77):
+def make_search_RFR(inner_cv, param_grid, SEED):
     return GridSearchCV(
         estimator=RandomForestRegressor(
             random_state=SEED,
@@ -70,17 +70,18 @@ def make_search(inner_cv, param_grid, SEED=77):
         n_jobs=-1,
     )
 
-def fit_model_with_nested_cv(development, X_dev, y_dev, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEED = 77):
+def fit_RFR_with_nested_cv(development, X_dev, y_dev, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEED = 77, PRINT=False):
     # Actual-scale labels for stratification. nitrate is log scale
     exceeds_dev = np.expm1(y_dev) > THRESHOLD_MG_L
     param_grid = {
-    "n_estimators": [100, 300, 500],
-    "max_features": [1.0, "sqrt", 0.5],
+    "n_estimators": [10, 50, 100, 300, 500],
+    "max_features": [1.0, "sqrt", "log2", 0.5]
     }
     #"n_estimators": the number of decision trees in the random forest.
     #"max_features": how many predictor features a tree can consider when searching for the best split.
     #   1.0: consider all predictor features at each split.
     #   "sqrt": consider approximately the square root of the number of features.
+    #   "log2" : consider log2 of the number of features.
     #   0.5: consider 50% of the available features.
 
 
@@ -136,10 +137,10 @@ def fit_model_with_nested_cv(development, X_dev, y_dev, N_SUBFOLDS = 4, THRESHOL
         # ... 
 
         # creates a GridSearchCV object using the inner splits for the current outer fold.
-        #Because there are nine combinations and four inner splits, 
-        # this requires 36 model fits per outer fold.
-        # With four outer folds, that is 144 inner-CV fits, plus four refits of the selected models.
-        search = make_search(inner_cv, param_grid, SEED)
+        # Because there are 20 combinations and four inner splits, 
+        # this requires 80 model fits per outer fold.
+        # With four outer folds, that is 320 inner-CV fits, plus four refits of the selected models.
+        search = make_search_RFR(inner_cv, param_grid, SEED)
 
         # evaluates the nine hyperparameter combinations using only the outer training data.
         search.fit(X_dev[outer_train], y_dev[outer_train])
@@ -168,16 +169,62 @@ def fit_model_with_nested_cv(development, X_dev, y_dev, N_SUBFOLDS = 4, THRESHOL
         "outer_fold": outer_fold,
         **search.best_params_,
         })
+    
+    outer_results = pd.DataFrame(outer_results)
+    best_params_by_fold = pd.DataFrame(best_params_by_fold)
+    
+    if (PRINT == True):
+        print("Nested CV results (outer and inner fold RMSE):")
+        print(outer_results.round(3).to_string(index=False))
+
+        print("\nBest parameters per outer fold:")
+        print(best_params_by_fold.to_string(index=False))
+
+        print(f"Overall RMSE (log): {root_mean_squared_error(y_dev, oof_pred):.3f}")
+        print(f"Accuracy of the >10 mg/L call: {np.mean((np.expm1(oof_pred) > 10) == exceeds_dev):.3f}")
+
+    return outer_results, best_params_by_fold
+
+
+def fit_RFR_with_normal_cv(development, X_dev, y_dev, N_EST, MAX_FEAT, THRESHOLD_MG_L = 10, SEED = 77):
+    # Actual-scale labels for stratification. nitrate is log scale
+    exceeds_dev = np.expm1(y_dev) > THRESHOLD_MG_L
+
+    # resets the dataframe index to consecutive integers.
+    development = development.reset_index(drop=True)
+    fold_dev = development["fold"].to_numpy()
+
+    #Initialize storage for predictions and results
+    oof_pred = np.full(len(development), np.nan)
+    outer_results = []
+
+    # Finds the distinct original fold IDs and processes them in ascending order.
+    for outer_fold in sorted(np.unique(fold_dev)):
+        #Identify the outer training and test observations
+        #np.flatnonzero() returns the integer positions where a condition is true.
+        outer_test = np.flatnonzero(fold_dev == outer_fold)
+        outer_train = np.flatnonzero(fold_dev != outer_fold)
+        #outer_test: positions of all observations belonging to the current outer fold.
+        #outer_train: positions of all observations belonging to every other development fold.
+
+        model = RandomForestRegressor(n_estimators=N_EST, max_features=MAX_FEAT, random_state=SEED, n_jobs=1)
+
+        model.fit(X_dev[outer_train], y_dev[outer_train])
+        oof_pred[outer_test] = model.predict(X_dev[outer_test])
+
+        outer_results.append({
+            "outer_fold": outer_fold,
+            "rmse_log": root_mean_squared_error(
+                y_dev[outer_test], oof_pred[outer_test]
+            )
+        })
+        
 
 
     outer_results = pd.DataFrame(outer_results)
-    best_params_by_fold = pd.DataFrame(best_params_by_fold)
 
-    print("Nested CV results (outer and inner fold RMSE):")
+    print("CV results (outer fold RMSE):")
     print(outer_results.round(3).to_string(index=False))
-
-    print("\nBest parameters per outer fold:")
-    print(best_params_by_fold.to_string(index=False))
 
     print(f"Overall RMSE (log): {root_mean_squared_error(y_dev, oof_pred):.3f}")
     print(f"Accuracy of the >10 mg/L call: {np.mean((np.expm1(oof_pred) > 10) == exceeds_dev):.3f}")
