@@ -1,0 +1,16 @@
+{
+  "source": "notebooks/groundwater/groundwater_nitrate_clean.csv",
+  "source_rows": 5280,
+  "subbasins": "notebooks/models/salinas_valley_subbasins.geojson",
+  "cell_size_m": 5000,
+  "n_splits": 5,
+  "seed": 0,
+  "stratify": "subbasin_x_exceedance",
+  "threshold_mg_L": 10,
+  "holdout_fold": 4,
+  "balance": {
+    "max_subbasin_deviation": 0.062,
+    "exceedance_spread": 0.074
+  },
+  "created": "2026-10-25"
+}

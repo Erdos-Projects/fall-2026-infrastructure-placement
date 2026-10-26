@@ -16,7 +16,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.features.transformers import build_features
+from src.features.transformers import build_features, add_subbasin, subbasin_dummies
+
+
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "notebooks" / "merge" / "groundwater_ml_integration_lag1_2021_2024_with_climate.csv"
@@ -35,17 +37,13 @@ def load_selected_features(selection_path=SELECTION_PATH):
     return selection.loc[selection["decision"] == "keep", "feature"].tolist()
 
 
-def load_model_data(data_path=DATA_PATH, selection_path=SELECTION_PATH, log_target=True):
+def load_model_data(data_path=DATA_PATH, selection_path=SELECTION_PATH, log_target=True,
+                    subbasin=False, drop_elevation=None):
     """Load the integrated dataset and return model inputs.
 
-    Returns
-    -------
-    X : DataFrame
-        Selected predictors, with engineered features applied.
-    y : Series
-        Nitrate (mg/L), log(1 + nitrate) when log_target=True.
-    meta : DataFrame
-        Well ID, coordinates, sample date and year, for building splits.
+    subbasin=True adds one 0/1 column per subbasin. drop_elevation defaults to the
+    same value as `subbasin`, so subbasin=True swaps elevation for subbasin;
+    pass drop_elevation=False to keep both.
     """
     df = pd.read_csv(data_path, parse_dates=["gm_samp_collection_date"])
     df = build_features(df)
@@ -56,6 +54,12 @@ def load_model_data(data_path=DATA_PATH, selection_path=SELECTION_PATH, log_targ
         raise KeyError(f"Selected features not found in the dataset: {missing}")
 
     X = df[features]
+    if subbasin:
+        df = add_subbasin(df)
+        X = pd.concat([X, subbasin_dummies(df)], axis=1)
+    if drop_elevation if drop_elevation is not None else subbasin:
+        X = X.drop(columns="elevation_m")
+
     y = np.log1p(df[TARGET]) if log_target else df[TARGET]
-    meta = df[META_COLUMNS]
+    meta = df[META_COLUMNS + (["subbasin"] if subbasin else [])]
     return X, y, meta

@@ -29,7 +29,9 @@ def assign_grid_cells(df, lat_col="gm_latitude", lon_col="gm_longitude", cell_si
 
 
 def spatial_folds(cells, exceeds, n_splits=5, seed=0):
-    """Splits the data into folds, keeping cells together and distributing cells so that each fold has a similar share of samples that exceed the (nitrate) threshold. Returns a column that assigns each row to an int in range(n_splits) indicating its fold."""
+    """One fold number per row. Whole cells stay together, and folds are balanced on the
+    labels in `exceeds`: exceedance True/False, or any other categories
+    (e.g. subbasin x exceedance)."""
     cells = np.asarray(cells)
     folds = np.empty(len(cells), dtype=int)
     splitter = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=seed)
@@ -83,19 +85,31 @@ def space_time_split(dates, cells, test_years, test_cells):
 
 
 
-def well_fold_table(df, cell_size_m=10_000, n_splits=5, seed=0, threshold=10, well_col="gm_well_id", target_col="nitrate_mg_L", **cell_kwargs):
-    """Creates a table with one row per well and the fold each well belongs to. Folds are computed on the samples (stratified on target > threshold) and then reduced to one fold per well."""
-    cells = assign_grid_cells(df, cell_size_m=cell_size_m, **cell_kwargs)
-    folds = spatial_folds(cells["cell"], df[target_col] > threshold, n_splits=n_splits, seed=seed)
-    table = (
-        pd.DataFrame({well_col: df[well_col].to_numpy(), "cell": cells["cell"].to_numpy(), "fold": folds})
+def well_fold_table(df, stratify_by, cell_size_m=10_000, n_splits=5, seed=0, well_col="gm_well_id", **cell_kwargs):
+    """One row per well: its grid cell and fold. Folds are computed on the samples (balanced on `stratify_by`, one label per row of df) and reduced to one fold per well."""
+    cells = assign_grid_cells(df, cell_size_m=cell_size_m, **cell_kwargs)["cell"]
+    folds = spatial_folds(cells, stratify_by, n_splits=n_splits, seed=seed)
+    table = (pd.DataFrame({well_col: df[well_col].to_numpy(), "cell": cells.to_numpy(), "fold": folds})
         .drop_duplicates()
         .sort_values(well_col)
-        .reset_index(drop=True)
-    )
+        .reset_index(drop=True))
     if table[well_col].duplicated().any():
         raise ValueError("A well was assigned to more than one cell or fold.")
     return table
+
+
+
+def fold_balance(folds, subbasins, exceeds):
+    """Worst deviation of a subbasin's share in any fold, and the spread of exceedance shares."""
+    folds = np.asarray(folds)
+    subbasins = pd.Series(np.asarray(subbasins))
+    exceeds = pd.Series(np.asarray(exceeds))
+    shares = pd.crosstab(folds, subbasins.to_numpy(), normalize="index")
+    deviation = (shares - subbasins.value_counts(normalize=True)).abs().max().max()
+    by_fold = exceeds.groupby(folds).mean()
+    return {"max_subbasin_deviation": round(float(deviation), 3),"exceedance_spread": round(float(by_fold.max() - by_fold.min()), 3)}
+
+
 
 
 def attach_folds(df, fold_path, well_col="gm_well_id"):

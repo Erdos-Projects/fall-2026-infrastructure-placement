@@ -5,7 +5,48 @@ with the engineered columns added. Original columns are not modified.
 Decisions behind these features are documented in notebooks/feature_selection.ipynb.
 """
 
+from pathlib import Path
+import geopandas as gpd
 import pandas as pd
+
+ROOT = Path(__file__).resolve().parents[2]
+SUBBASIN_PATH = ROOT / "notebooks" / "models" / "salinas_valley_subbasins.geojson"
+OUTSIDE = "OUTSIDE"
+
+
+# Subbasin data
+
+def subbasin_categories(subbasin_path=SUBBASIN_PATH):
+    """All subbasin names in the file, plus OUTSIDE, in a fixed order."""
+    names = gpd.read_file(subbasin_path)["Basin_Subbasin_Name"]
+    return sorted(names.str.replace("SALINAS VALLEY - ", "", regex=False).unique()) + [OUTSIDE]
+
+
+def add_subbasin(df, subbasin_path=SUBBASIN_PATH, lat_col="gm_latitude", lon_col="gm_longitude",
+                 crs="EPSG:4326"):
+    """Add `subbasin`: the DWR Bulletin 118 subbasin each well lies in (OUTSIDE if none)."""
+    subbasins = gpd.read_file(subbasin_path)
+    points = gpd.GeoDataFrame(
+        geometry=gpd.points_from_xy(df[lon_col], df[lat_col]), crs=crs, index=df.index
+    ).to_crs(subbasins.crs)
+    joined = gpd.sjoin(points, subbasins[["Basin_Subbasin_Name", "geometry"]],
+                       how="left", predicate="within")
+    joined = joined[~joined.index.duplicated()]          # a point on a shared border: keep one
+
+    names = (joined["Basin_Subbasin_Name"]
+             .str.replace("SALINAS VALLEY - ", "", regex=False)
+             .fillna(OUTSIDE))
+    out = df.copy()
+    out["subbasin"] = pd.Categorical(names.reindex(df.index),
+                                     categories=subbasin_categories(subbasin_path))
+    return out
+
+
+def subbasin_dummies(df):
+    """One 0/1 column per subbasin category, always the same columns."""
+    return pd.get_dummies(df["subbasin"], prefix="subbasin", dtype=int)
+
+
 
 # Seven SSURGO drainage classes grouped by drainage speed.
 # Values are % of the well buffer, so each group is the sum of its classes.
