@@ -3,9 +3,36 @@ import pandas as pd
 import geopandas as gpd
 from sklearn.metrics import root_mean_squared_error, accuracy_score
 from sklearn.neighbors import KNeighborsRegressor
+from scipy.spatial import cKDTree
 
 
 THRESHOLD_MG_L = 10
+
+DISTANCE_BINS = (0, 500, 1_000, 2_000, 5_000, np.inf)
+DISTANCE_LABELS = ("<0.5 km", "0.5-1 km", "1-2 km", "2-5 km", ">5 km")
+
+
+def nearest_training_distance(xy, train, test):
+    """Distance (m) from each test row to the closest training row; xy from projected_xy."""
+    return cKDTree(xy[train]).query(xy[test])[0]
+
+
+def distance_breakdown(y, pred, baseline, distance_m, bins=DISTANCE_BINS, labels=DISTANCE_LABELS):
+    """RMSE of the model and the baseline, and improvement over mean, per band of distance to the nearest training well."""
+    table = pd.DataFrame({
+        "band": pd.cut(distance_m, bins=bins, labels=labels, right=False),
+        "err2": (np.asarray(pred) - np.asarray(y)) ** 2,
+        "base_err2": (np.asarray(baseline) - np.asarray(y)) ** 2,
+    })
+    grouped = table.groupby("band", observed=False)
+    out = pd.DataFrame({
+        "n": grouped.size(),
+        "rmse_model": np.sqrt(grouped["err2"].mean()),
+        "rmse_mean": np.sqrt(grouped["base_err2"].mean()),
+    })
+    out["improvement_over_mean"] = 1 - out["rmse_model"] / out["rmse_mean"]
+    out["share_of_test"] = out["n"] / out["n"].sum()
+    return out.round(3)
 
 
 def projected_xy(df, lat_col, lon_col, eq_crs="EPSG:3310", df_crs="EPSG:4326"):
