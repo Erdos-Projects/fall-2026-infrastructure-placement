@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,ridge__alpha
+regression,Ridge,Andrea,5km_subbasin,True,True,54,,2026-10-27 10:28,0,1.038349017083528,0.19818624009227614,31.622776601683793
+regression,Ridge,Andrea,5km_subbasin,True,True,54,,2026-10-27 10:28,1,1.020762940245928,0.24437984523705092,1000.0
+regression,Ridge,Andrea,5km_subbasin,True,True,54,,2026-10-27 10:28,2,1.043085967668859,0.281017072417423,31.622776601683793
+regression,Ridge,Andrea,5km_subbasin,True,True,54,,2026-10-27 10:28,3,1.0286645330741495,0.32097163772609794,1000.0
