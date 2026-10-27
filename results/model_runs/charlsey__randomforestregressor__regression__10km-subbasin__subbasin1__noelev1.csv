@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2
+regression,RandomForestRegressor,Charlsey,10km_subbasin,True,True,59,,2026-10-27 17:26,0,1.0139329210242691,0.3615024630421483
+regression,RandomForestRegressor,Charlsey,10km_subbasin,True,True,59,,2026-10-27 17:26,1,0.9124342444939112,0.3783077797576567
+regression,RandomForestRegressor,Charlsey,10km_subbasin,True,True,59,,2026-10-27 17:26,2,1.035487214172412,0.3801965525404587
+regression,RandomForestRegressor,Charlsey,10km_subbasin,True,True,59,,2026-10-27 17:26,3,0.9252892245108406,0.25836680450735483

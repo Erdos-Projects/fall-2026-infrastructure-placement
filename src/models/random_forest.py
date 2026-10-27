@@ -1,8 +1,8 @@
 from src.evaluation import splits
 import numpy as np # type: ignore
 import pandas as pd # type: ignore
-from sklearn.metrics import root_mean_squared_error # type: ignore
-
+import matplotlib.pyplot as plt
+from sklearn.metrics import root_mean_squared_error, r2_score, roc_auc_score
 
 def make_inner_subfolds(data, FEATURES, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEED = 77):
 
@@ -162,12 +162,27 @@ def fit_model_with_nested_cv(development, X_dev, y_dev, param_grid, make_search_
 # you need to set your model
 # model = RandomForestRegressor(n_estimators=N_EST, max_features=MAX_FEAT, random_state=SEED, n_jobs=1)
 
-def fit_model_with_normal_cv(development, X_dev, y_dev, model, THRESHOLD_MG_L = 10):
+def fit_model_with_normal_cv(development, X_dev, y_dev, model, THRESHOLD_MG_L = 10, PRINT=False):
+    """
+    Fit a model using normal cross-validation over the predefined folds.
+
+    Returns
+    -------
+    results : dict
+        oof_pred: OOF predictions on the log scale.
+        y_true: Actual target values on the log scale.
+        fold: Fold assignment for each observation.
+        outer_results: RMSE for each held-out fold.
+        overall_rmse: Pooled RMSE on the log scale.
+        threshold_mg_l: Threshold used for classification.
+    """
     # Actual-scale labels for stratification. nitrate is log scale
     exceeds_dev = np.expm1(y_dev) > THRESHOLD_MG_L
 
     # resets the dataframe index to consecutive integers.
     development = development.reset_index(drop=True)
+    # Convert to NumPy arrays to ensure positional indexing.
+    y_true = np.asarray(y_dev)
     fold_dev = development["fold"].to_numpy()
 
     #Initialize storage for predictions and results
@@ -187,68 +202,399 @@ def fit_model_with_normal_cv(development, X_dev, y_dev, model, THRESHOLD_MG_L = 
         oof_pred[outer_test] = model.predict(X_dev[outer_test])
 
         outer_results.append({
-            "outer_fold": outer_fold,
+            "fold": outer_fold,
+            #"n_test": len(outer_test),
             "rmse_log": root_mean_squared_error(
-                y_dev[outer_test], oof_pred[outer_test]
-            )
+                y_true[outer_test],
+                oof_pred[outer_test]
+                ),
+            "r2" : r2_score(
+                y_true[outer_test],
+                oof_pred[outer_test]   
+                )
         })
 
     outer_results = pd.DataFrame(outer_results)
+    overall_rmse = root_mean_squared_error(y_dev, oof_pred)
+    overall_r2 = r2_score(y_dev, oof_pred)
+    if PRINT == True:
+        print("CV results (outer fold RMSE):")
+        print(outer_results.round(3).to_string(index=False))
+        print(f"Overall RMSE (log): {overall_rmse:.3f}")
+        print(f"R²: {overall_r2:.3f} ")
+        print(f"Accuracy of the >10 mg/L call: {np.mean((np.expm1(oof_pred) > 10) == exceeds_dev):.3f}")
 
-    print("CV results (outer fold RMSE):")
-    print(outer_results.round(3).to_string(index=False))
+    return {
+        "oof_pred": oof_pred,
+        "y_true": y_true,
+        "fold": fold_dev,
+        "outer_results": outer_results,
+        "overall_rmse": overall_rmse,
+        "overall_r2" : overall_r2,
+        "threshold_mg_l": THRESHOLD_MG_L
+    }
 
-    print(f"Overall RMSE (log): {root_mean_squared_error(y_dev, oof_pred):.3f}")
-    print(f"Accuracy of the >10 mg/L call: {np.mean((np.expm1(oof_pred) > 10) == exceeds_dev):.3f}")
 
+def plot_actual_vs_predicted(results, LOG_SCALE=False):
+    """
+    Plot actual versus OOF-predicted nitrate concentrations.
 
+    Parameters
+    ----------
+    results : dict
+        Output from fit_model_with_normal_cv.
+    LOG_SCALE : bool
+        If True, plot the target on its original log scale.
+        Otherwise, plot nitrate concentrations in mg/L.
+    """
 
-def find_best_hyperparameter(all_best_params):
-    # Ranks the combinations by how often they were selected across all seeds and outer folds.
-    overall_frequency = (
-        all_best_params
-        .groupby(["max_features", "n_estimators"])
-        .size()
-        .reset_index(name="count")
-        .sort_values("count", ascending=False)
-    )
+    y_true = results["y_true"]
+    oof_pred = results["oof_pred"]
+    fold = results["fold"]
 
-    overall_frequency["frequency"] = (
-        overall_frequency["count"] / len(all_best_params)
-    )
+    if LOG_SCALE:
+        actual = y_true
+        predicted = oof_pred
+        axis_label = "log_nitrate"
+    else:
+        actual = np.expm1(y_true)
+        predicted = np.expm1(oof_pred)
+        axis_label = "Nitrate concentration (mg/L)"
 
-    print(f"Overall frequency:")
-    print(f"{overall_frequency}")
-    #Find the most frequent combination for each outer fold
-    fold_frequency = (
-        all_best_params
-        .groupby(["outer_fold", "max_features", "n_estimators"])
-        .size()
-        .reset_index(name="count")
-    )
+    fig, ax = plt.subplots(figsize=(8, 6))
 
-    # Normalize within each outer fold
-    fold_frequency["frequency"] = (
-        fold_frequency["count"]
-        / fold_frequency.groupby("outer_fold")["count"].transform("sum")
-    )
+    for outer_fold in sorted(np.unique(fold)):
+        mask = fold == outer_fold
 
-    fold_frequency = fold_frequency.sort_values(
-        ["outer_fold", "count"],
-        ascending=[True, False],
-    )
-
-    #print(f"The most frequent combination for each outer fold:")
-    #print(f"{fold_frequency.to_string(index=False)}")
-
-    most_frequent_per_fold = (
-        fold_frequency
-        .sort_values(
-            ["outer_fold", "count", "n_estimators"],
-            ascending=[True, False, True],
+        ax.scatter(
+            actual[mask],
+            predicted[mask],
+            alpha=0.6,
+            label=f"Fold {outer_fold}"
         )
-        .drop_duplicates("outer_fold")
+
+    # Perfect-prediction reference line.
+    lower = min(actual.min(), predicted.min())
+    upper = max(actual.max(), predicted.max())
+
+    ax.plot(
+        [lower, upper],
+        [lower, upper],
+        "k--",
+        label="Perfect prediction"
     )
 
-    print(f"Extract only the most frequent combination for each outer fold:")
-    print(f"{most_frequent_per_fold.to_string(index=False)}")
+    ax.set_xlabel(f"Actual {axis_label}")
+    ax.set_ylabel(f"Predicted {axis_label}")
+    ax.set_title("Actual vs. Predicted Nitrate Concentrations")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_residuals(results, LOG_SCALE=False):
+    """
+    Plot OOF residuals against predicted nitrate concentrations.
+
+    Parameters
+    ----------
+    results : dict
+        Output from fit_model_with_normal_cv.
+    LOG_SCALE : bool
+        If True, calculate residuals on the log scale.
+        Otherwise, use mg/L.
+    """
+
+    y_true = results["y_true"]
+    oof_pred = results["oof_pred"]
+    fold = results["fold"]
+
+    if LOG_SCALE:
+        actual = y_true
+        predicted = oof_pred
+        axis_label = "log_nitrate"
+    else:
+        actual = np.expm1(y_true)
+        predicted = np.expm1(oof_pred)
+        axis_label = "Nitrate concentration (mg/L)"
+
+    residuals = actual - predicted
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    for outer_fold in sorted(np.unique(fold)):
+        mask = fold == outer_fold
+
+        ax.scatter(
+            predicted[mask],
+            residuals[mask],
+            alpha=0.6,
+            label=f"Fold {outer_fold}"
+        )
+
+    ax.axhline(0, color="black", linestyle="--")
+
+    ax.set_xlabel(f"Predicted {axis_label}")
+    ax.set_ylabel(f"Residual ({axis_label})")
+    ax.set_title("Residuals vs. Predicted Values")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_spatial_results(
+    results,
+    development,
+    LAT_COL="gm_latitude",
+    LON_COL="gm_longitude",
+    LOG_SCALE=False
+):
+    """
+    Map actual nitrate concentrations and OOF residuals.
+
+    Parameters
+    ----------
+    results : dict
+        Output from fit_model_with_normal_cv.
+    development : DataFrame
+        DataFrame corresponding row-for-row to the evaluation data.
+    LAT_COL, LON_COL : str
+        Latitude and longitude column names.
+    LOG_SCALE : bool
+        If True, map actual values and residuals on the log scale.
+        Otherwise, use mg/L.
+    """
+
+    y_true = results["y_true"]
+    oof_pred = results["oof_pred"]
+
+    lat = development[LAT_COL].to_numpy()
+    lon = development[LON_COL].to_numpy()
+
+    if LOG_SCALE:
+        actual = y_true
+        predicted = oof_pred
+        value_label = "log_nitrate"
+        residual_label = "Residual (log scale)"
+    else:
+        actual = np.expm1(y_true)
+        predicted = np.expm1(oof_pred)
+        value_label = "Nitrate (mg/L)"
+        residual_label = "Residual (mg/L)"
+
+    residuals = actual - predicted
+
+    # Use a shared, symmetric scale for positive and negative residuals.
+    error_limit = np.max(np.abs(residuals))
+
+    if error_limit == 0:
+        error_limit = 1
+
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+    # Map actual concentrations.
+    sc1 = axes[0].scatter(
+        lon,
+        lat,
+        c=actual,
+        cmap="viridis",
+        alpha=0.8
+    )
+
+    axes[0].set_title("Actual Nitrate Concentrations")
+    axes[0].set_xlabel("Longitude")
+    axes[0].set_ylabel("Latitude")
+
+    fig.colorbar(sc1, ax=axes[0], label=value_label)
+
+    # Map residuals.
+    sc2 = axes[1].scatter(
+        lon,
+        lat,
+        c=residuals,
+        cmap="coolwarm",
+        vmin=-error_limit,
+        vmax=error_limit,
+        alpha=0.8
+    )
+
+    axes[1].set_title("Out-of-Fold Prediction Errors")
+    axes[1].set_xlabel("Longitude")
+    axes[1].set_ylabel("Latitude")
+
+    fig.colorbar(sc2, ax=axes[1], label=residual_label)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_rmse_by_fold(results):
+    """
+    Plot RMSE for each outer fold.
+
+    The RMSE is calculated on the log scale, matching the
+    evaluation performed by fit_model_with_normal_cv.
+    """
+
+    outer_results = results["outer_results"]
+    overall_rmse = results["overall_rmse"]
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    ax.bar(
+        outer_results["fold"].astype(str),
+        outer_results["rmse_log"]
+    )
+
+    ax.axhline(
+        overall_rmse,
+        color="red",
+        linestyle="--",
+        label=f"Pooled RMSE = {overall_rmse:.3f}"
+    )
+
+    ax.set_xlabel("Outer fold")
+    ax.set_ylabel("RMSE (log scale)")
+    ax.set_title("Spatial Cross-Validation Performance")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_rmse_by_fold_mg_l(results):
+    """
+    Plot RMSE in mg/L for each outer fold.
+    """
+
+    y_true = results["y_true"]
+    oof_pred = results["oof_pred"]
+    fold = results["fold"]
+
+    actual = np.expm1(y_true)
+    predicted = np.expm1(oof_pred)
+
+    fold_results = []
+
+    for outer_fold in sorted(np.unique(fold)):
+        mask = fold == outer_fold
+
+        rmse = root_mean_squared_error(
+            actual[mask],
+            predicted[mask]
+        )
+
+        fold_results.append({
+            "outer_fold": outer_fold,
+            "rmse_mg_l": rmse
+        })
+
+    fold_results = pd.DataFrame(fold_results)
+
+    overall_rmse = root_mean_squared_error(actual, predicted)
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    ax.bar(
+        fold_results["outer_fold"].astype(str),
+        fold_results["rmse_mg_l"]
+    )
+
+    ax.axhline(
+        overall_rmse,
+        color="red",
+        linestyle="--",
+        label=f"Pooled RMSE = {overall_rmse:.2f} mg/L"
+    )
+
+    ax.set_xlabel("Outer fold")
+    ax.set_ylabel("RMSE (mg/L)")
+    ax.set_title("Spatial Cross-Validation RMSE on Original Scale")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_threshold_results(
+    results,
+    THRESHOLD_MG_L=None,
+    LOG_SCALE=False
+):
+    """
+    Plot actual versus predicted nitrate concentrations
+    with threshold lines.
+
+    Parameters
+    ----------
+    results : dict
+        Output from fit_model_with_normal_cv.
+    THRESHOLD_MG_L : float, optional
+        Threshold in mg/L. Defaults to the value in results.
+    LOG_SCALE : bool
+        If True, plot log_nitrate values and the log-transformed
+        threshold. Otherwise, plot nitrate concentrations in mg/L.
+    """
+
+    if THRESHOLD_MG_L is None:
+        THRESHOLD_MG_L = results["threshold_mg_l"]
+
+    y_true = results["y_true"]
+    oof_pred = results["oof_pred"]
+    fold = results["fold"]
+
+    if LOG_SCALE:
+        actual = y_true
+        predicted = oof_pred
+        threshold = np.log1p(THRESHOLD_MG_L)
+        axis_label = "log_nitrate"
+    else:
+        actual = np.expm1(y_true)
+        predicted = np.expm1(oof_pred)
+        threshold = THRESHOLD_MG_L
+        axis_label = "Nitrate concentration (mg/L)"
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    for outer_fold in sorted(np.unique(fold)):
+        mask = fold == outer_fold
+
+        ax.scatter(
+            actual[mask],
+            predicted[mask],
+            alpha=0.6,
+            label=f"Fold {outer_fold}"
+        )
+
+    # Perfect-prediction reference line.
+    lower = min(actual.min(), predicted.min())
+    upper = max(actual.max(), predicted.max())
+
+    ax.plot(
+        [lower, upper],
+        [lower, upper],
+        "k--",
+        label="Perfect prediction"
+    )
+
+    # Threshold lines.
+    ax.axvline(
+        threshold,
+        color="red",
+        linestyle=":"
+    )
+
+    ax.axhline(
+        threshold,
+        color="red",
+        linestyle=":",
+        label=f"{THRESHOLD_MG_L} mg/L threshold"
+    )
+
+    ax.set_xlabel(f"Actual {axis_label}")
+    ax.set_ylabel(f"Predicted {axis_label}")
+    ax.set_title("Predictions Relative to the Nitrate Threshold")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()

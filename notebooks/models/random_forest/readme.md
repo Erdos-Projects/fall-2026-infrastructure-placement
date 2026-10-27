@@ -1,0 +1,24 @@
+# Random Forest 
+Works by creating multiple decision trees (in regression case: regression trees), where the output is the average of the predictions of the trees. Works for nonlinear relationships between features and target. Random forests correct for decision trees' tendency toward overfitting. 
+
+**Justification:** Decision trees are invariant under scaling and transformations of feature values, robust to inclusion of irrelevant features, produce inspectable models, but are not highly accurate. Trees that are grown very deep (XX) can learn irregular patterns (overfitting, low bias, high variance). Random forests average deep decision trees, attempting to reduce variance, at the cost of some bias. 
+
+#### `RandomForestRegressor`
+Each tree in the ensemble is built from a sample drawn with replacement (i.e., a bootstrap sample) from the training set. During the construction of each tree in the forest, a random subset of the features is considered. The size of this subset is controlled by the `max_features` parameter; it may include either all input features or a random subset of them. 
+
+#### Parameters
+The main parameters to adjust when using these methods is `n_estimators` and `max_features`. 
+
+The former is the number of trees in the forest. The larger the better, but also the longer it will take to compute. In addition, note that results will stop getting significantly better beyond a critical number of trees. 
+
+The latter is the size of the random subsets of features to consider when splitting a node. The lower the greater the reduction of variance, but also the greater the increase in bias. Empirical good default values are `max_features=1.0` or equivalently `max_features=None` (always considering all features instead of a random subset) for regression problems. 
+
+The default value of `max_features=1.0` is equivalent to bagged trees and more randomness can be achieved by setting smaller values (e.g. 0.3 is a typical default in the literature). 
+
+Good results are often achieved when setting `max_depth=None` in combination with `min_samples_split=2` (i.e., when fully developing the trees). Bear in mind though that these values are usually not optimal, and might result in models that consume a lot of RAM. The best parameter values should always be cross-validated. 
+
+In addition, note that in random forests, bootstrap samples are used by default (`bootstrap=True`) while the default strategy for extra-trees is to use the whole dataset (`bootstrap=False`). When using bootstrap sampling the generalization error can be estimated on the left out or out-of-bag samples. This can be enabled by setting `oob_score=True`.
+
+#### `ExtraTreesRegressor`
+
+As in random forests, a random subset of candidate features is used, but instead of looking for the most discriminative thresholds, thresholds are drawn at random for each candidate feature and the best of these randomly-generated thresholds is picked as the splitting rule. This usually allows to reduce the variance of the model a bit more, at the expense of a slightly greater increase in bias.
