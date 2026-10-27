@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill,logisticregression__C
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,0,0.8053993329090106,0.2655456603818751,0.03162277660168379
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,1,0.8447058069478273,0.289685772348644,0.03162277660168379
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,2,0.7673661202185792,0.2162333010154972,0.1
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,3,0.7773733333333334,0.14091882536455025,0.31622776601683794

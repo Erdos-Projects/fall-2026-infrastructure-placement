@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,lasso__alpha
+regression,Lasso,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:28,0,1.0391058892792622,0.32940487747984637,0.03
+regression,Lasso,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:28,1,0.9442498243014613,0.3341964517096798,0.03
+regression,Lasso,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:28,2,1.1203969531068594,0.2743815041905482,0.01
+regression,Lasso,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:28,3,0.9615626770824832,0.19907961547947473,0.1
