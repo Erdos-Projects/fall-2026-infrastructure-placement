@@ -1,8 +1,26 @@
-from src.evaluation import splits
+from src.evaluation import splits, leakage
 import numpy as np # type: ignore
 import pandas as pd # type: ignore
 import matplotlib.pyplot as plt
-from sklearn.metrics import root_mean_squared_error, r2_score, roc_auc_score
+from sklearn.calibration import calibration_curve
+from sklearn.base import clone
+
+from sklearn.metrics import (
+    average_precision_score,
+    roc_auc_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    balanced_accuracy_score,
+    root_mean_squared_error, 
+    r2_score,
+    brier_score_loss,
+    confusion_matrix,
+    precision_recall_curve,
+    roc_curve,
+)
+
+ 
 
 def make_inner_subfolds(data, FEATURES, N_SUBFOLDS = 4, THRESHOLD_MG_L = 10, SEED = 77):
 
@@ -595,6 +613,651 @@ def plot_threshold_results(
     ax.set_ylabel(f"Predicted {axis_label}")
     ax.set_title("Predictions Relative to the Nitrate Threshold")
     ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+
+def fit_classifier_with_nested_cv(development, X_dev, y_dev, param_grid, make_search_model, 
+                                  N_SUBFOLDS = 4, SEED = 77, THRESHOLD_MG_L = 10,
+                                  CLASSIFICATION_THRESHOLD=0.5, PRINT=False):
+
+    y_class = (
+        np.expm1(np.asarray(y_dev).ravel()) > THRESHOLD_MG_L
+    ).astype(int)
+
+    # resets the dataframe index to consecutive integers.
+    development = development.reset_index(drop=True)
+    fold_dev = development["fold"].to_numpy()
+    subfold_dev = development["subfold"].to_numpy()
+
+    #Initialize storage for predictions and results
+    oof_pred = np.full(len(development), np.nan)
+    outer_results = []
+    best_params_by_fold = []
+
+    # Finds the distinct original fold IDs and processes them in ascending order.
+    for outer_fold in sorted(np.unique(fold_dev)):
+        #Identify the outer training and test observations
+        #np.flatnonzero() returns the integer positions where a condition is true.
+        outer_test = np.flatnonzero(fold_dev == outer_fold)
+        outer_train = np.flatnonzero(fold_dev != outer_fold)
+        #outer_test: positions of all observations belonging to the current outer fold.
+        #outer_train: positions of all observations belonging to every other development fold.
+
+        # Selects the subfold labels corresponding only to the outer training observations.
+        train_subfolds = subfold_dev[outer_train]
+
+        #Initializes an empty list to hold the inner splits.
+        inner_cv = []
+
+        #With N_SUBFOLDS = 4, the loop processes subfolds 0, 1, 2, and 3.
+        for inner_fold in range(N_SUBFOLDS):
+            #Selects the positions within train_subfolds assigned to the current subfold.
+            inner_valid = np.flatnonzero(
+                train_subfolds == inner_fold
+            )
+            #Selects every other position, excluding the current validation subfold.
+            inner_train = np.flatnonzero(
+                train_subfolds != inner_fold
+            )
+            #Adds the training and validation positions as a tuple.
+            inner_cv.append((inner_train, inner_valid))
+
+        # After the loop, inner_cv contains four splits. 
+        #
+        # Each split uses three subfold groups for training and one for validation.
+        # For example: 
+        # Outer Fold 0 is set aside for evaluating the tuned model. 
+
+        # 1. Validation = Outer Folds 1–3, Inner Subfold 0 ~ 1.0, 2.0, 3.0
+        # 1. Training = Outer Folds 1–3, Inner Subfolds 1,2,3. ~ 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+
+        # 2. Validation = Outer Folds 1–3, Inner Subfold 1 ~ 1.1, 2.1, 3.1
+        # 2. Training = Outer Folds 1–3, Inner Subfolds 0,2,3. ~ 1.0, 1.2, 1.3, 2.0, 2.2, 2.3, 3.0, 3.2, 3.3
+        # ... 
+
+        # creates a GridSearchCV object using the inner splits for the current outer fold.
+        # Because there are 20 combinations and four inner splits, 
+        # this requires 80 model fits per outer fold.
+        # With four outer folds, that is 320 inner-CV fits, plus four refits of the selected models.
+        search = make_search_model(inner_cv, param_grid, SEED)
+
+        # evaluates the nine hyperparameter combinations using only the outer training data.
+        search.fit(X_dev[outer_train], y_class[outer_train])
+
+        # Predict probabilities for the held-out outer fold.
+        outer_prob = search.predict_proba(X_dev[outer_test])[:, 1]
+        
+        oof_pred[outer_test] = outer_prob
+
+        # Convert probabilities to binary classifications.
+        outer_class = (outer_prob >= CLASSIFICATION_THRESHOLD).astype(int)
+        y_test = y_class[outer_test]
+
+        # Metrics on the outer test fold.
+        outer_ap = average_precision_score(
+            y_test, outer_prob
+        )
+
+        # ROC-AUC is undefined if the test fold contains only one class.
+        outer_auc = (
+            roc_auc_score(y_test, outer_prob)
+            if len(np.unique(y_test)) == 2
+            else np.nan
+        )
+
+
+        outer_results.append({
+            "outer_fold": outer_fold,
+
+            "average_precision": outer_ap,
+            "roc_auc": outer_auc,
+
+            "precision": precision_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "recall": recall_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "f1": f1_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "balanced_accuracy": balanced_accuracy_score(
+                y_test,
+                outer_class,
+            ),
+
+            "brier_score_loss" : brier_score_loss(
+                y_test, 
+                outer_prob 
+            ),
+
+            # Best inner-CV score, without negation.
+            "best_inner_ap": search.best_score_,
+
+            # Class balance in the outer test fold.
+            "n_exceedances": int(y_test.sum()),
+            "n_samples": len(y_test),
+        })
+
+        # Get the inner-fold RMSEs for the best parameter combination
+        best_idx = search.best_index_
+
+        inner_ap = {
+            f"inner_fold_{i}_ap":
+                search.cv_results_[
+                    f"split{i}_test_score"
+                ][best_idx]
+            for i in range(N_SUBFOLDS)
+        }
+
+        # Add inner-fold scores to the outer-fold results.
+        outer_results[-1].update(inner_ap)
+        
+        best_params_by_fold.append({
+        "outer_fold": outer_fold,
+        **search.best_params_,
+        })
+    
+    outer_results = pd.DataFrame(outer_results)
+    best_params_by_fold = pd.DataFrame(best_params_by_fold)
+
+    # Overall out-of-fold metrics.
+    overall_class = (
+        oof_pred >= CLASSIFICATION_THRESHOLD
+    ).astype(int)
+
+    overall_ap = average_precision_score(
+        y_class, oof_pred
+    )
+
+    overall_auc = (
+        roc_auc_score(y_class, oof_pred)
+        if len(np.unique(y_class)) == 2
+        else np.nan
+    )
+
+    if PRINT:
+
+        print("Nested CV results:")
+        print(outer_results.round(3).to_string(index=False))
+
+        print("\nBest parameters per outer fold:")
+        print(best_params_by_fold.to_string(index=False))
+
+        print("\nOverall out-of-fold results:")
+        print(f"Average precision: {overall_ap:.3f}")
+        print(f"ROC-AUC:           {overall_auc:.3f}")
+
+        print(
+            f"Precision:         "
+            f"{precision_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"Recall:            "
+            f"{recall_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"F1:                "
+            f"{f1_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"Balanced accuracy: "
+            f"{balanced_accuracy_score(y_class, overall_class):.3f}"
+        )
+
+    return outer_results, best_params_by_fold, oof_pred
+
+
+def fit_classifier_with_normal_cv(development, X_dev, y_dev, model, THRESHOLD_MG_L = 10,
+                                  CLASSIFICATION_THRESHOLD=0.5, PRINT=False):
+
+    y_class = (
+        np.expm1(np.asarray(y_dev).ravel()) > THRESHOLD_MG_L
+    ).astype(int)
+
+    # resets the dataframe index to consecutive integers.
+    development = development.reset_index(drop=True)
+    fold_dev = development["fold"].to_numpy()
+
+    #Initialize storage for predictions and results
+    oof_pred = np.full(len(development), np.nan)
+    outer_results = []
+
+    # Finds the distinct original fold IDs and processes them in ascending order.
+    for outer_fold in sorted(np.unique(fold_dev)):
+        #Identify the outer training and test observations
+        #np.flatnonzero() returns the integer positions where a condition is true.
+        outer_test = np.flatnonzero(fold_dev == outer_fold)
+        outer_train = np.flatnonzero(fold_dev != outer_fold)
+        #outer_test: positions of all observations belonging to the current outer fold.
+        #outer_train: positions of all observations belonging to every other development fold.
+
+
+
+        fold_model = clone(model)
+        fold_model.fit(X_dev[outer_train], y_class[outer_train])
+        outer_prob = fold_model.predict_proba(X_dev[outer_test])[:, 1]
+        
+        oof_pred[outer_test] = outer_prob
+
+        # Convert probabilities to binary classifications.
+        outer_class = (outer_prob >= CLASSIFICATION_THRESHOLD).astype(int)
+        y_test = y_class[outer_test]
+
+        # Metrics on the outer test fold.
+        outer_ap = average_precision_score(
+            y_test, outer_prob
+        )
+
+        # ROC-AUC is undefined if the test fold contains only one class.
+        outer_auc = (
+            roc_auc_score(y_test, outer_prob)
+            if len(np.unique(y_test)) == 2
+            else np.nan
+        )
+
+        outer_results.append({
+            "outer_fold": outer_fold,
+
+            "average_precision": outer_ap,
+            "roc_auc": outer_auc,
+
+            "precision": precision_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "recall": recall_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "f1": f1_score(
+                y_test,
+                outer_class,
+                zero_division=0,
+            ),
+
+            "balanced_accuracy": balanced_accuracy_score(
+                y_test,
+                outer_class,
+            ),
+
+            "brier_score_loss" : brier_score_loss(
+                y_test, 
+                outer_prob 
+            ),
+
+            # Class balance in the outer test fold.
+            "n_exceedances": int(y_test.sum()),
+            "n_samples": len(y_test),
+            "exceedance_rate": y_test.mean(),
+        })
+    
+    outer_results = pd.DataFrame(outer_results)
+
+    # Overall out-of-fold metrics.
+    overall_class = (
+        oof_pred >= CLASSIFICATION_THRESHOLD
+    ).astype(int)
+
+    overall_ap = average_precision_score(
+        y_class, oof_pred
+    )
+
+    overall_auc = (
+        roc_auc_score(y_class, oof_pred)
+        if len(np.unique(y_class)) == 2
+        else np.nan
+    )
+
+    oof_results = pd.DataFrame({
+        "actual": y_class,
+        "probability": oof_pred,
+        "predicted": (
+            oof_pred >= CLASSIFICATION_THRESHOLD
+        ).astype(int),
+        "fold": fold_dev,
+    })
+
+    if PRINT:
+        print("\nOverall out-of-fold results:")
+        print(f"Average precision: {overall_ap:.3f}")
+        print(f"ROC-AUC:           {overall_auc:.3f}")
+
+        print(
+            f"Precision:         "
+            f"{precision_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"Recall:            "
+            f"{recall_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"F1:                "
+            f"{f1_score(y_class, overall_class, zero_division=0):.3f}"
+        )
+
+        print(
+            f"Balanced accuracy: "
+            f"{balanced_accuracy_score(y_class, overall_class):.3f}"
+        )
+
+    return outer_results, oof_results
+
+
+def plot_confusion_matrix(oof_results, threshold=0.5):
+    from sklearn.metrics import ConfusionMatrixDisplay
+
+    actual = oof_results["actual"].to_numpy()
+
+    predicted = (
+        oof_results["probability"].to_numpy() >= threshold
+    ).astype(int)
+
+    fig, ax = plt.subplots(figsize=(6, 5))
+
+    ConfusionMatrixDisplay.from_predictions(
+        actual,
+        predicted,
+        labels=[0, 1],
+        display_labels=["No exceedance", "Exceedance"],
+        cmap="Blues",
+        values_format="d",
+        ax=ax,
+    )
+
+    ax.set_title(
+        f"Out-of-fold confusion matrix (threshold = {threshold:.2f})"
+    )
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_precision_recall(oof_results):
+    from sklearn.metrics import PrecisionRecallDisplay
+
+    actual = oof_results["actual"].to_numpy()
+    probabilities = oof_results["probability"].to_numpy()
+
+    ap = average_precision_score(actual, probabilities)
+    prevalence = actual.mean()
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    PrecisionRecallDisplay.from_predictions(
+        actual,
+        probabilities,
+        name=f"Random Forest (AP = {ap:.3f})",
+        ax=ax,
+    )
+
+    ax.axhline(
+        prevalence,
+        linestyle="--",
+        label=f"Prevalence baseline = {prevalence:.3f}",
+    )
+
+    ax.set_title("Out-of-fold precision-recall curve")
+    ax.legend()
+    ax.grid(alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_roc_curve(oof_results):
+    from sklearn.metrics import RocCurveDisplay
+
+    actual = oof_results["actual"].to_numpy()
+    probabilities = oof_results["probability"].to_numpy()
+
+    if len(np.unique(actual)) < 2:
+        raise ValueError(
+            "ROC curve requires both classes in the dataset."
+        )
+
+    auc = roc_auc_score(actual, probabilities)
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    RocCurveDisplay.from_predictions(
+        actual,
+        probabilities,
+        name=f"Random Forest (AUC = {auc:.3f})",
+        ax=ax,
+    )
+
+    ax.plot(
+        [0, 1],
+        [0, 1],
+        linestyle="--",
+        label="Random ranking",
+    )
+
+    ax.set_title("Out-of-fold ROC curve")
+    ax.legend()
+    ax.grid(alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_calibration_curve(oof_results, n_bins=10):
+    actual = oof_results["actual"].to_numpy()
+    probabilities = oof_results["probability"].to_numpy()
+
+    observed_rate, mean_predicted = calibration_curve(
+        actual,
+        probabilities,
+        n_bins=n_bins,
+        strategy="uniform",
+    )
+
+    brier = brier_score_loss(actual, probabilities)
+
+    prevalence = actual.mean()
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    ax.plot(
+        mean_predicted,
+        observed_rate,
+        marker="o",
+        label="Random Forest",
+    )
+
+    ax.plot(
+        [0, 1],
+        [0, 1],
+        linestyle="--",
+        label="Perfect calibration",
+    )
+
+    ax.axhline(
+        prevalence,
+        linestyle=":",
+        label=f"Exceedance prevalence = {prevalence:.3f}",
+    )
+
+    ax.set_xlabel("Mean predicted probability")
+    ax.set_ylabel("Observed exceedance frequency")
+    ax.set_title(f"Probability calibration (Brier score = {brier:.3f})")
+
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+    ax.legend()
+    ax.grid(alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_probability_distributions(oof_results):
+    actual = oof_results["actual"].to_numpy()
+    probabilities = oof_results["probability"].to_numpy()
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    ax.hist(
+        probabilities[actual == 0],
+        bins=20,
+        alpha=0.6,
+        density=True,
+        label="Actual: no exceedance",
+    )
+
+    ax.hist(
+        probabilities[actual == 1],
+        bins=20,
+        alpha=0.6,
+        density=True,
+        label="Actual: exceedance",
+    )
+
+    ax.set_xlabel("Predicted probability of exceedance")
+    ax.set_ylabel("Density")
+    ax.set_title("Predicted probabilities by actual nitrate status")
+
+    ax.set_xlim(0, 1)
+    ax.legend()
+    ax.grid(alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_outer_fold_metrics(outer_results):
+    metrics = [
+        "average_precision",
+        "roc_auc",
+        "recall",
+        "precision",
+        "f1",
+        "balanced_accuracy",
+    ]
+
+    available_metrics = [
+        metric for metric in metrics
+        if metric in outer_results.columns
+    ]
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    x = np.arange(len(outer_results))
+    width = 0.8 / len(available_metrics)
+
+    for i, metric in enumerate(available_metrics):
+        ax.bar(
+            x + (i - (len(available_metrics) - 1) / 2) * width,
+            outer_results[metric],
+            width=width,
+            label=metric.replace("_", " ").title(),
+        )
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(
+        [f"Fold {fold}" for fold in outer_results["outer_fold"]]
+    )
+
+    ax.set_ylabel("Score")
+    ax.set_ylim(0, 1)
+    ax.set_title("Classifier performance across spatial outer folds")
+
+    ax.legend(
+        loc="upper left",
+        bbox_to_anchor=(1.02, 1),
+    )
+
+    ax.grid(axis="y", alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_outer_fold_brier(outer_results):
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    ax.bar(
+        outer_results["outer_fold"].astype(str),
+        outer_results["brier_score_loss"],
+    )
+
+    ax.set_xlabel("Outer fold")
+    ax.set_ylabel("Brier score")
+    ax.set_title("Probability prediction error across spatial folds")
+
+    ax.grid(axis="y", alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_threshold_metrics(oof_results):
+    actual = oof_results["actual"].to_numpy()
+    probabilities = oof_results["probability"].to_numpy()
+
+    thresholds = np.linspace(0.05, 0.95, 91)
+
+    precisions = []
+    recalls = []
+    f1_scores = []
+
+    for threshold in thresholds:
+        predicted = (probabilities >= threshold).astype(int)
+
+        precisions.append(
+            precision_score(actual, predicted, zero_division=0)
+        )
+
+        recalls.append(
+            recall_score(actual, predicted, zero_division=0)
+        )
+
+        f1_scores.append(
+            f1_score(actual, predicted, zero_division=0)
+        )
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    ax.plot(thresholds, precisions, label="Precision")
+    ax.plot(thresholds, recalls, label="Recall")
+    ax.plot(thresholds, f1_scores, label="F1-score")
+
+    ax.axvline(
+        0.5,
+        linestyle="--",
+        label="Default threshold = 0.5",
+    )
+
+    ax.set_xlabel("Classification probability threshold")
+    ax.set_ylabel("Score")
+    ax.set_title("Precision, recall, and F1 versus threshold")
+
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+    ax.legend()
+    ax.grid(alpha=0.3)
 
     plt.tight_layout()
     plt.show()

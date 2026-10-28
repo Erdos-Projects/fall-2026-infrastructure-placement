@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill
+classification,RandomForestClassifier,Charlsey,7.5km_subbasin,True,True,59,,2026-10-28 16:49,0,0.8201994394340953,0.16945486746573665
+classification,RandomForestClassifier,Charlsey,7.5km_subbasin,True,True,59,,2026-10-28 16:49,1,0.8238347860323666,0.1610353573063998
+classification,RandomForestClassifier,Charlsey,7.5km_subbasin,True,True,59,,2026-10-28 16:49,2,0.7509374630570989,0.18910261761254935
+classification,RandomForestClassifier,Charlsey,7.5km_subbasin,True,True,59,,2026-10-28 16:49,3,0.780686797983877,0.18980817605779798
