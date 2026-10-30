@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2
-regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 01:31,0,1.0288293502696657,0.3426033777920785
-regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 01:31,1,0.9156638272638269,0.37389900217332417
-regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 01:31,2,1.0676032755064104,0.3411534119902352
-regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 01:31,3,0.9444605920565002,0.22731615106659453
+regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 20:05,0,1.0288293502696657,0.3426033777920785
+regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 20:05,1,0.9156638272638269,0.37389900217332417
+regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 20:05,2,1.0676032755064104,0.3411534119902352
+regression,XGBoost BRT,Karuna,10km_subbasin,True,True,59,"params: {'subsample': 0.7, 'n_estimators': 75, 'min_child_weight': 5, 'max_depth': 3, 'learning_rate': 0.05}",2026-10-28 20:05,3,0.9444605920565002,0.22731615106659453

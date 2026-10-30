@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill,best_inner_brier,subsample,n_estimators,min_child_weight,max_depth,learning_rate
+classification,XGBoost BRT classifier,Karuna,5km_subbasin,True,True,59,nested CV scores,2026-10-28 20:09,0,0.832,0.27589776951081635,0.1732858568429947,0.7,75,5,4,0.03
+classification,XGBoost BRT classifier,Karuna,5km_subbasin,True,True,59,nested CV scores,2026-10-28 20:09,1,0.7763733242563887,0.19819493533836274,0.17571212351322174,0.7,75,5,4,0.03
+classification,XGBoost BRT classifier,Karuna,5km_subbasin,True,True,59,nested CV scores,2026-10-28 20:09,2,0.7956448296122208,0.21298653515482324,0.1831992119550705,0.7,75,5,4,0.03
+classification,XGBoost BRT classifier,Karuna,5km_subbasin,True,True,59,nested CV scores,2026-10-28 20:09,3,0.8618201362761586,0.3423975619945835,0.17370537295937538,0.7,75,5,4,0.03
