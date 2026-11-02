@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,max_depth
+regression,Decision tree,Gavin,5km_subbasin,True,True,59,,2026-11-02 18:23,0,1.0265703369567662,0.21627407207876737,3
+regression,Decision tree,Gavin,5km_subbasin,True,True,59,,2026-11-02 18:23,1,1.1445428116263243,0.05001263482927176,5
+regression,Decision tree,Gavin,5km_subbasin,True,True,59,,2026-11-02 18:23,2,1.0469092945357488,0.2757366933306885,3
+regression,Decision tree,Gavin,5km_subbasin,True,True,59,,2026-11-02 18:23,3,1.0529479407772402,0.28853394949386135,2
