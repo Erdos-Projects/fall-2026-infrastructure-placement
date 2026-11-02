@@ -1,6 +1,3 @@
-notebooks/groundwater/NHD_H_18060005_HU8_GDB/
-notebooks/crop_mapping/crop_maps/
-notebooks/groundwater/groundwaterdata.csv
 data/*
 .env
 __pycache__/
