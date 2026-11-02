@@ -12,10 +12,9 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 ├── modeling_plan.md
 ├── notebooks
 │   ├── data_cleaning
-│   │   └── merge
-│   │   │   └── XX
-│   │   └── evaluation
-│   │   │   └── XX
+│   ├── data_merge
+│       ├── XX
+│   ├── leakage_test.ipynb
 │   ├── feature_selection.ipynb
 │   ├── final_results.ipynb
 │   ├── modeling_summary.ipynb
@@ -47,8 +46,6 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
     ├── merge
     │   ├── merging_functions.py
     │   └── soils.py
-    ├── misc *MOVE OR RENAME*
-    │   └── my_functions.py
     ├── models *POSSIBLY ADD FUNCTIONS HERE*
     │   └── random_forest.py
     └── shared
