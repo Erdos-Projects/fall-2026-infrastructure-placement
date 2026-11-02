@@ -9,7 +9,7 @@
   "threshold_mg_L": 10,
   "holdout_fold": 4,
   "created": "2026-10-26",
-  "subbasins": "notebooks/models/salinas_valley_subbasins.geojson",
+  "subbasins": "data/salinas_valley_subbasins.geojson",
   "balance": {
     "max_subbasin_deviation": 0.115,
     "exceedance_spread": 0.124

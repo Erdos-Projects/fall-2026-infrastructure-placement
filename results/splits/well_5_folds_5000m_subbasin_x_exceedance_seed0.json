@@ -1,7 +1,7 @@
 {
   "source": "notebooks/groundwater/groundwater_nitrate_clean.csv",
   "source_rows": 5280,
-  "subbasins": "notebooks/models/salinas_valley_subbasins.geojson",
+  "subbasins": "data/salinas_valley_subbasins.geojson",
   "cell_size_m": 5000,
   "n_splits": 5,
   "seed": 0,

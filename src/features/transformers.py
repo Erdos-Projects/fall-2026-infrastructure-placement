@@ -10,7 +10,7 @@ import geopandas as gpd
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-SUBBASIN_PATH = ROOT / "notebooks" / "models" / "salinas_valley_subbasins.geojson"
+SUBBASIN_PATH = ROOT / "data" / "salinas_valley_subbasins.geojson"
 OUTSIDE = "OUTSIDE"
 
 
