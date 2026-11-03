@@ -18,7 +18,7 @@ from src.evaluation import splits
 
 ROOT = Path(__file__).resolve().parents[2]
 SPLIT_DIR = ROOT / "results" / "splits"
-SOURCE = ROOT / "notebooks" / "groundwater" / "groundwater_nitrate_clean.csv"
+SOURCE = ROOT / "notebooks" / "data_cleaning" / "groundwater" / "groundwater_nitrate_clean.csv"
 THRESHOLD_MG_L = 10
 
 # ---- registered splits (never change an entry once its file exists; add a new one instead) ----
@@ -39,7 +39,7 @@ SPLITS = {
 }
 
 
-DEFAULT_SPLIT = "10km"
+DEFAULT_SPLIT = "10km_subbasin"
 
 
 def split_config(split):
