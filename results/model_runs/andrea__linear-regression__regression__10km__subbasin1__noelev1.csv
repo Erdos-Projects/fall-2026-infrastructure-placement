@@ -1,0 +1,5 @@
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2
+regression,Linear regression,Andrea,10km,True,True,54,,2026-11-03 17:39,0,0.9974161994395828,0.33431896898713664
+regression,Linear regression,Andrea,10km,True,True,54,,2026-11-03 17:39,1,1.3800415380389575,-0.3615979535398799
+regression,Linear regression,Andrea,10km,True,True,54,,2026-11-03 17:39,2,1.1363496835862792,0.13023728354669373
+regression,Linear regression,Andrea,10km,True,True,54,,2026-11-03 17:39,3,1.0521136007159697,0.34100340655121186

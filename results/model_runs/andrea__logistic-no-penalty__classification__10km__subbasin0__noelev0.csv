@@ -1,5 +1,0 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill
-classification,Logistic (no penalty),Andrea,10km,False,False,48,,2026-11-02 11:12,0,0.7551467404684489,0.1553874851872339
-classification,Logistic (no penalty),Andrea,10km,False,False,48,,2026-11-02 11:12,1,0.6510242613046352,-0.1401864434323461
-classification,Logistic (no penalty),Andrea,10km,False,False,48,,2026-11-02 11:12,2,0.7557249333917911,0.18572888486883476
-classification,Logistic (no penalty),Andrea,10km,False,False,48,,2026-11-02 11:12,3,0.776446430927563,0.16494373632732395

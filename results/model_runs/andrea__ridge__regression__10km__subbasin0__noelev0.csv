@@ -1,5 +1,5 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,ridge__alpha
-regression,Ridge,Andrea,10km,False,False,48,,2026-11-02 11:11,0,1.0797706385048214,0.2198531230605696,3162.2776601683795
-regression,Ridge,Andrea,10km,False,False,48,,2026-11-02 11:11,1,1.237238410400691,-0.09438809916600999,3162.2776601683795
-regression,Ridge,Andrea,10km,False,False,48,,2026-11-02 11:11,2,1.13526180460861,0.13190181281976854,3162.2776601683795
-regression,Ridge,Andrea,10km,False,False,48,,2026-11-02 11:11,3,1.1145431006979774,0.26047708498329725,10000.0
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,alpha
+regression,Ridge,Andrea,10km,False,False,48,,2026-11-03 17:34,0,1.0797706385048211,0.21985312306056992,3162.2776601683795
+regression,Ridge,Andrea,10km,False,False,48,,2026-11-03 17:34,1,1.237238410400691,-0.09438809916600999,3162.2776601683795
+regression,Ridge,Andrea,10km,False,False,48,,2026-11-03 17:34,2,1.13526180460861,0.13190181281976854,3162.2776601683795
+regression,Ridge,Andrea,10km,False,False,48,,2026-11-03 17:34,3,1.1145431006979774,0.26047708498329714,10000.0

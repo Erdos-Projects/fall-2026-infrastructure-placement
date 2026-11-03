@@ -1,5 +1,0 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill,max_depth
-classification,Decision tree classifier,Gavin,10km_subbasin,True,True,59,,2026-11-02 18:23,0,0.7741121169916435,0.23523047410767328,2
-classification,Decision tree classifier,Gavin,10km_subbasin,True,True,59,,2026-11-02 18:23,1,0.7659418419581021,0.1702043135162552,4
-classification,Decision tree classifier,Gavin,10km_subbasin,True,True,59,,2026-11-02 18:23,2,0.7705720162808001,0.254373401609449,3
-classification,Decision tree classifier,Gavin,10km_subbasin,True,True,59,,2026-11-02 18:23,3,0.7367911678256506,0.10716195892424185,4

@@ -1,5 +1,5 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,lasso__alpha
-regression,Lasso,Andrea,10km,False,False,48,,2026-11-02 11:11,0,1.0943055921568616,0.19870841147128993,0.1
-regression,Lasso,Andrea,10km,False,False,48,,2026-11-02 11:11,1,1.2556249583229313,-0.127157103588609,0.03
-regression,Lasso,Andrea,10km,False,False,48,,2026-11-02 11:11,2,1.1373428120216467,0.12871633703334562,0.1
-regression,Lasso,Andrea,10km,False,False,48,,2026-11-02 11:11,3,1.0950006883901988,0.2861833324926547,0.1
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,alpha
+regression,Lasso,Andrea,10km,False,False,48,,2026-11-03 17:34,0,1.0943055921568616,0.19870841147128993,0.1
+regression,Lasso,Andrea,10km,False,False,48,,2026-11-03 17:34,1,1.2556249583229313,-0.127157103588609,0.03
+regression,Lasso,Andrea,10km,False,False,48,,2026-11-03 17:34,2,1.1373428120216467,0.12871633703334562,0.1
+regression,Lasso,Andrea,10km,False,False,48,,2026-11-03 17:34,3,1.0950006883901988,0.2861833324926547,0.1
