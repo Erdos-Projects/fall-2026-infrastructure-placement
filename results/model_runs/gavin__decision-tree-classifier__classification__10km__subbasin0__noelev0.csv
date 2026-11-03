@@ -1,5 +1,0 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill,max_depth
-classification,Decision tree classifier,Gavin,10km,False,False,50,,2026-11-02 18:23,0,0.7901785335291571,0.1298972293430002,6
-classification,Decision tree classifier,Gavin,10km,False,False,50,,2026-11-02 18:23,1,0.664722976694714,-0.08747129824889144,8
-classification,Decision tree classifier,Gavin,10km,False,False,50,,2026-11-02 18:23,2,0.7183751842386381,0.09227048251163228,6
-classification,Decision tree classifier,Gavin,10km,False,False,50,,2026-11-02 18:23,3,0.780038399603617,0.2165271611395576,3

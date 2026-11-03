@@ -1,5 +1,5 @@
-task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier_skill,logisticregression__C
-classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,0,0.8053993329090106,0.2655456603818751,0.03162277660168379
-classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,1,0.8447058069478273,0.289685772348644,0.03162277660168379
-classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,2,0.7673661202185792,0.2162333010154972,0.1
-classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-10-27 10:30,3,0.7773733333333334,0.14091882536455025,0.31622776601683794
+task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier,brier_skill,C
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-11-03 18:13,0,0.8048045854679897,0.17041336444550045,0.26844303562585015,0.03162277660168379
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-11-03 18:13,1,0.8442614194761354,0.14287330608633078,0.2851374897830087,0.03162277660168379
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-11-03 18:13,2,0.767287431693989,0.18581379705472018,0.21681366790956602,0.1
+classification,Logistic L1,Andrea,10km_subbasin,True,True,54,,2026-11-03 18:13,3,0.7774844444444444,0.17681943019694765,0.141719398846201,0.31622776601683794
