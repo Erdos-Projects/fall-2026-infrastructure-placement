@@ -1,3 +1,5 @@
-data/groundwater_nitrate_clean.csv
+data/*
+!data/salinas_valley_subbasins.geojson
 .env
 __pycache__/
+
