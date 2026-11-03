@@ -8,7 +8,7 @@ Models without forecasting will take the average measurement for a given well ov
 
 ### Splitting methods:
 
-Splitting methods and leakage analysis shown in [`notebooks/evaluation/leakage_tests.ipynb`](./notebooks/evaluation/leakage_test.ipynb).
+Splitting methods and leakage analysis shown in [`notebooks/data_splitting.ipynb`](./notebooks/data_splitting.ipynb).
 
 **Geospatial splitting:**
 Split train and test sets via spatial declustering equal area grid cell approach (see [3]). Use a grid size of 10 km to avoid geospatial data leakage.

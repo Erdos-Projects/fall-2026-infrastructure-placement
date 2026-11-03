@@ -14,17 +14,34 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 │   ├── data_cleaning
 │   ├── data_merge
 │       ├── XX
-│   ├── leakage_test.ipynb
+│   ├── data_splitting.ipynb
 │   ├── feature_selection.ipynb
+|   ├── regression_models.ipynb
+|   ├── classification_models.ipynb
 │   ├── final_results.ipynb
-│   ├── modeling_summary.ipynb
 │   └── models
 │       ├── 
 ├── results
 │   ├── evaluation
 │   │   ├── estimated_leakage_by_split.png
-│   │   └── spatial_folds_map.png
-│   │   └── MORE FILES HERE
+│   │   ├── spatial_folds_map_5km_subbasin.png
+│   │   ├── spatial_folds_map_7.5km_subbasin.png
+│   │   ├── spatial_folds_map_10km.png
+│   │   ├── spatial_folds_map_10km_subbasin.png
+│   │   ├── spatial_folds_maps_all_splits.png
+│   │   └── subbasin_mix_by_fold.png
+│   ├── regression
+│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
+│   │   ├── residuals_10km_subbasin_subbasin1.png
+│   │   ├── observed_vs_predicted_10km_subbasin_subbasin1.png
+│   │   └── model_comparison_10km_subbasin.png
+│   ├── classification
+│   │   ├── threshold_metrics_10km_subbasin_subbasin1.png
+│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
+│   │   ├── probability_distributions_10km_subbasin_subbasin1.png
+│   │   ├── pr_roc_calibration_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_10km_subbasin_subbasin1.png
+│   │   └── model_comparison_10km_subbasin_subbasin1.png
 │   ├── feature_selection.csv
 │   ├── model_runs
 │   │   ├── 
