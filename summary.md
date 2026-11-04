@@ -41,4 +41,4 @@ However, from preliminary modeling with this data split strategy, we found large
 
 # Next Steps
 
-Going forward, we plan to create an interactive website to display an interactive map showing the areas of high-risk nitrate pollution in Salinas Valley. We hope to improve our model with new data sources. For instance, the work by Ransom et al. (Ref. [1]) has shown that alternative features, like the nitrogen applied/nitrogen removed per acre, could improve performance. This particular set of data can be requested, but is not currently publicly available. 
+Going forward, we plan to create a website to display an interactive map showing the areas of high-risk nitrate pollution in Salinas Valley. We hope to improve our model with new data sources. For instance, the work by Ransom et al. (Ref. [1]) has shown that alternative features, like the nitrogen applied/nitrogen removed per acre, could improve performance. This particular set of data can be requested, but is not currently publicly available. 
