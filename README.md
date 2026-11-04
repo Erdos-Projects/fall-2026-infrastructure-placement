@@ -5,75 +5,39 @@ Agricultural runoff carries pollutants into rivers and coastal waters, harming e
 This project will predict areas with higher risk of nitrate pollution in the Salinas Valley and determine where VTS could be most suitable. We will train our model on nitrate pollutant measurements in groundwater wells throughout the Salinas Valley and use soil characteristics, precipitation, temperature, and types of cropland as predictor variables.  Additionally, we want to identify where additional nitrate monitoring is most needed in the Salinas Valley.
 
 # Repo Structure
+|  File/Directory   |      Description     | 
+|----------|-------------|
+| `evaluation_plan.md` |  Describes the data splitting strategy|
+| `modeling_plan.md`   |  Describes the models used in the project|
+| `README.md` |  Repo structure and some literature references |
+| `summary.md` |  Summary of results and future work |
+| | |
+| `data/` |  Contains some open source data used in the project|
+| | |
+| `notebooks/classification_models.ipynb` |  Score comparisions for classification models |
+| `notebooks/data_splitting.ipynb` | Data splitting procedure and leakage analysis |
+| `notebooks/feature_selection.ipynb` | Exploratory Data Analysis and Cleaning |
+| `notebooks/final_results.ipynb` | Fitting best model on validation data |
+| `notebooks/regression_results.ipynb` | Score comparisions for regression models |
+| `notebooks/data/data_cleaning/` |  |
+| `notebooks/data/data_merge/` |  |
+| | |
+| `results/classification/` | Folder containing plots for classification models |
+| `results/evaluation/` | ? |
+| `results/model_runs/` |  ? |
+| `results/predictions/` |  ? |
+| `results/regression/` | Folder containing plots for regression models  |
+| `results/feature_selection.csv` |  ? |
+| `results/model_comparison.csv` |  ? |
+| | |
+| `src/evalution/` | Python scripts for data splitting ?  |
+| `src/features/` | Python scripts for EDA ?  |
+| `src/inmp/` | **Remove/rename**  |
+| `src/merge/` | Python scripts for data merging |
+| `src/models/` | Python scripts for modeling |
+| `src/shared/` | Python scripts for miscellanous tasks |
 
-```
-├── README.md
-├── evaluation_plan.md
-├── modeling_plan.md
-├── notebooks
-│   ├── data_cleaning
-│   ├── data_merge
-│       ├── XX
-│   ├── data_splitting.ipynb
-│   ├── feature_selection.ipynb
-|   ├── regression_models.ipynb
-|   ├── classification_models.ipynb
-│   ├── final_results.ipynb
-│   └── models
-│       ├── 
-├── results
-│   ├── evaluation
-│   │   ├── estimated_leakage_by_split.png
-│   │   ├── spatial_folds_map_5km_subbasin.png
-│   │   ├── spatial_folds_map_7.5km_subbasin.png
-│   │   ├── spatial_folds_map_10km.png
-│   │   ├── spatial_folds_map_10km_subbasin.png
-│   │   ├── spatial_folds_maps_all_splits.png
-│   │   └── subbasin_mix_by_fold.png
-│   ├── regression
-│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
-│   │   ├── residuals_10km_subbasin_subbasin1.png
-│   │   ├── observed_vs_predicted_10km_subbasin_subbasin1.png
-│   │   └── model_comparison_10km_subbasin.png
-│   ├── classification
-│   │   ├── threshold_metrics_10km_subbasin_subbasin1.png
-│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
-│   │   ├── probability_distributions_10km_subbasin_subbasin1.png
-│   │   ├── pr_roc_calibration_10km_subbasin_subbasin1.png
-│   │   ├── confusion_matrices_10km_subbasin_subbasin1.png
-│   │   └── model_comparison_10km_subbasin_subbasin1.png
-│   ├── feature_selection.csv
-│   ├── model_runs
-│   │   ├── 
-│   └── splits
-│       ├── 
-└── src
-    ├── evaluation
-    │   ├── leakage.py
-    │   ├── make_splits.py
-    │   ├── results_log.py
-    │   └── splits.py
-    ├── features
-    │   ├── preprocessing.py
-    │   └── transformers.py
-    ├── inmp  *MOVE OR RENAME*
-    │   ├── fetch.py
-    │   ├── preprocessing.py
-    │   └── transformers.py
-    ├── merge
-    │   ├── merging_functions.py
-    │   └── soils.py
-    ├── models *POSSIBLY ADD FUNCTIONS HERE*
-    │   └── random_forest.py
-    └── shared
-        ├── arcgis.py
-        ├── io.py
-        └── spatial.py
-```
-
-
-
-# Selected scientific references 
+# Selected references 
 
 [1] Ransom et al. (2017), A hybrid machine learning model to predict and visualize nitrate concentration throughout the Central Valley aquifer: https://pubs.usgs.gov/publication/70187880
 
