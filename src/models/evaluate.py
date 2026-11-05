@@ -10,9 +10,10 @@ from sklearn.metrics import root_mean_squared_error, r2_score, roc_auc_score, br
 from src.features.preprocessing import load_model_data
 from src.evaluation import splits
 from src.evaluation.make_splits import load_split
-from src.evaluation.results_log import save_run, ROOT      # replaces the existing save_run import
+from src.evaluation.results_log import save_run      # replaces the existing save_run import
+from src.paths import ROOT, PREDICTIONS as PREDICTIONS_DIR
 
-PREDICTIONS_DIR = ROOT / "results" / "predictions"
+
 # Columns saved with the predictions: enough to identify each sample and make every plot
 ID_COLS = ["gm_well_id", "gm_latitude", "gm_longitude", "gm_samp_collection_date", "subbasin", "cell", "fold", "log_nitrate", "exceeds"]
 

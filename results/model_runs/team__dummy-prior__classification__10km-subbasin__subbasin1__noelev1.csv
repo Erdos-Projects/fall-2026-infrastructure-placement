@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier,brier_skill
-classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-03 18:12,0,0.5,0.23294613098419453,0.0
-classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-03 18:12,1,0.5,0.1998612377126374,0.0
-classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-03 18:12,2,0.5,0.23725362591397264,0.0
-classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-03 18:12,3,0.5,0.20601587634538954,0.0
+classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-05 05:05,0,0.5,0.23294613098419453,0.0
+classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-05 05:05,1,0.5,0.1998612377126374,0.0
+classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-05 05:05,2,0.5,0.23725362591397264,0.0
+classification,Dummy (prior),Team,10km_subbasin,True,True,59,,2026-11-05 05:05,3,0.5,0.20601587634538954,0.0

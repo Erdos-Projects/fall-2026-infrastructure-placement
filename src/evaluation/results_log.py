@@ -21,8 +21,8 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-RUNS_DIR = ROOT / "results" / "model_runs"
+from src.paths import ROOT, MODEL_RUNS as RUNS_DIR
+
 
 METRICS = {
     "regression": ["rmse_log", "r2"],
@@ -76,10 +76,54 @@ def load_runs():
     return pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
 
 
+# Columns that are not hyperparameters: configuration keys, scores and bookkeeping
+SCORES = ["rmse_log", "r2", "auc", "brier", "brier_skill"]
+NOT_PARAMS = set(KEYS) | set(SCORES) | {"fold", "n_features", "notes", "saved"}
+
+
+def _format_value(value):
+    """15.0 -> '15', 31.622776601683796 -> '31.62', missing -> 'None' (the search chose None)."""
+    if pd.isna(value):
+        return "None"
+    if isinstance(value, float):
+        return f"{value:.4g}"
+    return str(value)
+
+
+def _sort_key(text):
+    """Order numbers numerically ('5' before '20'), then words such as 'None' or 'sqrt'."""
+    try:
+        return (0, float(text), "")
+    except ValueError:
+        return (1, 0.0, text)
+
+
+def _most_common(values):
+    """Most common value across folds, with how many folds chose it, e.g. '8 (3/4)' or '6 / 8 (2/4 each)'."""
+    counts = values.map(_format_value).value_counts()
+    top = counts[counts == counts.max()]
+    each = " each" if len(top) > 1 else ""
+    return f"{' / '.join(sorted(top.index, key=_sort_key))} ({top.iloc[0]}/{len(values)}{each})"
+
+
 def summarize(runs, task=None):
-    """Mean and standard deviation across folds for each model and configuration."""
+    """Mean and standard deviation of the scores across folds for each model and configuration,
+    plus the most commonly chosen value of each tuned hyperparameter."""
     if task is not None:
         runs = runs[runs["task"] == task]
     metrics = [m for t in METRICS.values() for m in t if m in runs.columns]
     table = runs.groupby(KEYS)[metrics].agg(["mean", "std"]).round(3)
-    return table.dropna(axis=1, how="all")
+    table = table.dropna(axis=1, how="all")
+
+    # A hyperparameter belongs to a model if that model saved a value for it in any run;
+    # within such a model, an empty value means the search chose None (e.g. max_depth=None)
+    params = [c for c in runs.columns if c not in NOT_PARAMS]
+    chosen = {}
+    for param in params:
+        models = runs.loc[runs[param].notna(), "model"].unique()
+        rows = runs[runs["model"].isin(models)]
+        if len(rows):
+            chosen[(param, "most common")] = rows.groupby(KEYS)[param].apply(_most_common)
+    if chosen:
+        table = table.join(pd.DataFrame(chosen))
+    return table

@@ -1,73 +1,73 @@
-,,,,,,rmse_log,rmse_log,r2,r2,auc,auc,brier_skill,brier_skill
-,,,,,,mean,std,mean,std,mean,std,mean,std
-task,model,author,split,use_subbasin,drop_elevation,,,,,,,,
-classification,Decision tree,Gavin,10km,False,False,,,,,0.713,0.085,0.103,0.156
-classification,Decision tree,Gavin,10km,True,True,,,,,0.762,0.028,0.188,0.067
-classification,Decision tree,Gavin,10km_subbasin,True,True,,,,,0.765,0.01,0.211,0.038
-classification,Decision tree,Gavin,5km_subbasin,True,True,,,,,0.771,0.041,0.18,0.086
-classification,Decision tree,Gavin,7.5km_subbasin,True,True,,,,,0.743,0.031,0.197,0.06
-classification,Dummy (prior),Team,10km,False,False,,,,,0.5,0.0,0.0,0.0
-classification,Dummy (prior),Team,10km,True,True,,,,,0.5,0.0,0.0,0.0
-classification,Dummy (prior),Team,10km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0
-classification,Dummy (prior),Team,5km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0
-classification,Dummy (prior),Team,7.5km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0
-classification,Logistic,Andrea,10km,False,False,,,,,0.735,0.057,0.091,0.155
-classification,Logistic,Andrea,10km,True,True,,,,,0.771,0.047,0.15,0.147
-classification,Logistic,Andrea,10km_subbasin,True,True,,,,,0.8,0.043,0.225,0.083
-classification,Logistic,Andrea,5km_subbasin,True,True,,,,,0.798,0.031,0.218,0.084
-classification,Logistic,Andrea,7.5km_subbasin,True,True,,,,,0.769,0.024,0.197,0.045
-classification,Logistic L1,Andrea,10km,False,False,,,,,0.734,0.075,0.122,0.149
-classification,Logistic L1,Andrea,10km,True,True,,,,,0.787,0.044,0.191,0.139
-classification,Logistic L1,Andrea,10km_subbasin,True,True,,,,,0.798,0.034,0.228,0.064
-classification,Logistic L1,Andrea,5km_subbasin,True,True,,,,,0.795,0.025,0.219,0.06
-classification,Logistic L1,Andrea,7.5km_subbasin,True,True,,,,,0.786,0.039,0.228,0.058
-classification,Logistic L2,Andrea,10km,False,False,,,,,0.738,0.079,0.135,0.138
-classification,Logistic L2,Andrea,10km,True,True,,,,,0.787,0.041,0.195,0.123
-classification,Logistic L2,Andrea,10km_subbasin,True,True,,,,,0.791,0.031,0.206,0.041
-classification,Logistic L2,Andrea,5km_subbasin,True,True,,,,,0.792,0.025,0.216,0.049
-classification,Logistic L2,Andrea,7.5km_subbasin,True,True,,,,,0.778,0.046,0.22,0.062
-classification,Random forest,Charlsey,10km,False,False,,,,,0.791,0.044,0.225,0.075
-classification,Random forest,Charlsey,10km,True,True,,,,,0.801,0.04,0.242,0.077
-classification,Random forest,Charlsey,10km_subbasin,True,True,,,,,0.827,0.032,0.291,0.041
-classification,Random forest,Charlsey,5km_subbasin,True,True,,,,,0.826,0.025,0.265,0.054
-classification,Random forest,Charlsey,7.5km_subbasin,True,True,,,,,0.796,0.034,0.254,0.065
-classification,XGBoost BRT,Karuna,10km,False,False,,,,,0.791,0.048,0.216,0.082
-classification,XGBoost BRT,Karuna,10km,True,True,,,,,0.794,0.039,0.216,0.076
-classification,XGBoost BRT,Karuna,10km_subbasin,True,True,,,,,0.809,0.036,0.272,0.048
-classification,XGBoost BRT,Karuna,5km_subbasin,True,True,,,,,0.811,0.032,0.246,0.059
-classification,XGBoost BRT,Karuna,7.5km_subbasin,True,True,,,,,0.79,0.037,0.244,0.07
-regression,Decision tree,Gavin,10km,False,False,1.161,0.069,0.1,0.166,,,,
-regression,Decision tree,Gavin,10km,True,True,1.048,0.029,0.271,0.069,,,,
-regression,Decision tree,Gavin,10km_subbasin,True,True,1.06,0.06,0.22,0.058,,,,
-regression,Decision tree,Gavin,5km_subbasin,True,True,1.068,0.052,0.208,0.11,,,,
-regression,Decision tree,Gavin,7.5km_subbasin,True,True,1.031,0.078,0.25,0.083,,,,
-regression,Dummy (mean),Team,10km,False,False,1.236,0.055,-0.01,0.012,,,,
-regression,Dummy (mean),Team,10km,True,True,1.236,0.055,-0.01,0.012,,,,
-regression,Dummy (mean),Team,10km_subbasin,True,True,1.208,0.109,-0.006,0.003,,,,
-regression,Dummy (mean),Team,5km_subbasin,True,True,1.208,0.047,-0.008,0.009,,,,
-regression,Dummy (mean),Team,7.5km_subbasin,True,True,1.208,0.075,-0.027,0.037,,,,
-regression,Lasso,Andrea,10km,False,False,1.146,0.076,0.122,0.178,,,,
-regression,Lasso,Andrea,10km,True,True,1.119,0.094,0.161,0.193,,,,
-regression,Lasso,Andrea,10km_subbasin,True,True,1.016,0.081,0.284,0.063,,,,
-regression,Lasso,Andrea,5km_subbasin,True,True,1.031,0.012,0.264,0.048,,,,
-regression,Lasso,Andrea,7.5km_subbasin,True,True,1.033,0.046,0.246,0.062,,,,
-regression,Linear regression,Andrea,10km,False,False,1.179,0.112,0.065,0.244,,,,
-regression,Linear regression,Andrea,10km,True,True,1.141,0.169,0.111,0.33,,,,
-regression,Linear regression,Andrea,10km_subbasin,True,True,1.045,0.093,0.238,0.132,,,,
-regression,Linear regression,Andrea,5km_subbasin,True,True,1.021,0.031,0.277,0.075,,,,
-regression,Linear regression,Andrea,7.5km_subbasin,True,True,1.058,0.053,0.209,0.083,,,,
-regression,Random forest,Charlsey,10km,False,False,1.078,0.052,0.225,0.126,,,,
-regression,Random forest,Charlsey,10km,True,True,1.047,0.035,0.271,0.096,,,,
-regression,Random forest,Charlsey,10km_subbasin,True,True,0.973,0.062,0.343,0.058,,,,
-regression,Random forest,Charlsey,5km_subbasin,True,True,0.99,0.03,0.322,0.041,,,,
-regression,Random forest,Charlsey,7.5km_subbasin,True,True,0.998,0.065,0.296,0.083,,,,
-regression,Ridge,Andrea,10km,False,False,1.142,0.068,0.129,0.159,,,,
-regression,Ridge,Andrea,10km,True,True,1.1,0.102,0.186,0.203,,,,
-regression,Ridge,Andrea,10km_subbasin,True,True,1.031,0.068,0.263,0.065,,,,
-regression,Ridge,Andrea,5km_subbasin,True,True,1.033,0.01,0.261,0.052,,,,
-regression,Ridge,Andrea,7.5km_subbasin,True,True,1.04,0.054,0.236,0.071,,,,
-regression,XGBoost BRT,Karuna,10km,False,False,1.094,0.05,0.202,0.124,,,,
-regression,XGBoost BRT,Karuna,10km,True,True,1.047,0.032,0.272,0.082,,,,
-regression,XGBoost BRT,Karuna,10km_subbasin,True,True,0.996,0.061,0.311,0.068,,,,
-regression,XGBoost BRT,Karuna,5km_subbasin,True,True,0.994,0.03,0.317,0.04,,,,
-regression,XGBoost BRT,Karuna,7.5km_subbasin,True,True,1.032,0.048,0.248,0.064,,,,
+,,,,,,rmse_log,rmse_log,r2,r2,auc,auc,brier_skill,brier_skill,alpha,C,min_samples_leaf,max_features,max_depth,subsample,n_estimators,min_child_weight,learning_rate
+,,,,,,mean,std,mean,std,mean,std,mean,std,most common,most common,most common,most common,most common,most common,most common,most common,most common
+task,model,author,split,use_subbasin,drop_elevation,,,,,,,,,,,,,,,,,
+classification,Decision tree,Gavin,10km,False,False,,,,,0.713,0.085,0.103,0.156,,,,,2 (2/4),,,,
+classification,Decision tree,Gavin,10km,True,True,,,,,0.762,0.028,0.188,0.067,,,,,2 (3/4),,,,
+classification,Decision tree,Gavin,10km_subbasin,True,True,,,,,0.765,0.01,0.211,0.038,,,,,2 / 3 (2/4 each),,,,
+classification,Decision tree,Gavin,5km_subbasin,True,True,,,,,0.771,0.041,0.18,0.086,,,,,3 (2/4),,,,
+classification,Decision tree,Gavin,7.5km_subbasin,True,True,,,,,0.743,0.031,0.197,0.06,,,,,2 (4/4),,,,
+classification,Dummy (prior),Team,10km,False,False,,,,,0.5,0.0,0.0,0.0,,,,,,,,,
+classification,Dummy (prior),Team,10km,True,True,,,,,0.5,0.0,0.0,0.0,,,,,,,,,
+classification,Dummy (prior),Team,10km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0,,,,,,,,,
+classification,Dummy (prior),Team,5km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0,,,,,,,,,
+classification,Dummy (prior),Team,7.5km_subbasin,True,True,,,,,0.5,0.0,0.0,0.0,,,,,,,,,
+classification,Logistic,Andrea,10km,False,False,,,,,0.735,0.057,0.091,0.155,,,,,,,,,
+classification,Logistic,Andrea,10km,True,True,,,,,0.771,0.047,0.15,0.147,,,,,,,,,
+classification,Logistic,Andrea,10km_subbasin,True,True,,,,,0.8,0.043,0.225,0.083,,,,,,,,,
+classification,Logistic,Andrea,5km_subbasin,True,True,,,,,0.798,0.031,0.218,0.084,,,,,,,,,
+classification,Logistic,Andrea,7.5km_subbasin,True,True,,,,,0.769,0.024,0.197,0.045,,,,,,,,,
+classification,Logistic L1,Andrea,10km,False,False,,,,,0.734,0.075,0.122,0.149,,0.01 / 0.03162 (2/4 each),,,,,,,
+classification,Logistic L1,Andrea,10km,True,True,,,,,0.787,0.044,0.191,0.139,,0.03162 (3/4),,,,,,,
+classification,Logistic L1,Andrea,10km_subbasin,True,True,,,,,0.798,0.034,0.228,0.064,,0.03162 (2/4),,,,,,,
+classification,Logistic L1,Andrea,5km_subbasin,True,True,,,,,0.795,0.025,0.219,0.06,,0.03162 (2/4),,,,,,,
+classification,Logistic L1,Andrea,7.5km_subbasin,True,True,,,,,0.786,0.039,0.228,0.058,,0.03162 (4/4),,,,,,,
+classification,Logistic L2,Andrea,10km,False,False,,,,,0.738,0.079,0.135,0.138,,0.001 / 0.003162 (2/4 each),,,,,,,
+classification,Logistic L2,Andrea,10km,True,True,,,,,0.787,0.041,0.195,0.123,,0.003162 (3/4),,,,,,,
+classification,Logistic L2,Andrea,10km_subbasin,True,True,,,,,0.791,0.031,0.206,0.041,,0.001 / 0.003162 / 0.01 / 0.1 (1/4 each),,,,,,,
+classification,Logistic L2,Andrea,5km_subbasin,True,True,,,,,0.792,0.025,0.216,0.049,,0.003162 (2/4),,,,,,,
+classification,Logistic L2,Andrea,7.5km_subbasin,True,True,,,,,0.778,0.046,0.22,0.062,,0.01 (3/4),,,,,,,
+classification,Random forest,Charlsey,10km,False,False,,,,,0.791,0.044,0.225,0.075,,,20 (2/4),sqrt (4/4),15 (2/4),,,,
+classification,Random forest,Charlsey,10km,True,True,,,,,0.801,0.04,0.242,0.077,,,5 / 20 (2/4 each),sqrt (4/4),None (4/4),,,,
+classification,Random forest,Charlsey,10km_subbasin,True,True,,,,,0.827,0.032,0.291,0.041,,,5 / 20 (2/4 each),sqrt (3/4),8 (2/4),,,,
+classification,Random forest,Charlsey,5km_subbasin,True,True,,,,,0.826,0.025,0.265,0.054,,,5 (2/4),sqrt (4/4),8 / 15 (2/4 each),,,,
+classification,Random forest,Charlsey,7.5km_subbasin,True,True,,,,,0.796,0.034,0.254,0.065,,,5 / 20 (2/4 each),sqrt (4/4),None (3/4),,,,
+classification,XGBoost BRT,Karuna,10km,False,False,,,,,0.791,0.048,0.216,0.082,,,,,4 (2/4),0.5 (3/4),35 / 50 / 75 / 100 (1/4 each),20 (3/4),0.03 / 0.05 (2/4 each)
+classification,XGBoost BRT,Karuna,10km,True,True,,,,,0.794,0.039,0.216,0.076,,,,,3 / 4 (2/4 each),0.5 / 0.7 (2/4 each),50 (4/4),5 / 20 (2/4 each),0.05 (4/4)
+classification,XGBoost BRT,Karuna,10km_subbasin,True,True,,,,,0.809,0.036,0.272,0.048,,,,,2 (3/4),0.5 (3/4),75 (3/4),20 (3/4),0.03 / 0.05 (2/4 each)
+classification,XGBoost BRT,Karuna,5km_subbasin,True,True,,,,,0.811,0.032,0.246,0.059,,,,,3 / 4 (2/4 each),0.7 (3/4),35 (2/4),5 (3/4),0.05 (4/4)
+classification,XGBoost BRT,Karuna,7.5km_subbasin,True,True,,,,,0.79,0.037,0.244,0.07,,,,,3 (2/4),0.5 / 0.7 (2/4 each),75 (3/4),5 / 20 (2/4 each),0.05 (3/4)
+regression,Decision tree,Gavin,10km,False,False,1.161,0.069,0.1,0.166,,,,,,,,,2 / 3 / 4 / 5 (1/4 each),,,,
+regression,Decision tree,Gavin,10km,True,True,1.048,0.029,0.271,0.069,,,,,,,,,2 (3/4),,,,
+regression,Decision tree,Gavin,10km_subbasin,True,True,1.06,0.06,0.22,0.058,,,,,,,,,3 (2/4),,,,
+regression,Decision tree,Gavin,5km_subbasin,True,True,1.068,0.052,0.208,0.11,,,,,,,,,3 (2/4),,,,
+regression,Decision tree,Gavin,7.5km_subbasin,True,True,1.031,0.078,0.25,0.083,,,,,,,,,2 (4/4),,,,
+regression,Dummy (mean),Team,10km,False,False,1.236,0.055,-0.01,0.012,,,,,,,,,,,,,
+regression,Dummy (mean),Team,10km,True,True,1.236,0.055,-0.01,0.012,,,,,,,,,,,,,
+regression,Dummy (mean),Team,10km_subbasin,True,True,1.208,0.109,-0.006,0.003,,,,,,,,,,,,,
+regression,Dummy (mean),Team,5km_subbasin,True,True,1.208,0.047,-0.008,0.009,,,,,,,,,,,,,
+regression,Dummy (mean),Team,7.5km_subbasin,True,True,1.208,0.075,-0.027,0.037,,,,,,,,,,,,,
+regression,Lasso,Andrea,10km,False,False,1.146,0.076,0.122,0.178,,,,,0.1 (3/4),,,,,,,,
+regression,Lasso,Andrea,10km,True,True,1.119,0.094,0.161,0.193,,,,,0.03 / 0.1 (2/4 each),,,,,,,,
+regression,Lasso,Andrea,10km_subbasin,True,True,1.016,0.081,0.284,0.063,,,,,0.03 (2/4),,,,,,,,
+regression,Lasso,Andrea,5km_subbasin,True,True,1.031,0.012,0.264,0.048,,,,,0.003 (2/4),,,,,,,,
+regression,Lasso,Andrea,7.5km_subbasin,True,True,1.033,0.046,0.246,0.062,,,,,0.03 (4/4),,,,,,,,
+regression,Linear regression,Andrea,10km,False,False,1.179,0.112,0.065,0.244,,,,,,,,,,,,,
+regression,Linear regression,Andrea,10km,True,True,1.141,0.169,0.111,0.33,,,,,,,,,,,,,
+regression,Linear regression,Andrea,10km_subbasin,True,True,1.045,0.093,0.238,0.132,,,,,,,,,,,,,
+regression,Linear regression,Andrea,5km_subbasin,True,True,1.021,0.031,0.277,0.075,,,,,,,,,,,,,
+regression,Linear regression,Andrea,7.5km_subbasin,True,True,1.058,0.053,0.209,0.083,,,,,,,,,,,,,
+regression,Random forest,Charlsey,10km,False,False,1.078,0.052,0.225,0.126,,,,,,,20 (2/4),sqrt (4/4),15 / None (2/4 each),,,,
+regression,Random forest,Charlsey,10km,True,True,1.047,0.035,0.271,0.096,,,,,,,5 (4/4),0.3 / sqrt (2/4 each),6 (2/4),,,,
+regression,Random forest,Charlsey,10km_subbasin,True,True,0.973,0.062,0.343,0.058,,,,,,,1 / 5 (2/4 each),sqrt (3/4),15 (2/4),,,,
+regression,Random forest,Charlsey,5km_subbasin,True,True,0.99,0.03,0.322,0.041,,,,,,,5 (3/4),sqrt (3/4),15 / None (2/4 each),,,,
+regression,Random forest,Charlsey,7.5km_subbasin,True,True,0.998,0.065,0.296,0.083,,,,,,,5 (3/4),sqrt (4/4),15 (2/4),,,,
+regression,Ridge,Andrea,10km,False,False,1.142,0.068,0.129,0.159,,,,,3162 (3/4),,,,,,,,
+regression,Ridge,Andrea,10km,True,True,1.1,0.102,0.186,0.203,,,,,1000 / 3162 (2/4 each),,,,,,,,
+regression,Ridge,Andrea,10km_subbasin,True,True,1.031,0.068,0.263,0.065,,,,,1000 (2/4),,,,,,,,
+regression,Ridge,Andrea,5km_subbasin,True,True,1.033,0.01,0.261,0.052,,,,,31.62 / 1000 (2/4 each),,,,,,,,
+regression,Ridge,Andrea,7.5km_subbasin,True,True,1.04,0.054,0.236,0.071,,,,,1000 (3/4),,,,,,,,
+regression,XGBoost BRT,Karuna,10km,False,False,1.094,0.05,0.202,0.124,,,,,,,,,4 (3/4),0.5 (4/4),35 (2/4),20 (2/4),0.05 (3/4)
+regression,XGBoost BRT,Karuna,10km,True,True,1.047,0.032,0.272,0.082,,,,,,,,,4 (3/4),0.5 / 0.7 (2/4 each),35 (3/4),5 (2/4),0.05 (3/4)
+regression,XGBoost BRT,Karuna,10km_subbasin,True,True,0.996,0.061,0.311,0.068,,,,,,,,,3 / 4 (2/4 each),0.5 (3/4),75 / 100 (2/4 each),5 (3/4),0.05 (3/4)
+regression,XGBoost BRT,Karuna,5km_subbasin,True,True,0.994,0.03,0.317,0.04,,,,,,,,,3 / 4 (2/4 each),0.5 (4/4),75 / 100 (2/4 each),5 / 20 (2/4 each),0.05 (4/4)
+regression,XGBoost BRT,Karuna,7.5km_subbasin,True,True,1.032,0.048,0.248,0.064,,,,,,,,,3 (2/4),0.7 (3/4),35 (2/4),5 (2/4),0.05 (3/4)

@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier,brier_skill,min_samples_leaf,max_features,max_depth
-classification,Random forest,Charlsey,10km,True,True,59,,2026-11-03 18:12,0,0.8196369903135162,0.15722105475648776,0.28589933078119956,20,sqrt,
-classification,Random forest,Charlsey,10km,True,True,59,,2026-11-03 18:12,1,0.7402765977532333,0.19578876951584093,0.12689413540664762,5,sqrt,
-classification,Random forest,Charlsey,10km,True,True,59,,2026-11-03 18:12,2,0.8170837408519105,0.1660937120452424,0.2687690608254084,5,sqrt,
-classification,Random forest,Charlsey,10km,True,True,59,,2026-11-03 18:12,3,0.8253521242908035,0.16012459041523883,0.2845200674647801,20,sqrt,
+classification,Random forest,Charlsey,10km,True,True,59,,2026-11-05 05:05,0,0.8196369903135162,0.15722105475648776,0.28589933078119956,20,sqrt,
+classification,Random forest,Charlsey,10km,True,True,59,,2026-11-05 05:05,1,0.7402765977532333,0.19578876951584093,0.12689413540664762,5,sqrt,
+classification,Random forest,Charlsey,10km,True,True,59,,2026-11-05 05:05,2,0.8170837408519105,0.1660937120452424,0.2687690608254084,5,sqrt,
+classification,Random forest,Charlsey,10km,True,True,59,,2026-11-05 05:05,3,0.8253521242908035,0.16012459041523883,0.2845200674647801,20,sqrt,

@@ -9,8 +9,9 @@ from pathlib import Path
 import geopandas as gpd
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-SUBBASIN_PATH = ROOT / "data" / "salinas_valley_subbasins.geojson"
+from src.paths import ROOT, SUBBASINS as SUBBASIN_PATH
+
+
 OUTSIDE = "OUTSIDE"
 
 

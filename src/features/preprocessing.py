@@ -18,11 +18,10 @@ import pandas as pd
 
 from src.features.transformers import build_features, add_subbasin, subbasin_dummies
 
+from src.paths import ROOT, MODEL_DATA as DATA_PATH, FEATURE_SELECTION as SELECTION_PATH
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA_PATH = ROOT / "notebooks" / "data_merge" / "groundwater_ml_integration_lag1_2021_2024_with_climate.csv"
-SELECTION_PATH = ROOT / "results" / "feature_selection.csv"
+
 
 TARGET = "nitrate_mg_L"
 
