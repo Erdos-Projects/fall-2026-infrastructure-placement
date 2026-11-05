@@ -16,9 +16,9 @@ import pandas as pd
 
 from src.evaluation import splits
 
-ROOT = Path(__file__).resolve().parents[2]
-SPLIT_DIR = ROOT / "results" / "splits"
-SOURCE = ROOT / "notebooks" / "data_cleaning" / "groundwater" / "groundwater_nitrate_clean.csv"
+from src.paths import ROOT, SPLITS as SPLIT_DIR, NITRATE_CLEAN as SOURCE
+
+
 THRESHOLD_MG_L = 10
 
 # ---- registered splits (never change an entry once its file exists; add a new one instead) ----

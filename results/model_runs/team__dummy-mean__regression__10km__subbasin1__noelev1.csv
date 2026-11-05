@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2
-regression,Dummy (mean),Team,10km,True,True,59,,2026-11-03 17:39,0,1.2267765100787804,-0.0070342696785505865
-regression,Dummy (mean),Team,10km,True,True,59,,2026-11-03 17:39,1,1.1827648184079342,-0.0001413167996469067
-regression,Dummy (mean),Team,10km,True,True,59,,2026-11-03 17:39,2,1.2220531073285406,-0.005904974120594986
-regression,Dummy (mean),Team,10km,True,True,59,,2026-11-03 17:39,3,1.3137640417272156,-0.027525578691931063
+regression,Dummy (mean),Team,10km,True,True,59,,2026-11-05 02:25,0,1.2267765100787804,-0.0070342696785505865
+regression,Dummy (mean),Team,10km,True,True,59,,2026-11-05 02:25,1,1.1827648184079342,-0.0001413167996469067
+regression,Dummy (mean),Team,10km,True,True,59,,2026-11-05 02:25,2,1.2220531073285406,-0.005904974120594986
+regression,Dummy (mean),Team,10km,True,True,59,,2026-11-05 02:25,3,1.3137640417272156,-0.027525578691931063

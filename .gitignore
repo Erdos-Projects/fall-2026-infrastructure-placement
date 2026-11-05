@@ -1,5 +1,5 @@
 data/*
 !data/salinas_valley_subbasins.geojson
+!data/processed/
 .env
 __pycache__/
-
