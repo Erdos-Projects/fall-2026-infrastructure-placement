@@ -51,7 +51,7 @@ run() {
 
 notebook() {
     [ -f "$1" ] || { echo "Notebook not found: $1" >&2; exit 1; }
-    run jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 "$1"
+        run jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 --ExecutePreprocessor.kernel_name=python3 "$1"
 }
 
 START=$(date +%s)
