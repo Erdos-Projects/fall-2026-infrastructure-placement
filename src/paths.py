@@ -31,7 +31,6 @@ CROP_RUNS = DATA / "crop_runs"                                                  
 # ---- derived but local only (too large for git) ----
 SOILS = DATA / "soils" / "soils_huc8_attributes.gpkg"                             # 46 MB; Soil_data_cleanup_team.ipynb
 PRISM_POINTS = DATA / "prism_points.gpkg"
-MODELS = DATA / "models"                    # fitted final models (.joblib); final_results.ipynb
 RISK_MAP_OUTPUTS = DATA / "outputs"         # risk map GeoPackage and GeoTIFFs; risk_map_random_forest.ipynb
 
 
@@ -52,7 +51,16 @@ SPLITS = RESULTS / "splits"                                                     
 MODEL_RUNS = RESULTS / "model_runs"                                               # src/evaluation/results_log.py
 PREDICTIONS = RESULTS / "predictions"                                             # src/models/evaluate.py
 MODEL_COMPARISON = RESULTS / "model_comparison.csv"                               # regression/classification notebooks
-FIGURES = {name: RESULTS / name for name in ["evaluation", "regression", "classification", "final", "risk_map", "robustness"]}
+FIGURES = {name: RESULTS / name for name in ["evaluation", "regression", "classification", "final", "risk_map", "robustness", "interpretability"]}
+
+# ---- final model (final_results.ipynb, tracked) ----
+ARTIFACTS = ROOT / "artifacts"                                   
+MODELS = ARTIFACTS                    # fitted final models (.joblib); final_results.ipynb
+FINAL_SCORES = RESULTS / "final" / "final_scores_holdout.csv"
+FINAL_CLASSIFIER = MODELS / "final_random_forest_classifier.joblib"
+FINAL_REGRESSOR = MODELS / "final_random_forest_regressor.joblib"                 # serialized final models (.joblib); final_results.ipynb
+
+
 
 
 def require(*files):

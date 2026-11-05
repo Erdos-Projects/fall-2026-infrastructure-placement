@@ -5,14 +5,13 @@ Each year is saved as one unzipped .gdb folder in data/crops/ (paths.RAW_CROPS),
 its folder name, which is what find_gdb() in the notebook looks for. A geodatabase already there for
 the same year is replaced, after the new download has unzipped cleanly.
 
-Run from anywhere inside the repository:
-    python download_dwr_crops.py                     # 2020-2024 (2020 is only used for the 2021 changes)
-    python download_dwr_crops.py --years 2024        # one year
-    python download_dwr_crops.py --keep-existing     # only download the years that are missing
+Run from therepository root:
+    python -m src.data.crop_mapping                     # 2020-2024 (2020 is only used for the 2021 changes)
+    python -m src.data.crop_mapping --years 2024        # one year
+    python -m src.data.crop_mapping --keep-existing     # only download the years that are missing
 """
 import argparse
 import shutil
-import sys
 import tempfile
 import urllib.error
 import urllib.request
