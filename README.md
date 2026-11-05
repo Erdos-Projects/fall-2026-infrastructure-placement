@@ -12,7 +12,11 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 | `README.md` |  Repo structure and some literature references |
 | `summary.md` |  Summary of results and future work |
 | | |
-| `data/` |  Contains some open source data used in the project|
+|`data/groundwaterdata.csv` | Large file, [accessible here](https://devodp.technology.ca.gov/dataset/ground-water-water-quality-results/resource/c97e1fcf-8ad0-4913-9234-ba682ea73bc4) |
+|`data/NHD_H_18060005_HU8_GDB/NHD_H_18060005_HU8_GDB.gdb` | |
+|`data/datasets/ssurgo_soildata/ (CA053, CA069, CA665, CA772, CA788)` | |
+|`data/PRISM_ppt_tmean_stable_4km_201301_202603.csv` | |
+|`data/elevation/dem_watershed_10m.tif` | |
 | | |
 | `notebooks/classification_models.ipynb` |  Score comparisions for classification models |
 | `notebooks/data_splitting.ipynb` | Data splitting procedure and leakage analysis |
