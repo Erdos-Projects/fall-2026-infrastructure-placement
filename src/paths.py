@@ -31,6 +31,9 @@ CROP_RUNS = DATA / "crop_runs"                                                  
 # ---- derived but local only (too large for git) ----
 SOILS = DATA / "soils" / "soils_huc8_attributes.gpkg"                             # 46 MB; Soil_data_cleanup_team.ipynb
 PRISM_POINTS = DATA / "prism_points.gpkg"
+MODELS = DATA / "models"                    # fitted final models (.joblib); final_results.ipynb
+RISK_MAP_OUTPUTS = DATA / "outputs"         # risk map GeoPackage and GeoTIFFs; risk_map_random_forest.ipynb
+
 
 # ---- processed datasets (data/processed/, tracked) ----
 NITRATE_CLEAN = PROCESSED / "groundwater_nitrate_clean.csv"                       # gwater_clean.ipynb
@@ -49,7 +52,7 @@ SPLITS = RESULTS / "splits"                                                     
 MODEL_RUNS = RESULTS / "model_runs"                                               # src/evaluation/results_log.py
 PREDICTIONS = RESULTS / "predictions"                                             # src/models/evaluate.py
 MODEL_COMPARISON = RESULTS / "model_comparison.csv"                               # regression/classification notebooks
-FIGURES = {name: RESULTS / name for name in ["evaluation", "regression", "classification"]}
+FIGURES = {name: RESULTS / name for name in ["evaluation", "regression", "classification", "final", "risk_map", "robustness"]}
 
 
 def require(*files):
