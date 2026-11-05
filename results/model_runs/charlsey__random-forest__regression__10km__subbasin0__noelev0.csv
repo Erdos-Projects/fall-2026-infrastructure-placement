@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,min_samples_leaf,max_features,max_depth
-regression,Random forest,Charlsey,10km,False,False,50,,2026-11-03 17:39,0,1.0339305118718891,0.2846871114833084,20,sqrt,
-regression,Random forest,Charlsey,10km,False,False,50,,2026-11-03 17:39,1,1.1428375944361326,0.06624356072566984,1,sqrt,15.0
-regression,Random forest,Charlsey,10km,False,False,50,,2026-11-03 17:39,2,1.0948923856271833,0.192542510035433,20,sqrt,
-regression,Random forest,Charlsey,10km,False,False,50,,2026-11-03 17:39,3,1.038633392590506,0.3577820165100488,5,sqrt,15.0
+regression,Random forest,Charlsey,10km,False,False,50,,2026-11-05 02:24,0,1.0339305118718891,0.2846871114833084,20,sqrt,
+regression,Random forest,Charlsey,10km,False,False,50,,2026-11-05 02:24,1,1.1428375944361326,0.06624356072566984,1,sqrt,15.0
+regression,Random forest,Charlsey,10km,False,False,50,,2026-11-05 02:24,2,1.0948923856271833,0.192542510035433,20,sqrt,
+regression,Random forest,Charlsey,10km,False,False,50,,2026-11-05 02:24,3,1.038633392590506,0.3577820165100488,5,sqrt,15.0

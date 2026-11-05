@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,subsample,n_estimators,min_child_weight,max_depth,learning_rate
-regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-03 17:55,0,0.9526966952299087,0.32501190970875604,0.5,75,20,3,0.05
-regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-03 17:55,1,1.0038659965812282,0.26918873565450574,0.5,75,20,3,0.05
-regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-03 17:55,2,1.024166427745312,0.3068624241632846,0.5,100,5,4,0.05
-regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-03 17:55,3,0.9945231372801586,0.3652975644516715,0.5,100,5,4,0.05
+regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 02:46,0,0.9526966952299087,0.32501190970875604,0.5,75,20,3,0.05
+regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 02:46,1,1.0038659965812282,0.26918873565450574,0.5,75,20,3,0.05
+regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 02:46,2,1.024166427745312,0.3068624241632846,0.5,100,5,4,0.05
+regression,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 02:46,3,0.9945231372801586,0.3652975644516715,0.5,100,5,4,0.05

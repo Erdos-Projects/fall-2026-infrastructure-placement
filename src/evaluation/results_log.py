@@ -21,8 +21,8 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-RUNS_DIR = ROOT / "results" / "model_runs"
+from src.paths import ROOT, MODEL_RUNS as RUNS_DIR
+
 
 METRICS = {
     "regression": ["rmse_log", "r2"],
