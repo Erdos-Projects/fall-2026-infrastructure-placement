@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2
-regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 02:18,0,1.096983661890575,0.19478164624001437
-regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 02:18,1,1.3425631111855407,-0.2886470780864163
-regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 02:18,2,1.154387257582866,0.10240619829822017
-regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 02:18,3,1.1211327824379693,0.2517064470670589
+regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 18:29,0,1.096983661890575,0.19478164624001437
+regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 18:29,1,1.3425631111855407,-0.2886470780864163
+regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 18:29,2,1.154387257582866,0.10240619829822017
+regression,Linear regression,Andrea,10km,False,False,48,,2026-11-05 18:29,3,1.1211327824379693,0.2517064470670589

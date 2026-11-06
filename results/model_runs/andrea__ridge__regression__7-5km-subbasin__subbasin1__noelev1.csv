@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,rmse_log,r2,alpha
-regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 02:35,0,0.9699102728527584,0.2829859617076924,1000.0
-regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 02:35,1,1.0659723447138476,0.2020533334727741,316.22776601683796
-regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 02:35,2,1.0308112433719738,0.15297766427207204,1000.0
-regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 02:35,3,1.0941511434522324,0.3050926775284535,1000.0
+regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 18:31,0,0.9699102728527584,0.2829859617076924,1000.0
+regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 18:31,1,1.0659723447138476,0.2020533334727741,316.22776601683796
+regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 18:31,2,1.0308112433719738,0.15297766427207204,1000.0
+regression,Ridge,Andrea,7.5km_subbasin,True,True,54,,2026-11-05 18:31,3,1.0941511434522324,0.3050926775284535,1000.0

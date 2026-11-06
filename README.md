@@ -9,11 +9,22 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 
 Numbers (1.–9.) give the order to run the pipeline.
 
+
+`ROOT files`
 ```
-├── README.md
-├── evaluation_plan.md
-├── modeling_plan.md
-├── .gitignore
+ ├── .gitignore
+ ├── README.md
+ ├── environment.yml
+ ├── evaluation_plan.md
+ ├── modeling_plan.md
+ ├── run.sh
+ ├── run_pipeline.md
+ └── summary.md
+```
+
+`data/`
+
+```
 ├── data
 │   ├── salinas_valley_subbasins.geojson                     # DWR Bulletin 118 subbasins
 │   ├── processed                                            # cleaned and merged datasets
@@ -22,7 +33,8 @@ Numbers (1.–9.) give the order to run the pipeline.
 │   │   ├── groundwater_well_buffers_500m.gpkg               # from 1.
 │   │   ├── prism_climate_monthly_clean.csv                  # from 3.
 │   │   ├── crop_features_lag1_2021_2024.csv                 # from 4.
-│   │   └── groundwater_ml_integration_lag1_2021_2024_with_climate.csv   # from 5.; the model dataset
+│   │   └── groundwater_ml_integration_lag1_2021_2024_with_climate.csv
+│   │                                                        # from 5.; the model dataset
 │   │
 │   │   # Not in GitHub (too large); see "Data not included in the repository" below
 │   ├── groundwaterdata.csv                                  # GAMA ILRP nitrate results (97 MB)
@@ -39,17 +51,18 @@ Numbers (1.–9.) give the order to run the pipeline.
 │   ├── elevation
 │   │   └── dem_watershed_10m.tif                            # 3DEP 1/3 arc-second DEM (401 MB)
 │   ├── crops                                                # DWR crop maps, from 0. (1.4 GB)
-│   │   ├── i15_Crop_Mapping_2020.gdb
-│   │   ├── i15_Crop_Mapping_2021.gdb
-│   │   ├── i15_crop_mapping_2022.gdb
-│   │   ├── i15_Crop_Mapping_2023_Final.gdb
-│   │   └── i15_Crop_Mapping_2024_Provisional_20251208.gdb
 │   │
 │   │   # Created by the notebooks; not in GitHub
 │   ├── soils
 │   │   └── soils_huc8_attributes.gpkg                       # from 2. (46 MB)
 │   ├── prism_points.gpkg                                    # from 3.
-│   └── crop_runs                                            # from 4.; one timestamped folder per run                                           # (local only) timestamped runs of 4.
+│   └── crop_runs                                            # from 4.; one timestamped folder per run
+│                                                            # (local only) timestamped runs of 4.
+```
+
+`notebooks/`
+
+```
 ├── notebooks
 │   ├── data_cleaning
 │   │   ├── groundwater
@@ -61,163 +74,42 @@ Numbers (1.–9.) give the order to run the pipeline.
 │   │   │   └── prism_climate_cleaning_final.ipynb           # 3. PRISM monthly climate
 │   │   ├── crop_mapping
 │   │   │   ├── crop_mapping_annual_2021_2024.ipynb          # 4. annual DWR crop features
-│   │   │   ├── crop_mapping_eda.ipynb                       # original 2023 crop analysis
-│   │   │   ├── crop_mapping_feature_selection.ipynb
-│   │   │   ├── crop_mapping_feature_selection.csv
-│   │   │   ├── selected_features.txt
-│   │   │   ├── well_crop_features_all.csv
-│   │   │   ├── wells_nitrate.csv
-│   │   │   └── figures
-│   │   │       ├── boxplot_multicrop.png
-│   │   │       ├── boxplot_veg_berry.png
-│   │   │       ├── correlation_heatmap.png
-│   │   │       ├── crop_history_lag.png
-│   │   │       ├── distributions.png
-│   │   │       ├── lag_scatter_1997.png
-│   │   │       ├── map_crops_2023.png
-│   │   │       ├── missingness.png
-│   │   │       ├── scatter_veg_berry.png
-│   │   │       ├── selected_features_corr.png
-│   │   │       ├── target_boxplot.png
-│   │   │       └── target_vs_features.png
-│   │   ├── groundwater_depth
-│   │   │   ├── groundwater_depth_eda.ipynb
-│   │   │   ├── depth_groundwater.csv
-│   │   │   ├── groundwater_depth_clean.csv
-│   │   │   └── thiessen_polygons.gpkg
-│   │   └── surface_water
-│   │       ├── surfacewater_eda.ipynb
-│   │       ├── surfacewater_clean.csv
-│   │       └── thiessen_polygons.gpkg
+│   │   │   └── crop_mapping_eda.ipynb                       # original 2023 crop analysis
+│   │
 │   ├── data_merge
-│   │   ├── all_merge_final.ipynb                            # 5. builds the model dataset
-│   │   └── all_merge_EDA_Final.ipynb
+│   │   └── all_merge_final.ipynb                            # 5. builds the model dataset
+│   │
 │   ├── feature_selection.ipynb                              # 6. selects model features
 │   ├── regression_models.ipynb                              # 8. regression models
 │   ├── classification_models.ipynb                          # 8. classification models (above 10 mg/L)
 │   ├── data_splitting.ipynb                                 # 9. leakage analysis and choice of split
-│   └── final_results.ipynb                                  # (to remove) empty
+│   └── final_results.ipynb                                  # 10. final models: hold-out evaluation and feature importance
+
+```
+
+`results/`
+
+```
 ├── results
 │   ├── feature_selection.csv                                # from 6.; keep/drop decision for every feature
 │   ├── model_comparison.csv                                 # from 8.; mean and std of scores across folds
 │   ├── splits                                               # from 7.; fold per well (.csv) and settings (.json)
-│   │   ├── well_5_folds_10000m_exceedance_seed0.csv
-│   │   ├── well_5_folds_10000m_exceedance_seed0.json
-│   │   ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.csv
-│   │   ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.json
-│   │   ├── well_5_folds_7500m_subbasin_x_exceedance_seed0.csv
-│   │   ├── well_5_folds_7500m_subbasin_x_exceedance_seed0.json
-│   │   ├── well_5_folds_5000m_subbasin_x_exceedance_seed0.csv
-│   │   └── well_5_folds_5000m_subbasin_x_exceedance_seed0.json
+│   │
 │   ├── model_runs                                           # from 8.; per-fold scores, author__model__task__split__subbasin__noelev.csv
-│   │   ├── andrea__lasso__regression__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__lasso__regression__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__lasso__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__lasso__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__lasso__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__linear-regression__regression__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__linear-regression__regression__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__linear-regression__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__linear-regression__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__linear-regression__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic__classification__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__logistic__classification__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l1__classification__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__logistic-l1__classification__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l1__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l1__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l1__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l2__classification__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__logistic-l2__classification__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l2__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l2__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__logistic-l2__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__ridge__regression__10km__subbasin0__noelev0.csv
-│   │   ├── andrea__ridge__regression__10km__subbasin1__noelev1.csv
-│   │   ├── andrea__ridge__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__ridge__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── andrea__ridge__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__classification__10km__subbasin0__noelev0.csv
-│   │   ├── charlsey__random-forest__classification__10km__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__regression__10km__subbasin0__noelev0.csv
-│   │   ├── charlsey__random-forest__regression__10km__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── charlsey__random-forest__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__classification__10km__subbasin0__noelev0.csv
-│   │   ├── gavin__decision-tree__classification__10km__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__regression__10km__subbasin0__noelev0.csv
-│   │   ├── gavin__decision-tree__regression__10km__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── gavin__decision-tree__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__classification__10km__subbasin0__noelev0.csv
-│   │   ├── karuna__xgboost-brt__classification__10km__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__classification__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__regression__10km__subbasin0__noelev0.csv
-│   │   ├── karuna__xgboost-brt__regression__10km__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── karuna__xgboost-brt__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── team__dummy-mean__regression__10km__subbasin0__noelev0.csv
-│   │   ├── team__dummy-mean__regression__10km__subbasin1__noelev1.csv
-│   │   ├── team__dummy-mean__regression__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── team__dummy-mean__regression__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── team__dummy-mean__regression__5km-subbasin__subbasin1__noelev1.csv
-│   │   ├── team__dummy-prior__classification__10km__subbasin0__noelev0.csv
-│   │   ├── team__dummy-prior__classification__10km__subbasin1__noelev1.csv
-│   │   ├── team__dummy-prior__classification__10km-subbasin__subbasin1__noelev1.csv
-│   │   ├── team__dummy-prior__classification__7-5km-subbasin__subbasin1__noelev1.csv
-│   │   └── team__dummy-prior__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │
 │   ├── predictions                                          # from 8.; out-of-fold predictions, one column per model
-│   │   ├── regression__10km__subbasin0.csv.gz
-│   │   ├── regression__10km__subbasin1.csv.gz
-│   │   ├── regression__10km_subbasin__subbasin1.csv.gz
-│   │   ├── regression__7.5km_subbasin__subbasin1.csv.gz
-│   │   ├── regression__5km_subbasin__subbasin1.csv.gz
-│   │   ├── classification__10km__subbasin0.csv.gz
-│   │   ├── classification__10km__subbasin1.csv.gz
-│   │   ├── classification__10km_subbasin__subbasin1.csv.gz
-│   │   ├── classification__7.5km_subbasin__subbasin1.csv.gz
-│   │   └── classification__5km_subbasin__subbasin1.csv.gz
+│   │
 │   ├── evaluation                                           # from 9.
-│   │   ├── estimated_leakage_by_split.png
-│   │   ├── subbasin_mix_by_fold.png
-│   │   ├── spatial_folds_maps_all_splits.png
-│   │   ├── spatial_folds_map_10km.png
-│   │   ├── spatial_folds_map_10km_subbasin.png
-│   │   ├── spatial_folds_map_7.5km_subbasin.png
-│   │   └── spatial_folds_map_5km_subbasin.png
+│   │
 │   ├── regression                                           # from 8.
-│   │   ├── model_comparison_10km_subbasin.png
-│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
-│   │   ├── observed_vs_predicted_10km_subbasin_subbasin1.png
-│   │   └── residuals_10km_subbasin_subbasin1.png
+│   │
 │   └── classification                                       # from 8.
-│       ├── model_comparison_10km_subbasin_subbasin1.png
-│       ├── fold_metrics_probability_10km_subbasin_subbasin1.png
-│       ├── fold_metrics_threshold_10km_subbasin_subbasin1.png
-│       ├── pr_roc_calibration_10km_subbasin_subbasin1.png
-│       ├── probability_distributions_10km_subbasin_subbasin1.png
-│       ├── threshold_metrics_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_by_threshold_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_t0.25_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_t0.3_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_t0.35_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_t0.4_10km_subbasin_subbasin1.png
-│       ├── confusion_matrices_t0.45_10km_subbasin_subbasin1.png
-│       └── confusion_matrices_t0.5_10km_subbasin_subbasin1.png
+```
+
+
+`src/`
+
+```
 └── src
     ├── __init__.py                                          # turns off PROJ network grids project-wide
     ├── paths.py                                             # every input and output location
@@ -242,9 +134,13 @@ Numbers (1.–9.) give the order to run the pipeline.
         └── spatial.py                                       # (to remove) no longer used
 ```
 
+
+### Steps
+```
 Step 0: `python -m src.data.crop_mapping` downloads the DWR crop maps.
 Step 7: `python -m src.evaluation.make_splits <split name>` for `10km`, `10km_subbasin`, `7.5km_subbasin` and `5km_subbasin`.
 Steps 1–3 can run in any order; the two step-8 notebooks can run in either order.
+```
 
 # Data not included in the repository
 
@@ -264,11 +160,11 @@ with a list of any missing files.
 Files created by the notebooks (`data/soils/`, `data/prism_points.gpkg` and `data/crop_runs/`) are
 also not in GitHub; running the pipeline creates them.
 
-**Shared folder:** [add link]. It has the PRISM export and the DEM, which cannot be recreated exactly
+**Shared folder:** [Link to Google Drive](https://drive.google.com/drive/folders/1aQjNUVLgbEiMHWpoKIv3kPRP2gz4hIri?usp=sharing). It has the PRISM export and the DEM, which cannot be recreated exactly
 from public downloads.
 
 
-# Selected scientific references and public data sources
+# Selected scientific references
 
 [1] Ransom et al. (2017), A hybrid machine learning model to predict and visualize nitrate concentration throughout the Central Valley aquifer: https://pubs.usgs.gov/publication/70187880
 

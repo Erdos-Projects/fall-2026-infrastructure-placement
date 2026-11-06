@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier,brier_skill,min_samples_leaf,max_features,max_depth
-classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 05:10,0,0.7955912172149819,0.17322453219946818,0.25637514790395244,5,0.3,6.0
-classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 05:10,1,0.8708071614750246,0.13033489253540456,0.34787308421054886,5,sqrt,8.0
-classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 05:10,2,0.8144043715846996,0.16742484834774118,0.2943212239527633,20,sqrt,8.0
-classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 05:10,3,0.8288133333333333,0.15124382293083344,0.26586326445409336,20,sqrt,
+classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 18:35,0,0.7955912172149819,0.17322453219946818,0.25637514790395244,5,0.3,6.0
+classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 18:35,1,0.8708071614750246,0.13033489253540456,0.34787308421054886,5,sqrt,8.0
+classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 18:35,2,0.8144043715846996,0.16742484834774118,0.2943212239527633,20,sqrt,8.0
+classification,Random forest,Charlsey,10km_subbasin,True,True,59,,2026-11-05 18:35,3,0.8288133333333333,0.15124382293083344,0.26586326445409336,20,sqrt,

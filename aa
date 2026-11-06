@@ -1,0 +1,273 @@
+.
+├── README.md
+├── data
+│   ├── NHD_H_18060005_HU8_GDB
+│   │   └── NHD_H_18060005_HU8_GDB.gdb
+│   ├── PRISM_ppt_tmean_stable_4km_201301_202603.csv
+│   ├── crops
+│   │   ├── 
+│   ├── datasets
+│   │   └── ssurgo_soildata
+│   │       ├── CA053
+│   │       ├── CA069
+│   │       ├── CA665
+│   │       ├── CA772
+│   │       └── CA788
+│   ├── elevation
+│   │   └── dem_watershed_10m.tif
+│   ├── groundwater_nitrate_clean.csv
+│   ├── groundwaterdata.csv
+│   ├── outputs
+│   │   ├── risk_map_500m.gpkg
+│   │   ├── risk_map_500m_hybrid_probability.tif
+│   │   └── risk_map_500m_model_probability.tif
+│   ├── prism_points.gpkg
+│   ├── processed
+│   │   ├── crop_features_lag1_2021_2024.csv
+│   │   ├── groundwater_ml_integration_lag1_2021_2024_with_climate.csv
+│   │   ├── groundwater_nitrate_clean.csv
+│   │   ├── groundwater_nitrate_clean.gpkg
+│   │   ├── groundwater_well_buffers_500m.gpkg
+│   │   └── prism_climate_monthly_clean.csv
+│   ├── salinas_valley_subbasins.geojson
+│   └── soils
+│       └── soils_huc8_attributes.gpkg
+├── environment.yml
+├── evaluation_plan.md
+├── modeling_plan.md
+├── notebooks
+│   ├── classification_models.ipynb
+│   ├── data_cleaning
+│   │   ├── crop_mapping
+│   │   │   ├── crop_mapping_annual_2021_2024.ipynb
+│   │   │   ├── crop_mapping_eda.ipynb
+│   │   │   ├── crop_mapping_feature_selection.csv
+│   │   │   ├── crop_mapping_feature_selection.ipynb
+│   │   │   ├── figures
+│   │   │   │   ├── boxplot_multicrop.png
+│   │   │   │   ├── boxplot_veg_berry.png
+│   │   │   │   ├── correlation_heatmap.png
+│   │   │   │   ├── crop_history_lag.png
+│   │   │   │   ├── distributions.png
+│   │   │   │   ├── lag_scatter_1997.png
+│   │   │   │   ├── map_crops_2023.png
+│   │   │   │   ├── missingness.png
+│   │   │   │   ├── scatter_veg_berry.png
+│   │   │   │   ├── selected_features_corr.png
+│   │   │   │   ├── target_boxplot.png
+│   │   │   │   └── target_vs_features.png
+│   │   │   ├── selected_features.txt
+│   │   │   ├── well_crop_features_all.csv
+│   │   │   └── wells_nitrate.csv
+│   │   ├── groundwater
+│   │   │   ├── groundwater_spatial_eda.ipynb
+│   │   │   └── gwater_clean.ipynb
+│   │   ├── groundwater_depth
+│   │   │   ├── depth_groundwater.csv
+│   │   │   ├── groundwater_depth_clean.csv
+│   │   │   ├── groundwater_depth_eda.ipynb
+│   │   │   └── thiessen_polygons.gpkg
+│   │   ├── precipitation
+│   │   │   └── prism_climate_cleaning_final.ipynb
+│   │   └── soils
+│   │       └── Soil_data_cleanup_team.ipynb
+│   ├── data_merge
+│   │   ├── all_merge_EDA_Final.ipynb
+│   │   └── all_merge_final.ipynb
+│   ├── data_splitting.ipynb
+│   ├── feature_selection.ipynb
+│   ├── final_results.ipynb
+│   ├── regression_models.ipynb
+│   ├── risk_map_random_forest.ipynb
+│   └── robustness_subbasin_balanced_holdout.ipynb
+├── results
+│   ├── classification
+│   │   ├── confusion_matrices_by_threshold_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.25_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.35_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.3_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.45_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.4_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.5_10km_subbasin_subbasin1.png
+│   │   ├── fold_metrics_probability_10km_subbasin_subbasin1.png
+│   │   ├── fold_metrics_threshold_10km_subbasin_subbasin1.png
+│   │   ├── model_comparison_10km_subbasin_subbasin1.png
+│   │   ├── pr_roc_calibration_10km_subbasin_subbasin1.png
+│   │   ├── probability_distributions_10km_subbasin_subbasin1.png
+│   │   └── threshold_metrics_10km_subbasin_subbasin1.png
+│   ├── evaluation
+│   │   ├── estimated_leakage_by_split.png
+│   │   ├── spatial_folds_map_10km.png
+│   │   ├── spatial_folds_map_10km_subbasin.png
+│   │   ├── spatial_folds_map_5km_subbasin.png
+│   │   ├── spatial_folds_map_7.5km_subbasin.png
+│   │   ├── spatial_folds_maps_all_splits.png
+│   │   └── subbasin_mix_by_fold.png
+│   ├── feature_selection.csv
+│   ├── final
+│   │   ├── classification_holdout.png
+│   │   ├── final_scores_holdout.csv
+│   │   ├── folds_composition.png
+│   │   ├── folds_map.png
+│   │   ├── folds_performance.png
+│   │   └── regression_holdout.png
+│   ├── interpretability
+│   │   ├── permutation_importance_classifier_holdout.csv
+│   │   └── permutation_importance_classifier_holdout.png
+│   ├── model_comparison.csv
+│   ├── model_runs
+│   │   ├── andrea__lasso__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__lasso__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__linear-regression__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic-l1__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic-l2__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__ridge__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__10km__subbasin0__noelev0.csv
+│   │   ├── charlsey__random-forest__classification__10km__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__10km__subbasin0__noelev0.csv
+│   │   ├── charlsey__random-forest__regression__10km__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__10km__subbasin0__noelev0.csv
+│   │   ├── gavin__decision-tree__classification__10km__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__10km__subbasin0__noelev0.csv
+│   │   ├── gavin__decision-tree__regression__10km__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__10km__subbasin0__noelev0.csv
+│   │   ├── karuna__xgboost-brt__classification__10km__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__10km__subbasin0__noelev0.csv
+│   │   ├── karuna__xgboost-brt__regression__10km__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__10km__subbasin0__noelev0.csv
+│   │   ├── team__dummy-mean__regression__10km__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__10km__subbasin0__noelev0.csv
+│   │   ├── team__dummy-prior__classification__10km__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   └── team__dummy-prior__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   ├── predictions
+│   │   ├── classification__10km__subbasin0.csv.gz
+│   │   ├── classification__10km__subbasin1.csv.gz
+│   │   ├── classification__10km_subbasin__subbasin1.csv.gz
+│   │   ├── classification__5km_subbasin__subbasin1.csv.gz
+│   │   ├── classification__7.5km_subbasin__subbasin1.csv.gz
+│   │   ├── regression__10km__subbasin0.csv.gz
+│   │   ├── regression__10km__subbasin1.csv.gz
+│   │   ├── regression__10km_subbasin__subbasin1.csv.gz
+│   │   ├── regression__5km_subbasin__subbasin1.csv.gz
+│   │   └── regression__7.5km_subbasin__subbasin1.csv.gz
+│   ├── regression
+│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
+│   │   ├── model_comparison_10km_subbasin.png
+│   │   ├── observed_vs_predicted_10km_subbasin_subbasin1.png
+│   │   └── residuals_10km_subbasin_subbasin1.png
+│   ├── risk_map
+│   │   ├── risk_map_500m.csv
+│   │   ├── risk_map_500m_comparison.png
+│   │   ├── risk_map_500m_hybrid.png
+│   │   ├── risk_map_500m_hybrid_binary.png
+│   │   ├── risk_map_500m_model.png
+│   │   └── risk_map_500m_monitoring_priority.png
+│   ├── robustness
+│   │   ├── subbasin_balanced_holdouts.csv
+│   │   └── subbasin_balanced_holdouts.png
+│   └── splits
+│       ├── well_5_folds_10000m_exceedance_seed0.csv
+│       ├── well_5_folds_10000m_exceedance_seed0.json
+│       ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.csv
+│       ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.json
+│       ├── well_5_folds_5000m_subbasin_x_exceedance_seed0.csv
+│       ├── well_5_folds_5000m_subbasin_x_exceedance_seed0.json
+│       ├── well_5_folds_7500m_subbasin_x_exceedance_seed0.csv
+│       └── well_5_folds_7500m_subbasin_x_exceedance_seed0.json
+├── run.sh
+├── run_pipeline.md
+├── src
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   └── paths.cpython-312.pyc
+│   ├── data
+│   │   ├── __pycache__
+│   │   │   └── crop_mapping.cpython-312.pyc
+│   │   └── crop_mapping.py
+│   ├── evaluation
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── leakage.cpython-312.pyc
+│   │   │   ├── make_splits.cpython-312.pyc
+│   │   │   ├── results_log.cpython-312.pyc
+│   │   │   └── splits.cpython-312.pyc
+│   │   ├── leakage.py
+│   │   ├── make_splits.py
+│   │   ├── results_log.py
+│   │   └── splits.py
+│   ├── features
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── preprocessing.cpython-312.pyc
+│   │   │   └── transformers.cpython-312.pyc
+│   │   ├── preprocessing.py
+│   │   └── transformers.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── evaluate.cpython-312.pyc
+│   │   │   └── random_forest.cpython-312.pyc
+│   │   └── evaluate.py
+│   ├── paths.py
+│   └── shared
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-312.pyc
+│       │   └── datetime.cpython-312.pyc
+│       ├── datetime.py
+│       └── spatial.py
+└── summary.md
+
+68 directories, 1405 files

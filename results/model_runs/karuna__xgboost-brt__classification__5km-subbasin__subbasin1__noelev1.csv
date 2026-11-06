@@ -1,5 +1,5 @@
 task,model,author,split,use_subbasin,drop_elevation,n_features,notes,saved,fold,auc,brier,brier_skill,subsample,n_estimators,min_child_weight,max_depth,learning_rate
-classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 05:21,0,0.8278805970149253,0.15735638551016,0.2669343342195999,0.7,50,5,3,0.05
-classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 05:21,1,0.783394864544058,0.1765471300929476,0.2016709011393074,0.7,35,5,4,0.05
-classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 05:21,2,0.7836328176002089,0.1734388704161013,0.19472123741770586,0.5,75,20,3,0.05
-classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 05:21,3,0.8475579520432754,0.16316715969423307,0.31959857435796424,0.7,35,5,4,0.05
+classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 18:36,0,0.8278805970149253,0.15735638551016,0.2669343342195999,0.7,50,5,3,0.05
+classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 18:36,1,0.783394864544058,0.1765471300929476,0.2016709011393074,0.7,35,5,4,0.05
+classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 18:36,2,0.7836328176002089,0.1734388704161013,0.19472123741770586,0.5,75,20,3,0.05
+classification,XGBoost BRT,Karuna,5km_subbasin,True,True,59,,2026-11-05 18:36,3,0.8475579520432754,0.16316715969423307,0.31959857435796424,0.7,35,5,4,0.05

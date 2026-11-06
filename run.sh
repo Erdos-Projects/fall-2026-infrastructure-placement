@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Regenerate the project from the raw data: data cleaning -> merge -> features -> splits -> models -> final results.
 #
+# Create & activate conda environment:
+# conda env create -f environment.yml
+# conda activate fall_2026_environmental_infrastructure
+#
 # Run with the project's conda environment active (from any folder):
 #     ./run.sh                 # every step
 #     ./run.sh --from 8        # start at step 8 (e.g. after a failure, or when the data steps are up to date)
