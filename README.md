@@ -130,8 +130,7 @@ Numbers (1.–9.) give the order to run the pipeline.
     │   └── evaluate.py                                      # shared spatial cross-validation for all models
     └── shared
         ├── __init__.py
-        ├── datetime.py                                      # date parsing for the groundwater data
-        └── spatial.py                                       # (to remove) no longer used
+        └── datetime.py                                      # date parsing for the groundwater data
 ```
 
 
