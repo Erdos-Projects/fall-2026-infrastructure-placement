@@ -1,0 +1,44 @@
+project:
+  type: website
+
+jupyter: erdos_ds_environment
+
+website:
+  title: "Predicting Areas of High-Risk Nitrate Pollution"
+  navbar:
+    left:
+      - text: "Home"
+        href: summary.qmd
+
+      - text: "Data Cleaning"
+        menu:
+          - text: "Groundwater"
+            href: notebooks/data_cleaning/groundwater/gwater_clean.ipynb
+          - text: "Soils"
+            href: notebooks/data_cleaning/soils/Soil_data_cleanup_team.ipynb
+          - text: "Precipitation"
+            href: notebooks/data_cleaning/precipitation/prism_climate_cleaning_final.ipynb
+          - text: "Crop Mapping"
+            href: notebooks/data_cleaning/crop_mapping/crop_mapping_annual_2021_2024.ipynb
+
+      - text: "Modeling"
+        menu:
+          - text: "Feature Selection"
+            href: notebooks/feature_selection.ipynb
+          - text: "Regression"
+            href: notebooks/regression_models.ipynb
+          - text: "Classification"
+            href: notebooks/classification_models.ipynb
+          - text: "Final Results"
+            href: notebooks/final_results.ipynb
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+    toc: true
+    number-sections: false
+
+execute:
+  freeze: auto
+

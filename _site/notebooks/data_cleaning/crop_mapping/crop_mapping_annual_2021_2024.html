@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Crop mapping — annual agricultural features (2021–2024) – Predicting Areas of High-Risk Nitrate Pollution</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f445c9913b723fdb4c6781d589c67327.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Predicting Areas of High-Risk Nitrate Pollution</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../summary.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-cleaning" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data Cleaning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-cleaning">    
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/data_cleaning/groundwater/gwater_clean.html">
+ <span class="dropdown-text">Groundwater</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/data_cleaning/soils/Soil_data_cleanup_team.html">
+ <span class="dropdown-text">Soils</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/data_cleaning/precipitation/prism_climate_cleaning_final.html">
+ <span class="dropdown-text">Precipitation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/data_cleaning/crop_mapping/crop_mapping_annual_2021_2024.html">
+ <span class="dropdown-text">Crop Mapping</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modeling" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modeling</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modeling">    
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/feature_selection.html">
+ <span class="dropdown-text">Feature Selection</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/regression_models.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/classification_models.html">
+ <span class="dropdown-text">Classification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../notebooks/final_results.html">
+ <span class="dropdown-text">Final Results</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#crop-features-for-each-well-inputs-and-settings" id="toc-crop-features-for-each-well-inputs-and-settings" class="nav-link active" data-scroll-target="#crop-features-for-each-well-inputs-and-settings">0. Crop features for each well — inputs and settings</a></li>
+  <li><a href="#dwr-crop-maps-and-classifications" id="toc-dwr-crop-maps-and-classifications" class="nav-link" data-scroll-target="#dwr-crop-maps-and-classifications">1. DWR crop maps and classifications</a></li>
+  <li><a href="#buffer-intersections-and-agricultural-features" id="toc-buffer-intersections-and-agricultural-features" class="nav-link" data-scroll-target="#buffer-intersections-and-agricultural-features">2. Buffer intersections and agricultural features</a>
+  <ul class="collapse">
+  <li><a href="#groundwater-wells-and-study-area" id="toc-groundwater-wells-and-study-area" class="nav-link" data-scroll-target="#groundwater-wells-and-study-area">2.1. Groundwater wells and study area</a></li>
+  <li><a href="#crop-features-for-each-dwr-map-year" id="toc-crop-features-for-each-dwr-map-year" class="nav-link" data-scroll-target="#crop-features-for-each-dwr-map-year">2.2. Crop features for each DWR map year</a></li>
+  </ul></li>
+  <li><a href="#historical-land-use-and-one-year-lag" id="toc-historical-land-use-and-one-year-lag" class="nav-link" data-scroll-target="#historical-land-use-and-one-year-lag">3. Historical land use and one-year lag</a></li>
+  <li><a href="#quality-checks-and-comparison-with-2023-features" id="toc-quality-checks-and-comparison-with-2023-features" class="nav-link" data-scroll-target="#quality-checks-and-comparison-with-2023-features">4. Quality checks and comparison with 2023 features</a></li>
+  <li><a href="#output-annual-features-and-qa" id="toc-output-annual-features-and-qa" class="nav-link" data-scroll-target="#output-annual-features-and-qa">5. Output — annual features and QA</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Crop mapping — annual agricultural features (2021–2024)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>DWR land-use features for Salinas HUC8 nitrate wells, extending the original crop-mapping workflow to annual 500 m and 1,000 m buffers. Crop year <em>t</em> is joined to groundwater measurements from year <em>t + 1</em>. The 2020 map is used only to calculate changes for 2021.</p>
+<section id="crop-features-for-each-well-inputs-and-settings" class="level2">
+<h2 class="anchored" data-anchor-id="crop-features-for-each-well-inputs-and-settings">0. Crop features for each well — inputs and settings</h2>
+<p>Uses the same broad DWR crop classes as the earlier mapping. Raw DWR geodatabases are external to Git; by default, the notebook looks for the shared <code>Data/Erdos Project/raw/Crops</code> folder alongside <code>GitHub</code>. Override <code>ERDOS_CROPS_DIR</code> only if your data are stored elsewhere.</p>
+<div id="c722cec9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:27:35.695694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:27:35.695518Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:36.068515Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:36.067797Z&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyogrio</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the project root and import the shared paths (also applies the projection setting in src/__init__.py)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> <span class="bu">next</span>(p <span class="cf">for</span> p <span class="kw">in</span> [Path.cwd(), <span class="op">*</span>Path.cwd().parents] <span class="cf">if</span> (p <span class="op">/</span> <span class="st">"src"</span>).is_dir())</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(ROOT))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src <span class="im">import</span> paths</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw DWR crop maps and timestamped run outputs; the environment variables override the defaults</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> paths.ROOT</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>root <span class="op">=</span> Path(os.environ.get(<span class="st">"ERDOS_CROPS_DIR"</span>, paths.RAW_CROPS)).expanduser().resolve()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> Path(os.environ.get(<span class="st">"ERDOS_CROP_OUTPUT_DIR"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                             paths.CROP_RUNS <span class="op">/</span> <span class="st">"annual_lag1_notebook_run"</span>)).expanduser().resolve()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> root.is_dir():</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"DWR input folder not found: </span><span class="sc">{</span>root<span class="sc">}</span><span class="ss">. Set ERDOS_CROPS_DIR to your DWR data folder."</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Repository:"</span>, repo)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DWR input folder:"</span>, root)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Output folder (created at end):"</span>, output)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>METRIC_CRS <span class="op">=</span> <span class="dv">3310</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>HUC8 <span class="op">=</span> <span class="st">"18060005"</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>RADII <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>YEARS <span class="op">=</span> (<span class="dv">2021</span>, <span class="dv">2022</span>, <span class="dv">2023</span>, <span class="dv">2024</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>GROUPS <span class="op">=</span> [<span class="st">"veg_berry"</span>, <span class="st">"vineyard"</span>, <span class="st">"orchard"</span>, <span class="st">"grain_field_pasture"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="st">"idle_fallow"</span>, <span class="st">"urban"</span>]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>FARMED <span class="op">=</span> [<span class="st">"veg_berry"</span>, <span class="st">"vineyard"</span>, <span class="st">"orchard"</span>, <span class="st">"grain_field_pasture"</span>]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>CLASS_GROUP <span class="op">=</span> {</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"T"</span>: <span class="st">"veg_berry"</span>, <span class="st">"V"</span>: <span class="st">"vineyard"</span>, <span class="st">"D"</span>: <span class="st">"orchard"</span>, <span class="st">"C"</span>: <span class="st">"orchard"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Y"</span>: <span class="st">"orchard"</span>, <span class="st">"YP"</span>: <span class="st">"orchard"</span>, <span class="st">"G"</span>: <span class="st">"grain_field_pasture"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"F"</span>: <span class="st">"grain_field_pasture"</span>, <span class="st">"P"</span>: <span class="st">"grain_field_pasture"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R"</span>: <span class="st">"grain_field_pasture"</span>, <span class="st">"I"</span>: <span class="st">"idle_fallow"</span>, <span class="st">"X"</span>: <span class="st">"idle_fallow"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>CYCLES <span class="op">=</span> {<span class="st">"S"</span>: <span class="dv">1</span>, <span class="st">"D"</span>: <span class="dv">2</span>, <span class="st">"T"</span>: <span class="dv">3</span>, <span class="st">"Q"</span>: <span class="dv">4</span>}</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>EXPECTED_STATUS <span class="op">=</span> {<span class="dv">2021</span>: <span class="st">"Final"</span>, <span class="dv">2022</span>: <span class="st">"Final"</span>, <span class="dv">2023</span>: <span class="st">"Final"</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">2024</span>: <span class="st">"Provisional"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Repository: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement
+DWR input folder: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/crops
+Output folder (created at end): /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/crop_runs/annual_lag1_notebook_run</code></pre>
+</div>
+</div>
+</section>
+<section id="dwr-crop-maps-and-classifications" class="level2">
+<h2 class="anchored" data-anchor-id="dwr-crop-maps-and-classifications">1. DWR crop maps and classifications</h2>
+<p><code>SYMB_CLASS</code> codes are grouped as in the original crop mapping, including <code>T</code> as <code>veg_berry</code>. <code>MULTIUSE</code> records the number of crop cycles. The annual inputs are DWR maps from 2020–2024; 2024 is provisional.</p>
+<div id="3871b103" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:27:36.070305Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:27:36.070101Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:36.077175Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:36.076557Z&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> require(ok, message):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ok:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(message)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sha256(path):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    digest <span class="op">=</span> hashlib.sha256()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> Path(path).<span class="bu">open</span>(<span class="st">"rb"</span>) <span class="im">as</span> stream:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> block <span class="kw">in</span> <span class="bu">iter</span>(<span class="kw">lambda</span>: stream.read(<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>), <span class="st">b""</span>):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            digest.update(block)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> digest.hexdigest()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_gdb(root, token):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> [p.parent <span class="cf">for</span> p <span class="kw">in</span> root.rglob(<span class="st">"a00000001.gdbtable"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>               <span class="cf">if</span> token.lower() <span class="kw">in</span> p.parent.name.lower()]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    require(<span class="bu">len</span>(matches) <span class="op">==</span> <span class="dv">1</span>, <span class="ss">f"Expected one GDB for </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">; found </span><span class="sc">{</span>matches<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matches[<span class="dv">0</span>]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_crop_map(path, boundary):</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> pyogrio.list_layers(path)[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    info <span class="op">=</span> pyogrio.read_info(path, layer<span class="op">=</span>layer)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    require(info[<span class="st">"crs"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>, <span class="ss">f"Missing CRS: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    required <span class="op">=</span> {<span class="st">"UniqueID"</span>, <span class="st">"SYMB_CLASS"</span>, <span class="st">"MULTIUSE"</span>, <span class="st">"COUNTY"</span>}</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    require(required <span class="op">&lt;=</span> <span class="bu">set</span>(info[<span class="st">"fields"</span>]), <span class="ss">f"Unexpected source schema: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> boundary.total_bounds</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    to_source <span class="op">=</span> Transformer.from_crs(METRIC_CRS, info[<span class="st">"crs"</span>], always_xy<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> to_source.transform_bounds(xmin <span class="op">-</span> <span class="dv">1001</span>, ymin <span class="op">-</span> <span class="dv">1001</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                                      xmax <span class="op">+</span> <span class="dv">1001</span>, ymax <span class="op">+</span> <span class="dv">1001</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                                      densify_pts<span class="op">=</span><span class="dv">41</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pyogrio.read_dataframe(path, layer<span class="op">=</span>layer, bbox<span class="op">=</span>bbox, fid_as_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    require(data.index.is_unique <span class="kw">and</span> data.UniqueID.notna().<span class="bu">all</span>()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> data.UniqueID.is_unique, <span class="ss">f"Duplicate/missing source IDs: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    require(data.geometry.notna().<span class="bu">all</span>() <span class="kw">and</span> (<span class="op">~</span>data.geometry.is_empty).<span class="bu">all</span>(),</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"Missing source geometry: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    data.geometry <span class="op">=</span> data.geometry.force_2d().to_crs(METRIC_CRS).<span class="bu">buffer</span>(<span class="dv">0</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    require(data.is_valid.<span class="bu">all</span>(), <span class="ss">f"Invalid geometry after repair: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    letters <span class="op">=</span> (data.SYMB_CLASS.astype(<span class="st">"string"</span>).<span class="bu">str</span>.split(<span class="st">"|"</span>).<span class="bu">str</span>[<span class="dv">0</span>]</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>               .<span class="bu">str</span>.strip().<span class="bu">str</span>.upper())</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    unknown <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>(letters.dropna()) <span class="op">-</span> <span class="bu">set</span>(CLASS_GROUP) <span class="op">-</span> {<span class="st">"U"</span>, <span class="st">"UL"</span>})</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    require(<span class="kw">not</span> unknown <span class="kw">and</span> letters.notna().<span class="bu">all</span>(),</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"Unreviewed DWR crop classes in </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>unknown<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"crop_group"</span>] <span class="op">=</span> letters.<span class="bu">map</span>(CLASS_GROUP)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    data.loc[letters.<span class="bu">str</span>.startswith(<span class="st">"U"</span>, na<span class="op">=</span><span class="va">False</span>), <span class="st">"crop_group"</span>] <span class="op">=</span> <span class="st">"urban"</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"crop_cycles"</span>] <span class="op">=</span> data.MULTIUSE.astype(<span class="st">"string"</span>).<span class="bu">str</span>.strip().<span class="bu">map</span>(CYCLES)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    require(data.crop_cycles.notna().<span class="bu">all</span>(), <span class="ss">f"Unreviewed MULTIUSE values: </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"source_fid"</span>] <span class="op">=</span> data.index</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> (<span class="bu">sorted</span>(data.DataStatus.dropna().astype(<span class="bu">str</span>).unique())</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>              <span class="cf">if</span> <span class="st">"DataStatus"</span> <span class="kw">in</span> data <span class="cf">else</span> [<span class="st">"Not provided for 2020"</span>])</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data, {<span class="st">"path"</span>: <span class="bu">str</span>(path), <span class="st">"layer"</span>: layer, <span class="st">"crs"</span>: <span class="bu">str</span>(info[<span class="st">"crs"</span>]),</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"statewide_feature_count_metadata_only"</span>: <span class="bu">int</span>(info[<span class="st">"features"</span>]),</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"regional_bbox_rows_loaded"</span>: <span class="bu">len</span>(data), <span class="st">"source_bbox"</span>: <span class="bu">list</span>(bbox),</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"regional_data_status"</span>: status}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="buffer-intersections-and-agricultural-features" class="level2">
+<h2 class="anchored" data-anchor-id="buffer-intersections-and-agricultural-features">2. Buffer intersections and agricultural features</h2>
+<p>For every map year, calculate both 500 m and 1,000 m features. Full buffers can cross county boundaries. Crop-group percentages use the theoretical circular area, while mapped-polygon footprint uses the actual buffer area. Unmapped area is not assumed to be nonagricultural land.</p>
+<div id="d62c9e73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:27:36.078963Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:27:36.078788Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:36.085999Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:36.085377Z&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarize(points, candidates, radius):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    circles <span class="op">=</span> points[[<span class="st">"gm_well_id"</span>, <span class="st">"geometry"</span>]].copy()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    circles.geometry <span class="op">=</span> circles.<span class="bu">buffer</span>(radius, quad_segs<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grouped = candidates.dissolve(by=["crop_group", "crop_cycles"]).reset_index()</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pieces = gpd.overlay(circles, grouped[["crop_group", "crop_cycles", "geometry"]],</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#                      how="intersection", keep_geom_type=True)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    pieces <span class="op">=</span> gpd.overlay(circles, candidates[[<span class="st">"crop_group"</span>, <span class="st">"crop_cycles"</span>, <span class="st">"geometry"</span>]],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                        how<span class="op">=</span><span class="st">"intersection"</span>, keep_geom_type<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    pieces[<span class="st">"area_m2"</span>] <span class="op">=</span> pieces.area</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ids <span class="op">=</span> pd.Index(points.gm_well_id.astype(<span class="st">"string"</span>), name<span class="op">=</span><span class="st">"gm_well_id"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    areas <span class="op">=</span> pieces.pivot_table(index<span class="op">=</span><span class="st">"gm_well_id"</span>, columns<span class="op">=</span><span class="st">"crop_group"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                               values<span class="op">=</span><span class="st">"area_m2"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    areas <span class="op">=</span> areas.reindex(index<span class="op">=</span>ids, columns<span class="op">=</span>GROUPS, fill_value<span class="op">=</span><span class="dv">0</span>).fillna(<span class="dv">0</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    mapped <span class="op">=</span> pieces.groupby(<span class="st">"gm_well_id"</span>).geometry.<span class="bu">apply</span>(<span class="kw">lambda</span> s: s.union_all().area)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    mapped <span class="op">=</span> mapped.reindex(ids, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    summed <span class="op">=</span> areas.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    overlap <span class="op">=</span> (summed <span class="op">-</span> mapped).clip(lower<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    require(<span class="bu">float</span>(overlap.<span class="bu">max</span>()) <span class="op">&lt;</span> <span class="fl">1.0</span>, <span class="st">"Mapped classes overlap by &gt;= 1 m2."</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    circle_area <span class="op">=</span> np.pi <span class="op">*</span> radius<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    buffer_area <span class="op">=</span> pd.Series(circles.area.to_numpy(), index<span class="op">=</span>ids)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    require((mapped <span class="op">&lt;=</span> buffer_area <span class="op">+</span> <span class="fl">1e-4</span>).<span class="bu">all</span>(), <span class="st">"Mapped area exceeds buffer."</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    require(np.allclose(buffer_area, circle_area <span class="op">*</span> <span class="fl">0.9983943930356184</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                        rtol<span class="op">=</span><span class="fl">1e-8</span>), <span class="st">"Unexpected buffer units/resolution."</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>ids)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> group <span class="kw">in</span> GROUPS:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        table[<span class="ss">f"pct_</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> areas[group] <span class="op">/</span> circle_area <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is composition inside mapped polygons, not a whole-buffer share.</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        table[<span class="ss">f"pct_</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss">_of_mapped_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> (</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            areas[group] <span class="op">/</span> mapped.replace(<span class="dv">0</span>, np.nan) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"pct_cropland_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> areas[FARMED].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> circle_area <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"pct_cropland_of_mapped_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> (</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        areas[FARMED].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> mapped.replace(<span class="dv">0</span>, np.nan) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    farm <span class="op">=</span> pieces[pieces.crop_group.isin(FARMED)]</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    farm_area <span class="op">=</span> farm.groupby(<span class="st">"gm_well_id"</span>).area_m2.<span class="bu">sum</span>().reindex(ids, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    weighted <span class="op">=</span> (farm.area_m2 <span class="op">*</span> farm.crop_cycles).groupby(farm.gm_well_id).<span class="bu">sum</span>()</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"crop_cycles_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> weighted.reindex(ids) <span class="op">/</span> farm_area.replace(<span class="dv">0</span>, np.nan)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    multi <span class="op">=</span> farm[farm.crop_cycles.ge(<span class="dv">2</span>)].groupby(<span class="st">"gm_well_id"</span>).area_m2.<span class="bu">sum</span>()</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"pct_multicrop_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> multi.reindex(ids, fill_value<span class="op">=</span><span class="dv">0</span>) <span class="op">/</span> circle_area <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"buffer_area_m2_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> buffer_area</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"dwr_polygon_area_m2_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> mapped</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"dwr_polygon_footprint_pct_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> mapped <span class="op">/</span> buffer_area <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"outside_dwr_polygons_pct_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> (</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        (buffer_area <span class="op">-</span> mapped).clip(lower<span class="op">=</span><span class="dv">0</span>) <span class="op">/</span> buffer_area <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    table[<span class="ss">f"dwr_polygon_status_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        mapped.le(<span class="fl">1e-8</span>), <span class="st">"no_dwr_polygon"</span>, <span class="st">"dwr_polygon_present_completeness_unknown"</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    no_map <span class="op">=</span> mapped.le(<span class="fl">1e-8</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    crop_columns <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> table <span class="cf">if</span> c.startswith(<span class="st">"pct_"</span>) <span class="kw">or</span> c.startswith(<span class="st">"crop_cycles_"</span>)]</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    table.loc[no_map, crop_columns] <span class="op">=</span> np.nan</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    percents <span class="op">=</span> table[[c <span class="cf">for</span> c <span class="kw">in</span> table <span class="cf">if</span> c.startswith(<span class="st">"pct_"</span>)]]</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    require(percents.dropna().ge(<span class="op">-</span><span class="fl">1e-8</span>).<span class="bu">all</span>().<span class="bu">all</span>()</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> percents.dropna().le(<span class="dv">100</span> <span class="op">+</span> <span class="fl">1e-8</span>).<span class="bu">all</span>().<span class="bu">all</span>(),</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Percentage out of bounds."</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    require(table[<span class="ss">f"crop_cycles_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>].dropna().between(<span class="dv">1</span>, <span class="dv">4</span>).<span class="bu">all</span>(),</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Crop cycles outside 1-4."</span>)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    qa <span class="op">=</span> {<span class="st">"well_count"</span>: <span class="bu">len</span>(table), <span class="st">"overlay_piece_count"</span>: <span class="bu">len</span>(pieces),</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>          <span class="st">"max_overlap_area_m2"</span>: <span class="bu">float</span>(overlap.<span class="bu">max</span>()),</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>          <span class="st">"dwr_polygon_status_counts"</span>: table[<span class="ss">f"dwr_polygon_status_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>].value_counts().to_dict(),</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>          <span class="st">"dwr_polygon_footprint_pct_summary"</span>: table[<span class="ss">f"dwr_polygon_footprint_pct_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>].describe().to_dict()}</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> table, qa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="groundwater-wells-and-study-area" class="level3">
+<h3 class="anchored" data-anchor-id="groundwater-wells-and-study-area">2.1. Groundwater wells and study area</h3>
+<div id="6a6e0288" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:27:36.087673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:27:36.087514Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:36.668953Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:36.668150Z&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>require(<span class="kw">not</span> output.exists(), <span class="ss">f"Output directory exists; choose a new path: </span><span class="sc">{</span>output<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>require(<span class="kw">not</span> output.is_relative_to(root), <span class="st">"Do not put outputs inside raw DWR data."</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nitrate_path <span class="op">=</span> paths.NITRATE_CLEAN</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>boundary_path <span class="op">=</span> paths.HUC8_GDB</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>boundary <span class="op">=</span> gpd.read_file(boundary_path, layer<span class="op">=</span><span class="st">"WBDHU8"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                         where<span class="op">=</span><span class="ss">f"huc8 = '</span><span class="sc">{</span>HUC8<span class="sc">}</span><span class="ss">'"</span>).to_crs(METRIC_CRS)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>require(<span class="bu">len</span>(boundary) <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> boundary.is_valid.<span class="bu">all</span>(), <span class="st">"Unexpected HUC8 boundary."</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>boundary_shape <span class="op">=</span> boundary.geometry.union_all()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>obs <span class="op">=</span> pd.read_csv(nitrate_path, dtype<span class="op">=</span>{<span class="st">"gm_well_id"</span>: <span class="st">"string"</span>},</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                  parse_dates<span class="op">=</span>[<span class="st">"gm_samp_collection_date"</span>])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>require(<span class="bu">len</span>(obs) <span class="op">==</span> <span class="dv">5280</span> <span class="kw">and</span> obs.gm_well_id.nunique() <span class="op">==</span> <span class="dv">1993</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Nitrate input changed; review before processing."</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>require(<span class="kw">not</span> obs.duplicated([<span class="st">"gm_well_id"</span>, <span class="st">"gm_samp_collection_date"</span>]).<span class="bu">any</span>(),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Duplicate well/date keys in nitrate input."</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>obs[<span class="st">"measurement_year"</span>] <span class="op">=</span> obs.gm_samp_collection_date.dt.year</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>require(<span class="bu">set</span>(obs.measurement_year.unique()) <span class="op">==</span> {<span class="dv">2022</span>, <span class="dv">2023</span>, <span class="dv">2024</span>, <span class="dv">2025</span>},</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Unexpected measurement years."</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>point_rows <span class="op">=</span> obs[[<span class="st">"gm_well_id"</span>, <span class="st">"gm_latitude"</span>, <span class="st">"gm_longitude"</span>]].drop_duplicates()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>require(point_rows.gm_well_id.is_unique, <span class="st">"Well has multiple coordinate locations."</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>all_points <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    point_rows, geometry<span class="op">=</span>gpd.points_from_xy(point_rows.gm_longitude, point_rows.gm_latitude),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="dv">4326</span>).to_crs(METRIC_CRS)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>require(all_points.geometry.covered_by(boundary_shape).<span class="bu">all</span>(), <span class="st">"A nitrate well lies outside HUC8."</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>hashes <span class="op">=</span> {<span class="bu">str</span>(p): sha256(p) <span class="cf">for</span> p <span class="kw">in</span> [nitrate_path,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>          repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/wells_nitrate.csv"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>          repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/well_crop_features_all.csv"</span>]}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="crop-features-for-each-dwr-map-year" class="level3">
+<h3 class="anchored" data-anchor-id="crop-features-for-each-dwr-map-year">2.2. Crop features for each DWR map year</h3>
+<p>This cell performs the buffer and polygon intersections; it can take a while with the original DWR geodatabases.</p>
+<div id="7e00c760" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:27:36.671005Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:27:36.670753Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:28:49.208243Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:28:49.207561Z&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>map_features, map_qa, source_versions <span class="op">=</span> {}, {}, {}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>all_support <span class="op">=</span> all_points.<span class="bu">buffer</span>(<span class="bu">max</span>(RADII), quad_segs<span class="op">=</span><span class="dv">16</span>).union_all()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(YEARS) <span class="op">-</span> <span class="dv">1</span>, <span class="bu">max</span>(YEARS) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    source_path <span class="op">=</span> find_gdb(root, <span class="bu">str</span>(year))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    crop_map, source_versions[<span class="bu">str</span>(year)] <span class="op">=</span> read_crop_map(source_path, boundary)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> year <span class="kw">in</span> EXPECTED_STATUS:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        require(source_versions[<span class="bu">str</span>(year)][<span class="st">"regional_data_status"</span>] <span class="op">==</span> [EXPECTED_STATUS[year]],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"Unexpected DWR DataStatus for </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>source_versions[<span class="bu">str</span>(year)]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> crop_map[crop_map.intersects(all_support)].copy()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> crop_map</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    yearly_tables <span class="op">=</span> []</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    map_qa[<span class="bu">str</span>(year)] <span class="op">=</span> {<span class="st">"candidate_polygons_touching_any_well_buffer"</span>: <span class="bu">len</span>(candidates)}</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> radius <span class="kw">in</span> RADII:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        table, qa <span class="op">=</span> summarize(all_points, candidates, radius)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        yearly_tables.append(table)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        map_qa[<span class="bu">str</span>(year)][<span class="ss">f"</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> qa</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    map_features[year] <span class="op">=</span> pd.concat(yearly_tables, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> candidates, yearly_tables</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: RuntimeWarning: organizePolygons() received a polygon with more than 100 parts. The processing may be really slow.  You can skip the processing by setting METHOD=SKIP, or only make it analyze counter-clock wise parts by setting METHOD=ONLY_CCW if you can assume that the outline of holes is counter-clock wise defined
+  return ogr_read(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="historical-land-use-and-one-year-lag" class="level2">
+<h2 class="anchored" data-anchor-id="historical-land-use-and-one-year-lag">3. Historical land use and one-year lag</h2>
+<p>For nitrate measurements in 2022–2025, use DWR crop years 2021–2024. Annual changes compare each crop map with the preceding map; 2020 is used only as a baseline for 2021 changes. This is a retrospective modeling assumption, not an estimate of groundwater travel time.</p>
+<div id="3d6a69b5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:28:49.210536Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:28:49.210381Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:28:49.295603Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:28:49.294911Z&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>feature_rows, qa_years <span class="op">=</span> [], {}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> YEARS:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    measurement_year <span class="op">=</span> year <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    wells <span class="op">=</span> obs.loc[obs.measurement_year.eq(measurement_year),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                    [<span class="st">"gm_well_id"</span>, <span class="st">"gm_latitude"</span>, <span class="st">"gm_longitude"</span>]].drop_duplicates(<span class="st">"gm_well_id"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    ids <span class="op">=</span> wells.gm_well_id.astype(<span class="st">"string"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    current <span class="op">=</span> map_features[year].loc[ids].copy()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    previous <span class="op">=</span> map_features[year <span class="op">-</span> <span class="dv">1</span>].loc[ids].copy().add_suffix(<span class="st">"__previous"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> pd.concat([current, previous], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    table.insert(<span class="dv">0</span>, <span class="st">"gm_well_id"</span>, table.index.astype(<span class="st">"string"</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    table.insert(<span class="dv">1</span>, <span class="st">"crop_year"</span>, year)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    table.insert(<span class="dv">2</span>, <span class="st">"measurement_year"</span>, measurement_year)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    table.insert(<span class="dv">3</span>, <span class="st">"dwr_map_status"</span>, EXPECTED_STATUS.get(year, <span class="st">"Not provided by source"</span>))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    table.insert(<span class="dv">4</span>, <span class="st">"change_base_year"</span>, year <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    year_qa <span class="op">=</span> {<span class="st">"measurement_year"</span>: measurement_year, <span class="st">"crop_year"</span>: year,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>               <span class="st">"well_count"</span>: <span class="bu">len</span>(ids), <span class="st">"rows"</span>: <span class="bu">len</span>(table),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>               <span class="st">"current_map_validation"</span>: map_qa[<span class="bu">str</span>(year)]}</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> radius <span class="kw">in</span> RADII:</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> (table[<span class="ss">f"dwr_polygon_area_m2_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>].gt(<span class="dv">0</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>                  <span class="op">&amp;</span> table[<span class="ss">f"dwr_polygon_area_m2_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m__previous"</span>].gt(<span class="dv">0</span>))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        table[<span class="ss">f"annual_change_status_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            status, <span class="st">"both_years_have_polygons_completeness_unknown"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"no_polygon_in_one_or_both_years"</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> group <span class="kw">in</span> [<span class="op">*</span>GROUPS, <span class="st">"cropland"</span>, <span class="st">"multicrop"</span>]:</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> (<span class="ss">f"pct_</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span> <span class="cf">if</span> group <span class="op">!=</span> <span class="st">"multicrop"</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">else</span> <span class="ss">f"pct_multicrop_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>            delta <span class="op">=</span> <span class="ss">f"delta_</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss">_pp_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            table[delta] <span class="op">=</span> table[col] <span class="op">-</span> table[<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">__previous"</span>]</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>            table.loc[<span class="op">~</span>status, delta] <span class="op">=</span> np.nan</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        col <span class="op">=</span> <span class="ss">f"dwr_polygon_footprint_pct_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        table[<span class="ss">f"delta_dwr_polygon_footprint_pp_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> (</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>            table[col] <span class="op">-</span> table[<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">__previous"</span>])</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        table.loc[<span class="op">~</span>status, <span class="ss">f"delta_dwr_polygon_footprint_pp_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>] <span class="op">=</span> np.nan</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    require(table.gm_well_id.is_unique <span class="kw">and</span> <span class="bu">len</span>(table) <span class="op">==</span> <span class="bu">len</span>(ids),</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"Annual well rows/IDs changed: </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    qa_years[<span class="bu">str</span>(year)] <span class="op">=</span> year_qa</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    feature_rows.append(table.reset_index(drop<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="quality-checks-and-comparison-with-2023-features" class="level2">
+<h2 class="anchored" data-anchor-id="quality-checks-and-comparison-with-2023-features">4. Quality checks and comparison with 2023 features</h2>
+<p>Compare equivalent 2023 outputs with the earlier well-crop feature table using its original location and rounding conventions. Do not interpret unmatched areas as zero land use.</p>
+<div id="fab3fa59" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:28:49.297743Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:28:49.297562Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:28:49.304768Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:28:49.304006Z&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_gavin(repo, crops_root):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    observations <span class="op">=</span> pd.read_csv(paths.NITRATE_CLEAN,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                               dtype<span class="op">=</span>{<span class="st">"gm_well_id"</span>: <span class="st">"string"</span>},</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                               parse_dates<span class="op">=</span>[<span class="st">"gm_samp_collection_date"</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    wells_2024 <span class="op">=</span> observations[observations.gm_samp_collection_date.dt.year.eq(<span class="dv">2024</span>)].gm_well_id.unique()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> pd.read_csv(repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/well_crop_features_all.csv"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                           dtype<span class="op">=</span>{<span class="st">"well_id"</span>: <span class="st">"string"</span>})</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    legacy_wells <span class="op">=</span> pd.read_csv(repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/wells_nitrate.csv"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                               dtype<span class="op">=</span>{<span class="st">"well_id"</span>: <span class="st">"string"</span>})</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    ids <span class="op">=</span> <span class="bu">set</span>(wells_2024) <span class="op">&amp;</span> <span class="bu">set</span>(expected.well_id) <span class="op">&amp;</span> <span class="bu">set</span>(legacy_wells.well_id)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    legacy_wells <span class="op">=</span> legacy_wells[legacy_wells.well_id.isin(ids)].copy()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    points <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        legacy_wells[[<span class="st">"well_id"</span>, <span class="st">"x_m"</span>, <span class="st">"y_m"</span>]].rename(columns<span class="op">=</span>{<span class="st">"well_id"</span>: <span class="st">"gm_well_id"</span>}),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        geometry<span class="op">=</span>gpd.points_from_xy(legacy_wells.x_m, legacy_wells.y_m), crs<span class="op">=</span>METRIC_CRS)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> find_gdb(crops_root, <span class="st">"2023"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    info <span class="op">=</span> pyogrio.read_info(path, layer<span class="op">=</span>pyogrio.list_layers(path)[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> points.total_bounds</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> Transformer.from_crs(METRIC_CRS, info[<span class="st">"crs"</span>], always_xy<span class="op">=</span><span class="va">True</span>).transform_bounds(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        xmin <span class="op">-</span> <span class="dv">1001</span>, ymin <span class="op">-</span> <span class="dv">1001</span>, xmax <span class="op">+</span> <span class="dv">1001</span>, ymax <span class="op">+</span> <span class="dv">1001</span>, densify_pts<span class="op">=</span><span class="dv">41</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> pyogrio.list_layers(path)[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    map_data <span class="op">=</span> pyogrio.read_dataframe(path, layer<span class="op">=</span>layer, bbox<span class="op">=</span>bbox)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    map_data.geometry <span class="op">=</span> map_data.geometry.force_2d().to_crs(METRIC_CRS).<span class="bu">buffer</span>(<span class="dv">0</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    map_data <span class="op">=</span> map_data[map_data.COUNTY.eq(<span class="st">"Monterey"</span>)].copy()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    letters <span class="op">=</span> map_data.SYMB_CLASS.astype(<span class="st">"string"</span>).<span class="bu">str</span>.split(<span class="st">"|"</span>).<span class="bu">str</span>[<span class="dv">0</span>].<span class="bu">str</span>.strip().<span class="bu">str</span>.upper()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    map_data[<span class="st">"crop_group"</span>] <span class="op">=</span> letters.<span class="bu">map</span>(CLASS_GROUP)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    map_data.loc[letters.<span class="bu">str</span>.startswith(<span class="st">"U"</span>, na<span class="op">=</span><span class="va">False</span>), <span class="st">"crop_group"</span>] <span class="op">=</span> <span class="st">"urban"</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    map_data[<span class="st">"crop_cycles"</span>] <span class="op">=</span> map_data.MULTIUSE.astype(<span class="st">"string"</span>).<span class="bu">str</span>.strip().<span class="bu">map</span>(CYCLES).fillna(<span class="dv">1</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    map_data <span class="op">=</span> map_data[map_data.crop_group.notna()]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    legacy <span class="op">=</span> expected.set_index(<span class="st">"well_id"</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> []</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> radius <span class="kw">in</span> RADII:</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        table, _ <span class="op">=</span> summarize(points, map_data, radius)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> well_id, row <span class="kw">in</span> table.iterrows():</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> col, value <span class="kw">in</span> row.items():</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> (col.startswith(<span class="st">"pct_"</span>) <span class="kw">and</span> <span class="st">"_of_mapped_"</span> <span class="kw">not</span> <span class="kw">in</span> col) <span class="kw">and</span> <span class="kw">not</span> col.startswith(<span class="st">"crop_cycles_"</span>):</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>                feature <span class="op">=</span> col.replace(<span class="ss">f"_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m"</span>, <span class="ss">f"_</span><span class="sc">{</span>radius<span class="sc">}</span><span class="ss">m_2023"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                old <span class="op">=</span> legacy.loc[well_id, feature]</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Gavin rounded saved features to 3 decimals; these locations and</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                <span class="co"># his Monterey filter reproduce those legacy calculation inputs.</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                match <span class="op">=</span> (pd.isna(value) <span class="kw">and</span> pd.isna(old)) <span class="kw">or</span> np.isclose(</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>                    value, old, atol<span class="op">=</span><span class="fl">0.000501</span>, rtol<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>                output.append({<span class="st">"well_id"</span>: well_id, <span class="st">"feature"</span>: feature,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"recomputed_at_gavin_coordinates"</span>: value,</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"gavin_saved_rounded_3dp"</span>: old,</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"absolute_difference"</span>: <span class="bu">abs</span>(value <span class="op">-</span> old) <span class="cf">if</span> pd.notna(value) <span class="kw">and</span> pd.notna(old) <span class="cf">else</span> np.nan,</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"matches_rounding_tolerance"</span>: <span class="bu">bool</span>(match)})</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> pd.DataFrame(output)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    require(result.matches_rounding_tolerance.<span class="bu">all</span>(), <span class="st">"Gavin 2023 validation failed."</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="8f2b0e14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:28:49.306514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:28:49.306351Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:28:55.681215Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:28:55.680321Z&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>output_table <span class="op">=</span> pd.concat(feature_rows, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>require(<span class="kw">not</span> output_table.duplicated([<span class="st">"gm_well_id"</span>, <span class="st">"crop_year"</span>]).<span class="bu">any</span>(),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Duplicate annual feature keys."</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>require(<span class="bu">len</span>(output_table) <span class="op">==</span> <span class="dv">5178</span>, <span class="ss">f"Unexpected annual feature row count: </span><span class="sc">{</span><span class="bu">len</span>(output_table)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> compare_gavin(repo, root)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>require(hashes <span class="op">==</span> {<span class="bu">str</span>(p): sha256(p) <span class="cf">for</span> p <span class="kw">in</span> [nitrate_path,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/wells_nitrate.csv"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        repo <span class="op">/</span> <span class="st">"notebooks/data_cleaning/crop_mapping/well_crop_features_all.csv"</span>]},</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"An input changed during the run."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:279: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read_info(
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/core.py:130: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_list_layers(get_vsi_path_or_buffer(path_or_buffer))
+/home/ctomas/miniconda3/envs/fall_2026_environmental_infrastructure/lib/python3.12/site-packages/pyogrio/raw.py:198: UserWarning: Measured (M) geometry types are not supported. Original type 'Measured 3D MultiPolygon' is converted to 'MultiPolygon Z'
+  return ogr_read(</code></pre>
+</div>
+</div>
+</section>
+<section id="output-annual-features-and-qa" class="level2">
+<h2 class="anchored" data-anchor-id="output-annual-features-and-qa">5. Output — annual features and QA</h2>
+<p>The generated files include annual features, a feature dictionary, the original 2023 comparison, DWR source versions, and QA results. Output goes to a <strong>new directory</strong>; an existing directory is never overwritten.</p>
+<div id="d23d332e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:28:55.683242Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:28:55.683053Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:28:56.919406Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:28:56.918714Z&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dictionary <span class="op">=</span> []</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> output_table.columns:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> {<span class="st">"gm_well_id"</span>}:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"ID"</span>, <span class="st">"Groundwater well ID; keep as text."</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> col.endswith(<span class="st">"year"</span>):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"year"</span>, <span class="st">"Water/crop year key; not a map publication date."</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"status"</span> <span class="kw">in</span> col <span class="kw">or</span> col <span class="op">==</span> <span class="st">"dwr_map_status"</span>:</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"category"</span>, <span class="st">"Map status; polygon presence does not establish completeness."</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"area_m2"</span> <span class="kw">in</span> col:</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"m2"</span>, <span class="st">"Projected EPSG:3310 area; entire buffer, never county-clipped."</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> col.startswith(<span class="st">"delta_"</span>):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"percentage points"</span>, <span class="st">"Current DWR map minus preceding crop map."</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"cycles"</span> <span class="kw">in</span> col:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"cycles/year"</span>, <span class="st">"Cropland-area-weighted DWR multiuse cycle count."</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"_of_mapped_"</span> <span class="kw">in</span> col:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"percent of mapped polygon area"</span>, <span class="st">"Conditional share within the union of DWR polygons; not whole-buffer coverage."</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"footprint_pct"</span> <span class="kw">in</span> col:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"percent of actual buffer"</span>, <span class="st">"DWR polygon footprint share only; not map or survey completeness."</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"outside_dwr_polygons_pct"</span> <span class="kw">in</span> col:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"percent of actual buffer"</span>, <span class="st">"Buffer area outside any DWR polygon; land use is unknown from this layer."</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> col.startswith(<span class="st">"pct_"</span>):</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"percent of theoretical pi*r^2"</span>, <span class="st">"Mapped class area over full circular buffer; 0 is no mapped class intersection, not verified absence."</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        unit, description <span class="op">=</span> <span class="st">"text"</span>, <span class="st">"DWR source/version or feature field."</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    dictionary.append({<span class="st">"column"</span>: col, <span class="st">"unit"</span>: unit,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"dtype"</span>: <span class="bu">str</span>(output_table[col].dtype), <span class="st">"description"</span>: description})</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a unique output folder to preserve previous results.</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>base_output <span class="op">=</span> output</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>stamp <span class="op">=</span> datetime.now().strftime(<span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">_%H%M%S_</span><span class="sc">%f</span><span class="st">"</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> base_output.parent <span class="op">/</span> <span class="ss">f"</span><span class="sc">{</span>base_output<span class="sc">.</span>name<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stamp<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>suffix <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> output.exists():</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> base_output.parent <span class="op">/</span> <span class="ss">f"</span><span class="sc">{</span>base_output<span class="sc">.</span>name<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stamp<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>suffix<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    suffix <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>output.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>csv_path <span class="op">=</span> output <span class="op">/</span> <span class="st">"crop_features_lag1_2021_2024.csv"</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>output_table.to_csv(csv_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(dictionary).to_csv(output <span class="op">/</span> <span class="st">"crop_feature_dictionary.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>comparison.to_csv(output <span class="op">/</span> <span class="st">"gavin_2023_validation_all_shared_wells.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([{<span class="st">"map_year"</span>: k, <span class="op">**</span>v} <span class="cf">for</span> k, v <span class="kw">in</span> source_versions.items()]).to_csv(</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    output <span class="op">/</span> <span class="st">"dwr_source_versions.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>reread <span class="op">=</span> pd.read_csv(csv_path, dtype<span class="op">=</span>{<span class="st">"gm_well_id"</span>: <span class="st">"string"</span>})</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>require(<span class="bu">len</span>(reread) <span class="op">==</span> <span class="bu">len</span>(output_table)</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        <span class="kw">and</span> <span class="kw">not</span> reread.duplicated([<span class="st">"gm_well_id"</span>, <span class="st">"crop_year"</span>]).<span class="bu">any</span>(),</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"CSV round-trip failed."</span>)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>require(reread.gm_well_id.notna().<span class="bu">all</span>(), <span class="st">"Blank IDs after CSV round-trip."</span>)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>qa <span class="op">=</span> {<span class="st">"huc8"</span>: HUC8, <span class="st">"metric_crs"</span>: <span class="st">"EPSG:3310"</span>, <span class="st">"radii_m"</span>: RADII,</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>      <span class="st">"measurement_year_to_crop_year"</span>: {<span class="st">"2022"</span>: <span class="dv">2021</span>, <span class="st">"2023"</span>: <span class="dv">2022</span>,</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"2024"</span>: <span class="dv">2023</span>, <span class="st">"2025"</span>: <span class="dv">2024</span>},</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>      <span class="st">"observations_preserved_in_source"</span>: <span class="bu">len</span>(obs),</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>      <span class="st">"unique_wells_source"</span>: <span class="bu">int</span>(obs.gm_well_id.nunique()),</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>      <span class="st">"annual_rows"</span>: <span class="bu">len</span>(output_table),</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>      <span class="st">"annual_rows_by_crop_year"</span>: output_table.groupby(<span class="st">"crop_year"</span>).size().to_dict(),</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>      <span class="st">"annual_unique_wells_by_crop_year"</span>: output_table.groupby(<span class="st">"crop_year"</span>).gm_well_id.nunique().to_dict(),</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">"source_versions"</span>: source_versions, <span class="st">"year_validations"</span>: qa_years,</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">"gavin_comparison_shared_wells"</span>: <span class="bu">int</span>(comparison.well_id.nunique()),</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">"gavin_comparison_rows"</span>: <span class="bu">len</span>(comparison),</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">"gavin_comparison_all_match_after_3dp_rounding"</span>: <span class="bu">bool</span>(comparison.matches_rounding_tolerance.<span class="bu">all</span>()),</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">"gavin_max_abs_difference"</span>: <span class="bu">float</span>(comparison.absolute_difference.<span class="bu">max</span>()),</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">"input_sha256"</span>: hashes,</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">"notes"</span>: [</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>          <span class="st">"pct_* crop class values are area divided by theoretical pi*r^2, preserving Gavin's denominator."</span>,</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>          <span class="st">"dwr_polygon_footprint_pct uses actual buffer area and is polygon occupancy, not survey completeness."</span>,</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Area outside DWR polygons is unknown from this layer and must not be filled with zero crop."</span>,</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Within mapped polygons, class zero means no intersecting classified polygon of that group; it does not prove true absence outside mapped polygons."</span>,</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Conditional pct_*_of_mapped values use the union of DWR mapped polygon geometries as denominator."</span>,</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>          <span class="st">"All buffers are complete 500/1000 m circles and are not clipped at county or HUC boundaries."</span>,</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>          <span class="st">"DWR classes use Gavin's broad groups; T includes nurseries and YP includes young orchards/vines."</span>,</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Changes are percentage-point differences versus the prior crop year, not relative growth rates."</span>,</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Lag-1 is retrospective. Publication can postdate the nitrate measurement year."</span>,</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>          <span class="st">"2024 source is provisional; DWR states the final release is planned for Q1 2027."</span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>      ]}</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>(output <span class="op">/</span> <span class="st">"validation.json"</span>).write_text(json.dumps(qa, indent<span class="op">=</span><span class="dv">2</span>, default<span class="op">=</span><span class="bu">str</span>), encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps({<span class="st">"output"</span>: <span class="bu">str</span>(output), <span class="st">"rows"</span>: <span class="bu">len</span>(output_table),</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"columns"</span>: <span class="bu">len</span>(output_table.columns),</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"gavin_wells"</span>: <span class="bu">int</span>(comparison.well_id.nunique()),</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"gavin_rows"</span>: <span class="bu">len</span>(comparison), <span class="st">"checks"</span>: <span class="st">"passed"</span>}, indent<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate the existing shared CSV without overwriting it.</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> (</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    paths.CROP_FEATURES</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> destination.exists():</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    existing <span class="op">=</span> pd.read_csv(destination, dtype<span class="op">=</span>{<span class="st">"gm_well_id"</span>: <span class="st">"string"</span>})</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>        pd.testing.assert_frame_equal(</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>            existing, output_table, check_dtype<span class="op">=</span><span class="va">False</span>, check_exact<span class="op">=</span><span class="va">False</span>, atol<span class="op">=</span><span class="fl">1e-9</span>, rtol<span class="op">=</span><span class="fl">1e-9</span>,</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">AssertionError</span> <span class="im">as</span> exc:</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"Existing crop CSV differs from this run and was not changed: </span><span class="sc">{</span>destination<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>        ) <span class="im">from</span> exc</span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Existing crop CSV matches; keeping it unchanged:"</span>, destination)</span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First run on a fresh setup: save this run's table as the shared CSV that the merge reads</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> shutil</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    destination.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>    shutil.copy(csv_path, destination)</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Shared crop CSV was absent; saved this run's table to:"</span>, destination)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>{
+  "output": "/mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/crop_runs/annual_lag1_notebook_run_20261105_182855_691507",
+  "rows": 5178,
+  "columns": 109,
+  "gavin_wells": 874,
+  "gavin_rows": 15732,
+  "checks": "passed"
+}
+Existing crop CSV matches; keeping it unchanged: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/processed/crop_features_lag1_2021_2024.csv</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

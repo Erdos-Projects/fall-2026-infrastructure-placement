@@ -131,6 +131,7 @@ dependencies:
   - interface_meta=1.3.0
   - interpret=0.7.8
   - interpret-core=0.7.8
+  - ipyleaflet
   - ipython=9.17.1
   - ipython_pygments_lexers=1.1.1
   - ipywidgets=8.1.9
