@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - notebooks/data_splitting.ipynb
+    - notebooks/final_results.ipynb
+    - notebooks/risk_map_random_forest.ipynb
+
+website:
+  title: "Nitrate Risk in the Salinas Valley"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Notebooks
+        menu:
+          - notebooks/data_splitting.ipynb
+          - notebooks/final_results.ipynb
+          - notebooks/risk_map_random_forest.ipynb
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true     # code hidden behind "Show code"; good for non-technical readers
