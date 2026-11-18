@@ -3,6 +3,3 @@ data/*
 !data/processed/
 .env
 __pycache__/
-/.quarto/
-**/*.quarto_ipynb
-/_site/
