@@ -15,8 +15,10 @@ def create_interactive_risk_map():
         basemaps,
         FullScreenControl,
         ScaleControl,
-        TileLayer
+        TileLayer,
+        WidgetControl
     )
+    from ipywidgets import HTML
 
     # Make src importable from any notebook folder (identical in every notebook)
     sys.path.insert(0, str(next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / "src").is_dir())))
@@ -24,7 +26,7 @@ def create_interactive_risk_map():
 
     ROOT = paths.ROOT
 
-    CELL_SIZE_M = 250
+    CELL_SIZE_M = 500
     RUN = f"{CELL_SIZE_M}m"
 
     LOCAL_OUTPUT_DIR = paths.DATA / "outputs"
@@ -64,7 +66,7 @@ def create_interactive_risk_map():
                 "fillColor": RISK_COLORS.get(risk, "#808080"),
                 "color": "#8fa3d9",
                 "weight": 0.3,
-                "fillOpacity": 0.8,
+                "fillOpacity": 0.6,
             }
 
         return GeoJSON(
@@ -122,7 +124,47 @@ def create_interactive_risk_map():
         },
     )
 
-    m.add_layer(boundary_layer)
+    legend_html = """
+    <div style="
+        background-color: #0b1a4a;
+        color: white;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        min-width: 150px;
+    ">
+        <b style="font-size: 14px;">Nitrate Groundwater Contamination Risk</b>
+        <hr style="margin: 6px 0; border-color: white;">
+
+        <div style="display: flex; align-items: center; margin: 5px 0;">
+            <span style="background: #3fb37f; width: 15px; height: 15px;
+                        display: inline-block; margin-right: 8px;"></span>
+            Low Risk (0-25% likelihood of exceedance)
+        </div>
+
+        <div style="display: flex; align-items: center; margin: 5px 0;">
+            <span style="background: #f2a541; width: 15px; height: 15px;
+                        display: inline-block; margin-right: 8px;"></span>
+            Moderate Risk (25–50% likelihood of exceedance) 
+        </div>
+
+        <div style="display: flex; align-items: center; margin: 5px 0;">
+            <span style="background: #e4572e; width: 15px; height: 15px;
+                        display: inline-block; margin-right: 8px;"></span>
+            High Risk (50–100% likelihood of exceedance)
+        </div>
+    </div>
+    """
+
+    legend = HTML(value=legend_html)
+    legend_control = WidgetControl(
+        widget=legend,
+        position="bottomright"
+    )
+
+    m.add(legend_control)
+
+    #m.add_layer(boundary_layer)
     m.add_layer(model_layer)
     m.add_layer(hybrid_layer)
 

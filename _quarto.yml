@@ -1,13 +1,13 @@
 project:
   type: website
 
-jupyter: erdos_ds_environment
+jupyter: fall_2026_environmental_infrastructure)
 
 website:
   title: "Predicting Areas of High-Risk Nitrate Pollution"
   navbar:
     left:
-      - text: "Home"
+      - text: "Summary"
         href: summary.qmd
 
       - text: "Data Cleaning"
@@ -32,12 +32,27 @@ website:
           - text: "Final Results"
             href: notebooks/final_results.ipynb
 
+
+  sidebar:
+    style: "docked"
+    background: light
+    #contents:
+    #  - index.qmd
+    ##  - about.qmd
+     # - section: "Projects"
+     #   contents:
+     #     - projects/project1.qmd
+     #     - projects/project2.qmd
+
+    header: includes/authors.html
+
 format:
   html:
-    theme: cosmo
+    theme: journal
     code-fold: true
     toc: true
     number-sections: false
+    css: styles.css
 
 execute:
   freeze: auto
