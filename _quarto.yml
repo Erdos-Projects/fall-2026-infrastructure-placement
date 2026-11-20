@@ -1,7 +1,11 @@
 project:
   type: website
 
-jupyter: fall_2026_environmental_infrastructure)
+metadata-files:
+  - authors.yml
+
+
+jupyter: fall_2026_environmental_infrastructure
 
 website:
   title: "Predicting Areas of High-Risk Nitrate Pollution"
@@ -44,7 +48,7 @@ website:
      #     - projects/project1.qmd
      #     - projects/project2.qmd
 
-    header: includes/authors.html
+    header: "{{< authors >}}"
 
 format:
   html:
