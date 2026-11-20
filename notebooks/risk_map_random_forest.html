@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nitrate Risk Map — Random Forest (Probability of Exceeding 10 mg/L) – Predicting Areas of High-Risk Nitrate Pollution</title>
+<title>Nitrate risk map over entire Salinas Valley – Predicting Areas of High-Risk Nitrate Pollution</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c66b7c3bff8d2c00f90cd857862260be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd977b8b3abab13b480257acec271b84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,19 +144,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-data-cleaning">    
         <li>
     <a class="dropdown-item" href="../notebooks/data_cleaning/groundwater/gwater_clean.html">
- <span class="dropdown-text">Groundwater</span></a>
+ <span class="dropdown-text">Groundwater well measurements</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/data_cleaning/soils/Soil_data_cleanup_team.html">
- <span class="dropdown-text">Soils</span></a>
+ <span class="dropdown-text">Soil characteristics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/data_cleaning/precipitation/prism_climate_cleaning_final.html">
- <span class="dropdown-text">Precipitation</span></a>
+ <span class="dropdown-text">Precipitation measurements</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/data_cleaning/crop_mapping/crop_mapping_annual_2021_2024.html">
- <span class="dropdown-text">Crop Mapping</span></a>
+ <span class="dropdown-text">Crop map distribution</span></a>
   </li>  
     </ul>
   </li>
@@ -167,7 +167,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-modeling">    
         <li>
     <a class="dropdown-item" href="../notebooks/feature_selection.html">
- <span class="dropdown-text">Feature Selection</span></a>
+ <span class="dropdown-text">Feature selection</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/data_splitting.html">
+ <span class="dropdown-text">Data splitting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/regression_models.html">
@@ -177,9 +181,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../notebooks/classification_models.html">
  <span class="dropdown-text">Classification</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-results" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final Results</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-results">    
         <li>
     <a class="dropdown-item" href="../notebooks/final_results.html">
- <span class="dropdown-text">Final Results</span></a>
+ <span class="dropdown-text">Final test on holdout</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/robustness_subbasin_balanced_holdout.html">
+ <span class="dropdown-text">Robustness check</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/risk_map_random_forest.html">
+ <span class="dropdown-text">Risk map over entire valley</span></a>
   </li>  
     </ul>
   </li>
@@ -195,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item">Nitrate Risk Map — Random Forest (Probability of Exceeding 10 mg/L)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item">Nitrate risk map over entire Salinas Valley</li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -264,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nitrate Risk Map — Random Forest (Probability of Exceeding 10 mg/L)</h1>
+<h1 class="title">Nitrate risk map over entire Salinas Valley</h1>
 </div>
 
 
@@ -281,9 +300,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Predict the probability that groundwater nitrate exceeds 10 mg/L for every grid cell in the Salinas Valley, including areas without sampled wells.</p>
-<p><strong>How it differs from the preview map in the slides:</strong> the preview only averaged predictions <em>at sampled wells</em> into nearby cells. Here, every cell is treated as a new, hypothetical domestic well: its own soil, terrain, climate, land-use and subbasin features are computed with the <strong>same methods used for the wells</strong> (<code>all_merge_final.ipynb</code> and <code>crop_mapping_annual_2021_2024.ipynb</code>), and the final random forest predicts each cell.</p>
-<p><strong>Steps</strong> 1. Train the final model once: the tuned random forest from <code>classification_models.ipynb</code> (same grid and search), on all training wells (folds 0–3). 2. Build a grid over the Salinas Valley groundwater basin, keeping cells within a set distance of training wells (the model’s domain). 3. Compute the 59 model features for each cell. 4. Predict, group into risk levels. 5. <strong>Hybrid version:</strong> correct the model with the measurements at nearby wells (residuals within 2 km). 6. Map both versions and save.</p>
+<p><strong>Objective:</strong> Predict the probability that groundwater nitrate exceeds 10 mg/L for every grid cell in the Salinas Valley, including areas without sampled wells, using the RandomForestClassifer. Previous modeling approaches (<code>notebooks/classification_models.ipynb</code>) were only concerned with geographic points that had any previous well measurements within 2021-2025.</p>
+<!--
+**How it differs from the preview map in the slides:** the preview only averaged predictions *at sampled wells* into nearby cells. Here, every cell is treated as a new, hypothetical domestic well: its own soil, terrain, climate, land-use and subbasin features are computed with the **same methods used for the wells** (`all_merge_final.ipynb` and `crop_mapping_annual_2021_2024.ipynb`), and the final random forest predicts each cell.
+-->
+<p><strong>Steps</strong>: 1. Train the final model once: the tuned random forest from <code>classification_models.ipynb</code> (same grid and search), on all training wells (folds 0–3). 2. Build a grid over the Salinas Valley groundwater basin, keeping cells within a set distance of training wells (the model’s domain). 3. Compute the 59 model features for each cell. 4. Predict, group into risk levels. 5. <strong>Hybrid version:</strong> correct the model with the measurements at nearby wells (residuals within 2 km). 6. Map both versions and save.</p>
 <p><strong>Inputs (local only, not in Git):</strong> <code>data/soils/soils_huc8_attributes.gpkg</code>, <code>data/elevation/dem_watershed_10m.tif</code>, and the DWR statewide crop map geodatabases (folder set by <code>ERDOS_CROPS_DIR</code>, default <code>Data/Erdos Project/raw/Crops</code>, as in the crop notebook).</p>
 <p><strong>Outputs:</strong> <code>results/risk_map/risk_map_&lt;cell size&gt;m.csv</code> plus one <code>.png</code> per version (in Git); a GeoPackage with cell polygons and one GeoTIFF per version in <code>data/outputs/</code> (local, for ArcGIS).</p>
 <p><strong>Runtime:</strong> the crop overlay is the slow step. Start with <code>TEST_CELLS = 300</code> to check everything runs, then set it to <code>None</code> for the full map. A 500 m grid has roughly 4 times fewer cells than 250 m.</p>
