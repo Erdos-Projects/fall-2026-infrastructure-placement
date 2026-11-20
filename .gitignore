@@ -1,7 +1,9 @@
 data/*
 !data/salinas_valley_subbasins.geojson
 !data/processed/
+!data/outputs/
 .env
 __pycache__/
 /.quarto/
 **/*.quarto_ipynb
+/_site/

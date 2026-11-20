@@ -1,12 +1,8 @@
-# Problem Statement
-
-Agricultural runoff carries pollutants into rivers and coastal waters, harming ecosystems and water quality. Vegetated Treatment Systems (VTS), such as bioreactors, constructed wetlands and vegetated ditches, can help reduce this pollution, but they are not equally effective everywhere. Their success depends on where they are placed, how they are designed, and how well they are maintained.
-
-This project will predict areas with higher risk of nitrate pollution in the Salinas Valley, California and determine where VTS could be most suitable. We will train our model on nitrate pollutant measurements in groundwater wells throughout the Salinas Valley and use soil characteristics, precipitation, temperature, and types of cropland as predictor variables. Additionally, we want to identify where additional nitrate monitoring is most needed in the Salinas Valley.
-
-# Interactive groundwater nitrate risk map
-
 ---
+title: "Predicting Areas of High-Risk Nitrate Pollution in Salinas Valley"
+output-file: index.html
+aliases:
+  - summary.html
 format:
   html:
     page-layout: full
@@ -15,6 +11,14 @@ execute:
   echo: false
 jupyter: python3
 ---
+
+# Problem Statement
+
+Agricultural runoff carries pollutants into rivers and coastal waters, harming ecosystems and water quality. Vegetated Treatment Systems (VTS), such as bioreactors, constructed wetlands and vegetated ditches, can help reduce this pollution, but they are not equally effective everywhere. Their success depends on where they are placed, how they are designed, and how well they are maintained.
+
+This project will predict areas with higher risk of nitrate pollution in the Salinas Valley, California, and determine where additional monitoring is most needed. We will train our model on nitrate pollutant measurements in groundwater wells throughout the Salinas Valley and use soil characteristics, precipitation, temperature, and types of cropland as predictor variables. Once areas with high nitrate risk have been identified and monitored, this data can be used to propose locations for VTS infrastructure.
+
+# Interactive groundwater nitrate risk map
 
 ```{python}
 #| fig-cap: "Interactive map of the Salinas Valley, colored by low, moderate, and high risk of nitrate groundwater contamination predictions from our modelling. The layers show the risk assessment from our fitted Random Forest Classifer (Random Forest Model) and a hybrid model using our fitted Random Forest Classifer and the last groundwater measurement in that area (Hybrid Model)."
@@ -35,21 +39,21 @@ create_interactive_risk_map()
 
 This project uses data from several publicly accessible resources:
 
-- United States Department of Agriculture (USDA) National Resources Conversation Service (NRCS) Web Soil Survey/SSURGO: <https://websoilsurvey.nrcs.usda.gov/>
+- United States Department of Agriculture (USDA) Natural Resources Conversation Service (NRCS) Web Soil Survey/SSURGO: <https://websoilsurvey.nrcs.usda.gov/>
 
 - United States Geological Survey (USGS) National Hydrography: <https://www.usgs.gov/national-hydrography>
 
-- California National Resources Agency, California Department of Water Resources crop mapping: <https://data.cnra.ca.gov/dataset/statewide-crop-mapping>
+- California Natural Resources Agency, California Department of Water Resources crop mapping: <https://data.cnra.ca.gov/dataset/statewide-crop-mapping>
 
 - USDA Cropland Data Layer: <https://data.nass.usda.gov/Research_and_Science/Cropland/sarsfaqs2.php>
 
 - PRISM Climate Group: <https://prism.oregonstate.edu/>
 
-- California Open Data, GAMA - Irrigated Lands Regulatory Program: <https://devodp.technology.ca.gov/dataset/ground-water-water-quality-results/resource/c97e1fcf-8ad0-4913-9234-ba682ea73bc4>
+- California Open Data, GAMA - Irrigated Lands Regulatory Program: <http://gamagroundwater.waterboards.ca.gov/gama/datadownload>
 
 # Key performance indicators
 
-The project is concerned with two factors: safety of public health, and cost of deploying and maintaining VTS. Nitrate pollution in water exceeding 10 mg/L is deemed harmful. We prioritize recall. If there is an actual exceedance above 10 mg/L, we need our model to capture it. We prioritize precision. We do not want to deploy VTS in areas where it is not needed.
+The project is concerned with two factors: safety of public health, and cost of deploying and maintaining VTS. Nitrate pollution in water exceeding 10 mg/L is deemed harmful. We prioritize recall. If there is an actual exceedance above 10 mg/L, we need our model to capture it. Precision is a secondary priority. We do not want to deploy VTS in areas where it is not needed.
 
 # Data exploration
 
@@ -62,7 +66,7 @@ The project is concerned with two factors: safety of public health, and cost of 
 
 We needed to adopt a data splitting strategy that accounts for the fact that nearby wells have similar nitrate levels. We also made sure to divide the percentage of exceedances among each fold. We used the strategy from Ref. \[3\], dividing our map into a square grid, performing a group k-fold split, and grouping points inside the grid cell. We evaluated the data leakage by comparing the RMSE of a k-nearest-neighbors (kNN) model to a model outputting the training mean. "Estimated leakage" is defined as $1 - \frac{\mathrm{RMSE}_{\mathrm{KNN}}}{\mathrm{RMSE}_\mathrm{mean}}$, where $\mathrm{RMSE}_{\mathrm{KNN}}$ is the root mean squared error of the kNN estimator and $\mathrm{RMSE}_{\mathrm{mean}}$ is the root mean squared error of predicting the mean. If the kNN estimator performs similarly to predicting the mean, then the estimated leakage should be approximately 0; positive values indicate that kNN is performing better. We found that 10 km equal-area cells had approximately no leakage.
 
-However, from preliminary modeling with this data split strategy, we found large variation in scoring across folds, with some folds performing much worse. We realized that grid cells inside the Salinas Valley subbasins were not being uniformly distributed among folds. Altering our data split strategy again, we created a subbasin-stratefied split, finding good fold-to-fold stability, with little leakage, with 5 km and above size subbasin-stratefied splits. In the end, we chose the 10 km subbasin split, since we did not perform extensive leakage testing, and we preferred to be conservative. The resulting limitation of our model is that it cannot easily generalize to new locations, and relies upon stratification amongst elevation data.
+However, from preliminary modeling with this data split strategy, we found large variation in scoring across folds, with some folds performing much worse. We realized that grid cells inside the Salinas Valley subbasins were not being uniformly distributed among folds. Altering our data split strategy again, we created a subbasin-stratefied split, finding good fold-to-fold stability, with little leakage, with 5 km and above size subbasin-stratefied splits. In the end, we chose the 10 km subbasin split, since we did not perform extensive leakage testing, and we preferred to be conservative. The resulting limitation of our model is that it cannot easily generalize to new locations, and relies upon stratification amongst subbasin data.
 
 ![Geographical distribution of the groundwater dataset with the final splitting strategy, stratefied by both subbasin and exceedance.](results/evaluation/spatial_folds_map_10km_subbasin.png){width=40% fig-alt="XX." #fig-stratify}
 
