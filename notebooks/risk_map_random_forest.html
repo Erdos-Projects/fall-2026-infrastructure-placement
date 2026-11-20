@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bd977b8b3abab13b480257acec271b84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-783931d0ea6fcf73dbfbfd30b7b6a9e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -300,11 +300,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Predict the probability that groundwater nitrate exceeds 10 mg/L for every grid cell in the Salinas Valley, including areas without sampled wells, using the RandomForestClassifer. Previous modeling approaches (<code>notebooks/classification_models.ipynb</code>) were only concerned with geographic points that had any previous well measurements within 2021-2025.</p>
-<!--
-**How it differs from the preview map in the slides:** the preview only averaged predictions *at sampled wells* into nearby cells. Here, every cell is treated as a new, hypothetical domestic well: its own soil, terrain, climate, land-use and subbasin features are computed with the **same methods used for the wells** (`all_merge_final.ipynb` and `crop_mapping_annual_2021_2024.ipynb`), and the final random forest predicts each cell.
--->
-<p><strong>Steps</strong>: 1. Train the final model once: the tuned random forest from <code>classification_models.ipynb</code> (same grid and search), on all training wells (folds 0–3). 2. Build a grid over the Salinas Valley groundwater basin, keeping cells within a set distance of training wells (the model’s domain). 3. Compute the 59 model features for each cell. 4. Predict, group into risk levels. 5. <strong>Hybrid version:</strong> correct the model with the measurements at nearby wells (residuals within 2 km). 6. Map both versions and save.</p>
+<p><strong>Objective:</strong> Predict the probability that groundwater nitrate exceeds 10 mg/L for every 500 m grid cell in the Salinas Valley, including areas without sampled wells, using the tuned RandomForestClassifier. Previous modeling (<code>notebooks/classification_models.ipynb</code>) only predicted at sampled wells (2022–2025 samples).</p>
+<p><strong>Steps:</strong> 1. Train the final RandomForestClassifier on all wells (all five folds, including the hold-out, now that the final evaluation is done), with the same hyperparameter search as classification_models.ipynb.</p>
+<ol start="2" type="1">
+<li><p>Build a 500 m grid over the Salinas Valley groundwater basin, keeping cells within 3 km of a training well (the model’s domain).</p></li>
+<li><p>Compute the 59 features for every cell, treating its center as a hypothetical domestic well, with the same methods used for the wells (soils and terrain within 500 m, crops within 500 m and 1 km from the 2024 map, climate before July 2025, subbasin).</p></li>
+<li><p>Predict the probability of exceeding 10 mg/L for every cell. Cells with no crop map polygons within 1 km are left blank.</p></li>
+<li><p>Hybrid version: correct the predictions of cells near sampled wells using the model’s errors (residuals) at wells within 2 km, weighting closer wells more. Residuals come from the out-of-fold predictions saved by classification_models.ipynb. Cells with no well within 2 km keep the model’s prediction.</p></li>
+<li><p>Map both versions, plus the two-color (0.4 threshold) and monitoring-priority maps, and save them.</p></li>
+</ol>
 <p><strong>Inputs (local only, not in Git):</strong> <code>data/soils/soils_huc8_attributes.gpkg</code>, <code>data/elevation/dem_watershed_10m.tif</code>, and the DWR statewide crop map geodatabases (folder set by <code>ERDOS_CROPS_DIR</code>, default <code>Data/Erdos Project/raw/Crops</code>, as in the crop notebook).</p>
 <p><strong>Outputs:</strong> <code>results/risk_map/risk_map_&lt;cell size&gt;m.csv</code> plus one <code>.png</code> per version (in Git); a GeoPackage with cell polygons and one GeoTIFF per version in <code>data/outputs/</code> (local, for ArcGIS).</p>
 <p><strong>Runtime:</strong> the crop overlay is the slow step. Start with <code>TEST_CELLS = 300</code> to check everything runs, then set it to <code>None</code> for the full map. A 500 m grid has roughly 4 times fewer cells than 250 m.</p>
@@ -347,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="settings" class="level2">
 <h2 class="anchored" data-anchor-id="settings">0. Settings</h2>
-<div id="m03" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:41:39.922072Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:41:39.921755Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:41:39.932007Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:41:39.931394Z&quot;}}" data-execution_count="2">
+<div id="m03" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:41:39.922072Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:41:39.921755Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:41:39.932007Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:41:39.931394Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===== Map settings =====</span></span>
@@ -386,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> [SOIL_PATH, DEM_PATH, PRISM_PATH, CROPS_DIR, SUBBASIN_PATH] <span class="cf">if</span> <span class="kw">not</span> Path(p).exists()]</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> missing:</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Missing inputs:</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="bu">map</span>(<span class="bu">str</span>, missing)))</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DWR crop maps:"</span>, CROPS_DIR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#print("DWR crop maps:", CROPS_DIR)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>DWR crop maps: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/crops</code></pre>
