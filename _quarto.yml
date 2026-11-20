@@ -16,25 +16,34 @@ website:
 
       - text: "Data Cleaning"
         menu:
-          - text: "Groundwater"
+          - text: "Groundwater well measurements"
             href: notebooks/data_cleaning/groundwater/gwater_clean.ipynb
-          - text: "Soils"
+          - text: "Soil characteristics"
             href: notebooks/data_cleaning/soils/Soil_data_cleanup_team.ipynb
-          - text: "Precipitation"
+          - text: "Precipitation measurements"
             href: notebooks/data_cleaning/precipitation/prism_climate_cleaning_final.ipynb
-          - text: "Crop Mapping"
+          - text: "Crop map distribution"
             href: notebooks/data_cleaning/crop_mapping/crop_mapping_annual_2021_2024.ipynb
 
       - text: "Modeling"
         menu:
-          - text: "Feature Selection"
+          - text: "Feature selection"
             href: notebooks/feature_selection.ipynb
+          - text: "Data splitting"
+            href: notebooks/data_splitting.ipynb
           - text: "Regression"
             href: notebooks/regression_models.ipynb
           - text: "Classification"
             href: notebooks/classification_models.ipynb
-          - text: "Final Results"
+
+      - text: "Final Results"
+        menu:
+          - text: "Final test on holdout"
             href: notebooks/final_results.ipynb
+          - text: "Robustness check"
+            href: notebooks/robustness_subbasin_balanced_holdout.ipynb
+          - text: "Risk map over entire valley"
+            href: notebooks/risk_map_random_forest.ipynb
 
 
   sidebar:

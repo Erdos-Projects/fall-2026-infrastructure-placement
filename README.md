@@ -1,8 +1,11 @@
 # Predicting Areas of High-Risk Nitrate Pollution in Salinas Valley
+## Website: https://erdos-projects.github.io/fall-2026-infrastructure-placement/ 
 
 Agricultural runoff carries pollutants into rivers and coastal waters, harming ecosystems and water quality. Vegetated Treatment Systems (VTS), such as bioreactors, constructed wetlands and vegetated ditches, can help reduce this pollution, but they are not equally effective everywhere. Their success depends on where they are placed, how they are designed, and how well they are maintained.
 
-This project will predict areas with higher risk of nitrate pollution in the Salinas Valley and determine where VTS could be most suitable. We will train our model on nitrate pollutant measurements in groundwater wells throughout the Salinas Valley and use soil characteristics, precipitation, temperature, and types of cropland as predictor variables.  Additionally, we want to identify where additional nitrate monitoring is most needed in the Salinas Valley.
+This project will predict areas with higher risk of nitrate pollution in the Salinas Valley, California, and determine where additional monitoring is most needed. We will train our model on nitrate pollutant measurements in groundwater wells throughout the Salinas Valley and use soil characteristics, precipitation, temperature, and types of cropland as predictor variables. Once areas with high nitrate risk have been identified and monitored, this data can be used to propose locations for VTS infrastructure.
+
+
 
 # Repo Structure
 
@@ -12,14 +15,15 @@ Numbers (1.–9.) give the order to run the pipeline.
 
 `ROOT files`
 ```
- ├── .gitignore
- ├── README.md
- ├── environment.yml
- ├── evaluation_plan.md
- ├── modeling_plan.md
- ├── run.sh
- ├── run_pipeline.md
- └── summary.md
+ ├── _quarto.yml                                              # Website creation with https://quarto.org/
+ ├── .gitignore                                               # For large files
+ ├── authors.yml                                              # Author metadata
+ ├── environment.yml                                          # Python environment
+ ├── README.md                                                       
+ ├── run_pipeline.md                                          # Instructions for running the pipeline
+ ├── run.sh                                                   # Script to run pipeline
+ ├── styles.css                                               # Website styling 
+ └── summary.qmd                                              # Project summary and website homepage
 ```
 
 `data/`
@@ -83,7 +87,9 @@ Numbers (1.–9.) give the order to run the pipeline.
 │   ├── regression_models.ipynb                              # 8. regression models
 │   ├── classification_models.ipynb                          # 8. classification models (above 10 mg/L)
 │   ├── data_splitting.ipynb                                 # 9. leakage analysis and choice of split
-│   └── final_results.ipynb                                  # 10. final models: hold-out evaluation and feature importance
+│   ├── final_results.ipynb                                  # 10. final models: hold-out evaluation and feature importance
+│   ├── robustness_subbasin_balanced_holdout.ipynb           # 11. Robustness check on other hold-out folds 
+│   └── risk_map_random_forest.ipynb                         # 12. Hybrid modeling approach
 
 ```
 
@@ -103,7 +109,13 @@ Numbers (1.–9.) give the order to run the pipeline.
 │   │
 │   ├── regression                                           # from 8.
 │   │
-│   └── classification                                       # from 8.
+│   ├── final                                                # from 10.
+│   │
+│   ├── robustness                                           # from 11.
+│   │
+│   ├── interpretability                                     # from 10.
+│   │
+│   └── risk_map                                             # from 12.
 ```
 
 
@@ -127,6 +139,7 @@ Numbers (1.–9.) give the order to run the pipeline.
     │   └── transformers.py                                  # derived features and subbasin columns
     ├── models
     │   ├── __init__.py
+    │   ├── interactive_risk_map.py                          # code for the website's interactive map
     │   └── evaluate.py                                      # shared spatial cross-validation for all models
     └── shared
         ├── __init__.py
