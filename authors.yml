@@ -1,0 +1,33 @@
+repo-url: https://github.com/Erdos-Projects/fall-2026-infrastructure-placement
+
+team:
+  - name: Charlsey Tomassetti
+    image: images/profile1.jpg
+    alt: Author 1
+    github: https://github.com/crtomassetti
+    linkedin: https://www.linkedin.com/in/charlsey-tomassetti/
+    website: https://crtomassetti.github.io/website/
+    scholar: https://scholar.google.com/citations?hl=en&user=-rHm5NoAAAAJ&view_op=list_works&authuser=2
+
+  - name: Karuna Sangam
+    image: images/karuna.jpg
+    alt: A South Asian person with shoulder length hair and bangs wearing a white shirt, with trees in the background.
+    github: https://github.com/karunasangam
+    linkedin: https://www.linkedin.com/in/karuna-sangam-b1137498/
+    website: https://karunasangam.com/
+
+  - name: Andrea Lomelin
+    image: images/profile1.jpg
+    alt: Alt text
+    github: https://github.com/lomelincandrea-cloud
+    # linkedin: TBA
+    # website: TBA
+    # scholar: TBA
+
+  - name: Gavin Niendorf
+    image: images/profile1.jpg
+    alt: Alt text
+    github: https://github.com/GNiendorf
+    # linkedin: TBA
+    # website: TBA
+    # scholar: TBA

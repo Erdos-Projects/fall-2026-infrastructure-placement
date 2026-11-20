@@ -1,0 +1,5 @@
+title: Authors
+version: 1.0.0
+contributes:
+  shortcodes:
+    - authors.lua
