@@ -126,7 +126,8 @@ Numbers (1.–9.) give the order to run the pipeline.
     ├── __init__.py                                          # turns off PROJ network grids project-wide
     ├── paths.py                                             # every input and output location
     ├── data
-    │   └── crop_mapping.py                                  # 0. downloads the DWR crop maps
+    │   ├── crop_mapping.py                                  # 0. downloads the DWR crop maps
+    │   └── cleaning.py                                  # 1. functions for data cleaning
     ├── evaluation
     │   ├── __init__.py
     │   ├── leakage.py                                       # spatial leakage diagnostics
@@ -137,13 +138,12 @@ Numbers (1.–9.) give the order to run the pipeline.
     │   ├── __init__.py
     │   ├── preprocessing.py                                 # loads model-ready X and y
     │   └── transformers.py                                  # derived features and subbasin columns
-    ├── models
-    │   ├── __init__.py
-    │   ├── interactive_risk_map.py                          # code for the website's interactive map
-    │   └── evaluate.py                                      # shared spatial cross-validation for all models
-    └── shared
+    └── models
         ├── __init__.py
-        └── datetime.py                                      # date parsing for the groundwater data
+        ├── interactive_risk_map.py                          # code for the website's interactive map
+        └── evaluate.py                                      # shared spatial cross-validation for all models
+
+
 ```
 
 
