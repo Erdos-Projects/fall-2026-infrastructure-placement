@@ -1,0 +1,1644 @@
+.
+├── README.md
+├── _extensions
+│   └── authors
+│       ├── _extension.yml
+│       └── authors.lua
+├── _freeze
+│   ├── site_libs
+│   │   └── clipboard
+│   │       └── clipboard.min.js
+│   └── summary
+│       └── execute-results
+│           └── html.json
+├── _quarto.yml
+├── _site
+│   ├── images
+│   │   ├── karuna.jpg
+│   │   └── profile1.jpg
+│   ├── index.html
+│   ├── notebooks
+│   │   ├── classification_models.html
+│   │   ├── classification_models_files
+│   │   │   └── figure-html
+│   │   │       ├── cell-10-output-1.png
+│   │   │       ├── cell-11-output-1.png
+│   │   │       ├── cell-11-output-2.png
+│   │   │       ├── cell-11-output-3.png
+│   │   │       ├── cell-11-output-4.png
+│   │   │       ├── cell-11-output-5.png
+│   │   │       ├── cell-11-output-6.png
+│   │   │       ├── cell-12-output-1.png
+│   │   │       ├── cell-14-output-1.png
+│   │   │       ├── cell-15-output-1.png
+│   │   │       ├── cell-16-output-1.png
+│   │   │       ├── cell-16-output-2.png
+│   │   │       └── cell-17-output-1.png
+│   │   ├── data_cleaning
+│   │   │   ├── crop_mapping
+│   │   │   │   ├── crop_mapping_annual_2021_2024.html
+│   │   │   │   ├── crop_mapping_eda.html
+│   │   │   │   ├── crop_mapping_eda_files
+│   │   │   │   │   └── figure-html
+│   │   │   │   │       ├── cell-11-output-1.png
+│   │   │   │   │       ├── cell-12-output-1.png
+│   │   │   │   │       ├── cell-13-output-1.png
+│   │   │   │   │       ├── cell-14-output-1.png
+│   │   │   │   │       ├── cell-15-output-2.png
+│   │   │   │   │       ├── cell-16-output-1.png
+│   │   │   │   │       ├── cell-17-output-1.png
+│   │   │   │   │       ├── cell-18-output-2.png
+│   │   │   │   │       ├── cell-19-output-1.png
+│   │   │   │   │       ├── cell-20-output-1.png
+│   │   │   │   │       └── cell-9-output-2.png
+│   │   │   │   ├── crop_mapping_feature_selection.html
+│   │   │   │   └── crop_mapping_feature_selection_files
+│   │   │   │       └── figure-html
+│   │   │   │           ├── cell-12-output-1.png
+│   │   │   │           ├── cell-13-output-1.png
+│   │   │   │           └── cell-14-output-1.png
+│   │   │   ├── groundwater
+│   │   │   │   ├── groundwater_spatial_eda.html
+│   │   │   │   ├── gwater_clean.html
+│   │   │   │   └── gwater_clean_files
+│   │   │   │       └── figure-html
+│   │   │   │           ├── cell-30-output-1.png
+│   │   │   │           ├── cell-33-output-2.png
+│   │   │   │           ├── cell-33-output-3.png
+│   │   │   │           ├── cell-37-output-4.png
+│   │   │   │           ├── cell-37-output-5.png
+│   │   │   │           ├── cell-38-output-4.png
+│   │   │   │           ├── cell-38-output-5.png
+│   │   │   │           ├── cell-39-output-4.png
+│   │   │   │           ├── cell-39-output-5.png
+│   │   │   │           ├── cell-40-output-4.png
+│   │   │   │           ├── cell-40-output-5.png
+│   │   │   │           ├── cell-41-output-3.png
+│   │   │   │           └── cell-41-output-4.png
+│   │   │   ├── groundwater_depth
+│   │   │   │   ├── groundwater_depth_eda.html
+│   │   │   │   └── groundwater_depth_eda_files
+│   │   │   │       └── figure-html
+│   │   │   │           ├── cell-10-output-1.png
+│   │   │   │           └── cell-18-output-1.png
+│   │   │   ├── precipitation
+│   │   │   │   └── prism_climate_cleaning_final.html
+│   │   │   └── soils
+│   │   │       └── Soil_data_cleanup_team.html
+│   │   ├── data_merge
+│   │   │   ├── all_merge_EDA_Final.html
+│   │   │   ├── all_merge_EDA_Final_files
+│   │   │   │   └── figure-html
+│   │   │   │       ├── cell-13-output-1.png
+│   │   │   │       └── cell-8-output-2.png
+│   │   │   ├── all_merge_final.html
+│   │   │   └── all_merge_final_files
+│   │   │       └── figure-html
+│   │   │           └── cell-10-output-1.png
+│   │   ├── data_splitting.html
+│   │   ├── data_splitting_files
+│   │   │   └── figure-html
+│   │   │       ├── cell-15-output-1.png
+│   │   │       ├── cell-7-output-1.png
+│   │   │       └── cell-9-output-1.png
+│   │   ├── feature_selection.html
+│   │   ├── final_results.html
+│   │   ├── final_results_files
+│   │   │   └── figure-html
+│   │   │       ├── cell-10-output-1.png
+│   │   │       ├── cell-11-output-1.png
+│   │   │       ├── cell-12-output-1.png
+│   │   │       ├── cell-14-output-3.png
+│   │   │       ├── cell-8-output-1.png
+│   │   │       └── cell-9-output-1.png
+│   │   ├── regression_models.html
+│   │   ├── regression_models_files
+│   │   │   └── figure-html
+│   │   │       ├── cell-11-output-1.png
+│   │   │       ├── cell-12-output-1.png
+│   │   │       ├── cell-13-output-1.png
+│   │   │       └── cell-9-output-1.png
+│   │   ├── risk_map_random_forest.html
+│   │   ├── risk_map_random_forest_files
+│   │   │   └── figure-html
+│   │   │       ├── cell-12-output-2.png
+│   │   │       ├── cell-14-output-1.png
+│   │   │       ├── cell-14-output-2.png
+│   │   │       ├── cell-15-output-1.png
+│   │   │       ├── cell-16-output-1.png
+│   │   │       └── cell-17-output-2.png
+│   │   ├── robustness_subbasin_balanced_holdout.html
+│   │   └── robustness_subbasin_balanced_holdout_files
+│   │       └── figure-html
+│   │           └── cell-7-output-2.png
+│   ├── results
+│   │   ├── evaluation
+│   │   │   └── spatial_folds_map_10km_subbasin.png
+│   │   └── final
+│   │       └── classification_holdout.png
+│   ├── run_pipeline.html
+│   ├── search.json
+│   ├── site_libs
+│   │   ├── bootstrap
+│   │   │   ├── bootstrap-421be9fd014b282eadd11f57e8b2b584.min.css
+│   │   │   ├── bootstrap-icons.css
+│   │   │   ├── bootstrap-icons.woff
+│   │   │   └── bootstrap.min.js
+│   │   ├── clipboard
+│   │   │   └── clipboard.min.js
+│   │   ├── quarto-html
+│   │   │   ├── anchor.min.js
+│   │   │   ├── popper.min.js
+│   │   │   ├── quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css
+│   │   │   ├── quarto.js
+│   │   │   ├── scrollable-regions
+│   │   │   │   └── scrollable-regions.js
+│   │   │   ├── tabsets
+│   │   │   │   └── tabsets.js
+│   │   │   ├── tippy.css
+│   │   │   └── tippy.umd.min.js
+│   │   ├── quarto-nav
+│   │   │   ├── headroom.min.js
+│   │   │   └── quarto-nav.js
+│   │   └── quarto-search
+│   │       ├── autocomplete.umd.js
+│   │       ├── fuse.min.js
+│   │       └── quarto-search.js
+│   ├── styles.css
+│   └── summary.html
+├── aa
+├── artifacts
+│   ├── final_random_forest_classifier.joblib
+│   └── final_random_forest_regressor.joblib
+├── authors.yml
+├── data
+│   ├── NHD_H_18060005_HU8_GDB
+│   │   ├── NHD_H_18060005_HU8_GDB.gdb
+│   │   │   ├── a00000001.TablesByName.atx
+│   │   │   ├── a00000001.freelist
+│   │   │   ├── a00000001.gdbindexes
+│   │   │   ├── a00000001.gdbtable
+│   │   │   ├── a00000001.gdbtablx
+│   │   │   ├── a00000002.gdbtable
+│   │   │   ├── a00000002.gdbtablx
+│   │   │   ├── a00000003.gdbindexes
+│   │   │   ├── a00000003.gdbtable
+│   │   │   ├── a00000003.gdbtablx
+│   │   │   ├── a00000004.CatItemsByPhysicalName.atx
+│   │   │   ├── a00000004.CatItemsByType.atx
+│   │   │   ├── a00000004.FDO_UUID.atx
+│   │   │   ├── a00000004.freelist
+│   │   │   ├── a00000004.gdbindexes
+│   │   │   ├── a00000004.gdbtable
+│   │   │   ├── a00000004.gdbtablx
+│   │   │   ├── a00000004.horizon
+│   │   │   ├── a00000005.CatItemTypesByName.atx
+│   │   │   ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │   │   ├── a00000005.CatItemTypesByUUID.atx
+│   │   │   ├── a00000005.gdbindexes
+│   │   │   ├── a00000005.gdbtable
+│   │   │   ├── a00000005.gdbtablx
+│   │   │   ├── a00000006.CatRelsByDestinationID.atx
+│   │   │   ├── a00000006.CatRelsByOriginID.atx
+│   │   │   ├── a00000006.CatRelsByType.atx
+│   │   │   ├── a00000006.FDO_UUID.atx
+│   │   │   ├── a00000006.gdbindexes
+│   │   │   ├── a00000006.gdbtable
+│   │   │   ├── a00000006.gdbtablx
+│   │   │   ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByName.atx
+│   │   │   ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByUUID.atx
+│   │   │   ├── a00000007.gdbindexes
+│   │   │   ├── a00000007.gdbtable
+│   │   │   ├── a00000007.gdbtablx
+│   │   │   ├── a00000009.gdbindexes
+│   │   │   ├── a00000009.gdbtable
+│   │   │   ├── a00000009.gdbtablx
+│   │   │   ├── a0000000a.gdbindexes
+│   │   │   ├── a0000000a.gdbtable
+│   │   │   ├── a0000000a.gdbtablx
+│   │   │   ├── a0000000b.gdbindexes
+│   │   │   ├── a0000000b.gdbtable
+│   │   │   ├── a0000000b.gdbtablx
+│   │   │   ├── a0000000c.gdbindexes
+│   │   │   ├── a0000000c.gdbtable
+│   │   │   ├── a0000000c.gdbtablx
+│   │   │   ├── a0000000d.gdbindexes
+│   │   │   ├── a0000000d.gdbtable
+│   │   │   ├── a0000000d.gdbtablx
+│   │   │   ├── a0000000e.gdbindexes
+│   │   │   ├── a0000000e.gdbtable
+│   │   │   ├── a0000000e.gdbtablx
+│   │   │   ├── a0000000f.gdbindexes
+│   │   │   ├── a0000000f.gdbtable
+│   │   │   ├── a0000000f.gdbtablx
+│   │   │   ├── a00000010.gdbindexes
+│   │   │   ├── a00000010.gdbtable
+│   │   │   ├── a00000010.gdbtablx
+│   │   │   ├── a00000011.gdbindexes
+│   │   │   ├── a00000011.gdbtable
+│   │   │   ├── a00000011.gdbtablx
+│   │   │   ├── a00000012.gdbindexes
+│   │   │   ├── a00000012.gdbtable
+│   │   │   ├── a00000012.gdbtablx
+│   │   │   ├── a00000013.gdbindexes
+│   │   │   ├── a00000013.gdbtable
+│   │   │   ├── a00000013.gdbtablx
+│   │   │   ├── a00000014.gdbindexes
+│   │   │   ├── a00000014.gdbtable
+│   │   │   ├── a00000014.gdbtablx
+│   │   │   ├── a00000015.gdbindexes
+│   │   │   ├── a00000015.gdbtable
+│   │   │   ├── a00000015.gdbtablx
+│   │   │   ├── a00000015.spx
+│   │   │   ├── a00000016.gdbindexes
+│   │   │   ├── a00000016.gdbtable
+│   │   │   ├── a00000016.gdbtablx
+│   │   │   ├── a00000016.spx
+│   │   │   ├── a00000017.gdbindexes
+│   │   │   ├── a00000017.gdbtable
+│   │   │   ├── a00000017.gdbtablx
+│   │   │   ├── a00000017.spx
+│   │   │   ├── a00000018.gdbindexes
+│   │   │   ├── a00000018.gdbtable
+│   │   │   ├── a00000018.gdbtablx
+│   │   │   ├── a00000018.spx
+│   │   │   ├── a00000019.gdbindexes
+│   │   │   ├── a00000019.gdbtable
+│   │   │   ├── a00000019.gdbtablx
+│   │   │   ├── a00000019.spx
+│   │   │   ├── a0000001a.gdbindexes
+│   │   │   ├── a0000001a.gdbtable
+│   │   │   ├── a0000001a.gdbtablx
+│   │   │   ├── a0000001a.spx
+│   │   │   ├── a0000001b.freelist
+│   │   │   ├── a0000001b.gdbindexes
+│   │   │   ├── a0000001b.gdbtable
+│   │   │   ├── a0000001b.gdbtablx
+│   │   │   ├── a0000001b.spx
+│   │   │   ├── a0000001c.gdbindexes
+│   │   │   ├── a0000001c.gdbtable
+│   │   │   ├── a0000001c.gdbtablx
+│   │   │   ├── a0000001c.spx
+│   │   │   ├── a0000001d.gdbindexes
+│   │   │   ├── a0000001d.gdbtable
+│   │   │   ├── a0000001d.gdbtablx
+│   │   │   ├── a0000001d.spx
+│   │   │   ├── a0000001e.gdbindexes
+│   │   │   ├── a0000001e.gdbtable
+│   │   │   ├── a0000001e.gdbtablx
+│   │   │   ├── a0000001e.spx
+│   │   │   ├── a0000001f.gdbindexes
+│   │   │   ├── a0000001f.gdbtable
+│   │   │   ├── a0000001f.gdbtablx
+│   │   │   ├── a0000001f.spx
+│   │   │   ├── a00000020.gdbindexes
+│   │   │   ├── a00000020.gdbtable
+│   │   │   ├── a00000020.gdbtablx
+│   │   │   ├── a00000020.spx
+│   │   │   ├── a00000021.gdbindexes
+│   │   │   ├── a00000021.gdbtable
+│   │   │   ├── a00000021.gdbtablx
+│   │   │   ├── a00000021.spx
+│   │   │   ├── a00000022.gdbindexes
+│   │   │   ├── a00000022.gdbtable
+│   │   │   ├── a00000022.gdbtablx
+│   │   │   ├── a00000022.spx
+│   │   │   ├── a00000023.gdbindexes
+│   │   │   ├── a00000023.gdbtable
+│   │   │   ├── a00000023.gdbtablx
+│   │   │   ├── a00000023.spx
+│   │   │   ├── a00000024.gdbindexes
+│   │   │   ├── a00000024.gdbtable
+│   │   │   ├── a00000024.gdbtablx
+│   │   │   ├── a00000024.spx
+│   │   │   ├── a00000025.gdbindexes
+│   │   │   ├── a00000025.gdbtable
+│   │   │   ├── a00000025.gdbtablx
+│   │   │   ├── a00000025.spx
+│   │   │   ├── a00000026.gdbindexes
+│   │   │   ├── a00000026.gdbtable
+│   │   │   ├── a00000026.gdbtablx
+│   │   │   ├── a00000026.spx
+│   │   │   ├── a00000027.gdbindexes
+│   │   │   ├── a00000027.gdbtable
+│   │   │   ├── a00000027.gdbtablx
+│   │   │   ├── a00000028.N_1_Desc_0.atx
+│   │   │   ├── a00000028.N_1_Desc_1.atx
+│   │   │   ├── a00000028.gdbindexes
+│   │   │   ├── a00000028.gdbtable
+│   │   │   ├── a00000028.gdbtablx
+│   │   │   ├── a00000029.N_1_JTopo_0.atx
+│   │   │   ├── a00000029.gdbindexes
+│   │   │   ├── a00000029.gdbtable
+│   │   │   ├── a00000029.gdbtablx
+│   │   │   ├── a0000002a.N_1_JTopo2_0.atx
+│   │   │   ├── a0000002a.gdbindexes
+│   │   │   ├── a0000002a.gdbtable
+│   │   │   ├── a0000002a.gdbtablx
+│   │   │   ├── a0000002b.N_1_JDesc_0.atx
+│   │   │   ├── a0000002b.gdbindexes
+│   │   │   ├── a0000002b.gdbtable
+│   │   │   ├── a0000002b.gdbtablx
+│   │   │   ├── a0000002c.N_1_JStatus_0.atx
+│   │   │   ├── a0000002c.gdbindexes
+│   │   │   ├── a0000002c.gdbtable
+│   │   │   ├── a0000002c.gdbtablx
+│   │   │   ├── a0000002d.N_1_ETopo_0.atx
+│   │   │   ├── a0000002d.gdbindexes
+│   │   │   ├── a0000002d.gdbtable
+│   │   │   ├── a0000002d.gdbtablx
+│   │   │   ├── a0000002e.N_1_EDesc_0.atx
+│   │   │   ├── a0000002e.gdbindexes
+│   │   │   ├── a0000002e.gdbtable
+│   │   │   ├── a0000002e.gdbtablx
+│   │   │   ├── a0000002f.N_1_EStatus_0.atx
+│   │   │   ├── a0000002f.gdbindexes
+│   │   │   ├── a0000002f.gdbtable
+│   │   │   ├── a0000002f.gdbtablx
+│   │   │   ├── a00000030.N_1_FloDir_0.atx
+│   │   │   ├── a00000030.gdbindexes
+│   │   │   ├── a00000030.gdbtable
+│   │   │   ├── a00000030.gdbtablx
+│   │   │   ├── a00000031.freelist
+│   │   │   ├── a00000031.gdbindexes
+│   │   │   ├── a00000031.gdbtable
+│   │   │   ├── a00000031.gdbtablx
+│   │   │   ├── a00000031.spx
+│   │   │   ├── gdb
+│   │   │   └── timestamps
+│   │   ├── NHD_H_18060005_HU8_GDB.jpg
+│   │   ├── NHD_H_18060005_HU8_GDB.jpg.aux.xml
+│   │   └── NHD_H_18060005_HU8_GDB.xml
+│   ├── PRISM_ppt_tmean_stable_4km_201301_202603.csv
+│   ├── crop_runs
+│   │   ├── annual_lag1_notebook_run_20261105_182540_421626
+│   │   │   ├── crop_feature_dictionary.csv
+│   │   │   ├── crop_features_lag1_2021_2024.csv
+│   │   │   ├── dwr_source_versions.csv
+│   │   │   ├── gavin_2023_validation_all_shared_wells.csv
+│   │   │   └── validation.json
+│   │   └── annual_lag1_notebook_run_20261105_182855_691507
+│   │       ├── crop_feature_dictionary.csv
+│   │       ├── crop_features_lag1_2021_2024.csv
+│   │       ├── dwr_source_versions.csv
+│   │       ├── gavin_2023_validation_all_shared_wells.csv
+│   │       └── validation.json
+│   ├── crops
+│   │   ├── i15_Crop_Mapping_2020.gdb
+│   │   │   ├── a00000001.TablesByName.atx
+│   │   │   ├── a00000001.gdbindexes
+│   │   │   ├── a00000001.gdbtable
+│   │   │   ├── a00000001.gdbtablx
+│   │   │   ├── a00000002.gdbtable
+│   │   │   ├── a00000002.gdbtablx
+│   │   │   ├── a00000003.gdbindexes
+│   │   │   ├── a00000003.gdbtable
+│   │   │   ├── a00000003.gdbtablx
+│   │   │   ├── a00000004.CatItemsByPhysicalName.atx
+│   │   │   ├── a00000004.CatItemsByType.atx
+│   │   │   ├── a00000004.FDO_UUID.atx
+│   │   │   ├── a00000004.freelist
+│   │   │   ├── a00000004.gdbindexes
+│   │   │   ├── a00000004.gdbtable
+│   │   │   ├── a00000004.gdbtablx
+│   │   │   ├── a00000004.horizon
+│   │   │   ├── a00000004.spx
+│   │   │   ├── a00000005.CatItemTypesByName.atx
+│   │   │   ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │   │   ├── a00000005.CatItemTypesByUUID.atx
+│   │   │   ├── a00000005.gdbindexes
+│   │   │   ├── a00000005.gdbtable
+│   │   │   ├── a00000005.gdbtablx
+│   │   │   ├── a00000006.CatRelsByDestinationID.atx
+│   │   │   ├── a00000006.CatRelsByOriginID.atx
+│   │   │   ├── a00000006.CatRelsByType.atx
+│   │   │   ├── a00000006.FDO_UUID.atx
+│   │   │   ├── a00000006.gdbindexes
+│   │   │   ├── a00000006.gdbtable
+│   │   │   ├── a00000006.gdbtablx
+│   │   │   ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByName.atx
+│   │   │   ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByUUID.atx
+│   │   │   ├── a00000007.gdbindexes
+│   │   │   ├── a00000007.gdbtable
+│   │   │   ├── a00000007.gdbtablx
+│   │   │   ├── a00000009.freelist
+│   │   │   ├── a00000009.gdbindexes
+│   │   │   ├── a00000009.gdbtable
+│   │   │   ├── a00000009.gdbtablx
+│   │   │   ├── a00000009.horizon
+│   │   │   ├── a00000009.spx
+│   │   │   ├── gdb
+│   │   │   └── timestamps
+│   │   ├── i15_Crop_Mapping_2021.gdb
+│   │   │   ├── a00000001.TablesByName.atx
+│   │   │   ├── a00000001.gdbindexes
+│   │   │   ├── a00000001.gdbtable
+│   │   │   ├── a00000001.gdbtablx
+│   │   │   ├── a00000002.gdbtable
+│   │   │   ├── a00000002.gdbtablx
+│   │   │   ├── a00000003.gdbindexes
+│   │   │   ├── a00000003.gdbtable
+│   │   │   ├── a00000003.gdbtablx
+│   │   │   ├── a00000004.CatItemsByPhysicalName.atx
+│   │   │   ├── a00000004.CatItemsByType.atx
+│   │   │   ├── a00000004.FDO_UUID.atx
+│   │   │   ├── a00000004.freelist
+│   │   │   ├── a00000004.gdbindexes
+│   │   │   ├── a00000004.gdbtable
+│   │   │   ├── a00000004.gdbtablx
+│   │   │   ├── a00000004.horizon
+│   │   │   ├── a00000004.spx
+│   │   │   ├── a00000005.CatItemTypesByName.atx
+│   │   │   ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │   │   ├── a00000005.CatItemTypesByUUID.atx
+│   │   │   ├── a00000005.gdbindexes
+│   │   │   ├── a00000005.gdbtable
+│   │   │   ├── a00000005.gdbtablx
+│   │   │   ├── a00000006.CatRelsByDestinationID.atx
+│   │   │   ├── a00000006.CatRelsByOriginID.atx
+│   │   │   ├── a00000006.CatRelsByType.atx
+│   │   │   ├── a00000006.FDO_UUID.atx
+│   │   │   ├── a00000006.gdbindexes
+│   │   │   ├── a00000006.gdbtable
+│   │   │   ├── a00000006.gdbtablx
+│   │   │   ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByName.atx
+│   │   │   ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByUUID.atx
+│   │   │   ├── a00000007.gdbindexes
+│   │   │   ├── a00000007.gdbtable
+│   │   │   ├── a00000007.gdbtablx
+│   │   │   ├── a00000009.freelist
+│   │   │   ├── a00000009.gdbindexes
+│   │   │   ├── a00000009.gdbtable
+│   │   │   ├── a00000009.gdbtablx
+│   │   │   ├── a00000009.horizon
+│   │   │   ├── a00000009.spx
+│   │   │   ├── gdb
+│   │   │   └── timestamps
+│   │   ├── i15_Crop_Mapping_2023_Final.gdb
+│   │   │   ├── a00000001.TablesByName.atx
+│   │   │   ├── a00000001.freelist
+│   │   │   ├── a00000001.gdbindexes
+│   │   │   ├── a00000001.gdbtable
+│   │   │   ├── a00000001.gdbtablx
+│   │   │   ├── a00000002.gdbtable
+│   │   │   ├── a00000002.gdbtablx
+│   │   │   ├── a00000003.gdbindexes
+│   │   │   ├── a00000003.gdbtable
+│   │   │   ├── a00000003.gdbtablx
+│   │   │   ├── a00000004.CatItemsByPhysicalName.atx
+│   │   │   ├── a00000004.CatItemsByType.atx
+│   │   │   ├── a00000004.FDO_UUID.atx
+│   │   │   ├── a00000004.freelist
+│   │   │   ├── a00000004.gdbindexes
+│   │   │   ├── a00000004.gdbtable
+│   │   │   ├── a00000004.gdbtablx
+│   │   │   ├── a00000004.horizon
+│   │   │   ├── a00000004.spx
+│   │   │   ├── a00000005.CatItemTypesByName.atx
+│   │   │   ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │   │   ├── a00000005.CatItemTypesByUUID.atx
+│   │   │   ├── a00000005.gdbindexes
+│   │   │   ├── a00000005.gdbtable
+│   │   │   ├── a00000005.gdbtablx
+│   │   │   ├── a00000006.CatRelsByDestinationID.atx
+│   │   │   ├── a00000006.CatRelsByOriginID.atx
+│   │   │   ├── a00000006.CatRelsByType.atx
+│   │   │   ├── a00000006.FDO_UUID.atx
+│   │   │   ├── a00000006.freelist
+│   │   │   ├── a00000006.gdbindexes
+│   │   │   ├── a00000006.gdbtable
+│   │   │   ├── a00000006.gdbtablx
+│   │   │   ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByName.atx
+│   │   │   ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByUUID.atx
+│   │   │   ├── a00000007.gdbindexes
+│   │   │   ├── a00000007.gdbtable
+│   │   │   ├── a00000007.gdbtablx
+│   │   │   ├── a00000009.EditingTemplatesByDatasetGUID.atx
+│   │   │   ├── a00000009.EditingTemplatesByName.atx
+│   │   │   ├── a00000009.EditingTemplatesByType.atx
+│   │   │   ├── a00000009.FDO_GlobalID.atx
+│   │   │   ├── a00000009.gdbindexes
+│   │   │   ├── a00000009.gdbtable
+│   │   │   ├── a00000009.gdbtablx
+│   │   │   ├── a0000000a.EditingTemplateRelsByDestinationID.atx
+│   │   │   ├── a0000000a.EditingTemplateRelsByOriginID.atx
+│   │   │   ├── a0000000a.EditingTemplateRelsByType.atx
+│   │   │   ├── a0000000a.gdbindexes
+│   │   │   ├── a0000000a.gdbtable
+│   │   │   ├── a0000000a.gdbtablx
+│   │   │   ├── a0000000b.freelist
+│   │   │   ├── a0000000b.gdbindexes
+│   │   │   ├── a0000000b.gdbtable
+│   │   │   ├── a0000000b.gdbtablx
+│   │   │   ├── a0000000b.horizon
+│   │   │   ├── a0000000b.spx
+│   │   │   ├── gdb
+│   │   │   └── timestamps
+│   │   ├── i15_Crop_Mapping_2024_Provisional_20251208.gdb
+│   │   │   ├── a00000001.TablesByName.atx
+│   │   │   ├── a00000001.freelist
+│   │   │   ├── a00000001.gdbindexes
+│   │   │   ├── a00000001.gdbtable
+│   │   │   ├── a00000001.gdbtablx
+│   │   │   ├── a00000002.gdbtable
+│   │   │   ├── a00000002.gdbtablx
+│   │   │   ├── a00000003.gdbindexes
+│   │   │   ├── a00000003.gdbtable
+│   │   │   ├── a00000003.gdbtablx
+│   │   │   ├── a00000004.CatItemsByPhysicalName.atx
+│   │   │   ├── a00000004.CatItemsByType.atx
+│   │   │   ├── a00000004.FDO_UUID.atx
+│   │   │   ├── a00000004.freelist
+│   │   │   ├── a00000004.gdbindexes
+│   │   │   ├── a00000004.gdbtable
+│   │   │   ├── a00000004.gdbtablx
+│   │   │   ├── a00000004.horizon
+│   │   │   ├── a00000004.spx
+│   │   │   ├── a00000005.CatItemTypesByName.atx
+│   │   │   ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │   │   ├── a00000005.CatItemTypesByUUID.atx
+│   │   │   ├── a00000005.gdbindexes
+│   │   │   ├── a00000005.gdbtable
+│   │   │   ├── a00000005.gdbtablx
+│   │   │   ├── a00000006.CatRelsByDestinationID.atx
+│   │   │   ├── a00000006.CatRelsByOriginID.atx
+│   │   │   ├── a00000006.CatRelsByType.atx
+│   │   │   ├── a00000006.FDO_UUID.atx
+│   │   │   ├── a00000006.freelist
+│   │   │   ├── a00000006.gdbindexes
+│   │   │   ├── a00000006.gdbtable
+│   │   │   ├── a00000006.gdbtablx
+│   │   │   ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │   │   ├── a00000007.CatRelTypesByName.atx
+│   │   │   ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │   │   ├── a00000007.CatRelTypesByUUID.atx
+│   │   │   ├── a00000007.gdbindexes
+│   │   │   ├── a00000007.gdbtable
+│   │   │   ├── a00000007.gdbtablx
+│   │   │   ├── a00000009.EditingTemplatesByDatasetGUID.atx
+│   │   │   ├── a00000009.EditingTemplatesByName.atx
+│   │   │   ├── a00000009.EditingTemplatesByType.atx
+│   │   │   ├── a00000009.FDO_GlobalID.atx
+│   │   │   ├── a00000009.gdbindexes
+│   │   │   ├── a00000009.gdbtable
+│   │   │   ├── a00000009.gdbtablx
+│   │   │   ├── a0000000a.EditingTemplateRelsByDestinationID.atx
+│   │   │   ├── a0000000a.EditingTemplateRelsByOriginID.atx
+│   │   │   ├── a0000000a.EditingTemplateRelsByType.atx
+│   │   │   ├── a0000000a.gdbindexes
+│   │   │   ├── a0000000a.gdbtable
+│   │   │   ├── a0000000a.gdbtablx
+│   │   │   ├── a00000022_temp.gdbtable
+│   │   │   ├── a00000022_temp.gdbtablx
+│   │   │   ├── a0000002f.freelist
+│   │   │   ├── a0000002f.gdbindexes
+│   │   │   ├── a0000002f.gdbtable
+│   │   │   ├── a0000002f.gdbtablx
+│   │   │   ├── a0000002f.horizon
+│   │   │   ├── a0000002f.spx
+│   │   │   ├── gdb
+│   │   │   └── timestamps
+│   │   └── i15_crop_mapping_2022.gdb
+│   │       ├── a00000001.TablesByName.atx
+│   │       ├── a00000001.gdbindexes
+│   │       ├── a00000001.gdbtable
+│   │       ├── a00000001.gdbtablx
+│   │       ├── a00000002.gdbtable
+│   │       ├── a00000002.gdbtablx
+│   │       ├── a00000003.gdbindexes
+│   │       ├── a00000003.gdbtable
+│   │       ├── a00000003.gdbtablx
+│   │       ├── a00000004.CatItemsByPhysicalName.atx
+│   │       ├── a00000004.CatItemsByType.atx
+│   │       ├── a00000004.FDO_UUID.atx
+│   │       ├── a00000004.freelist
+│   │       ├── a00000004.gdbindexes
+│   │       ├── a00000004.gdbtable
+│   │       ├── a00000004.gdbtablx
+│   │       ├── a00000004.horizon
+│   │       ├── a00000004.spx
+│   │       ├── a00000005.CatItemTypesByName.atx
+│   │       ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │       ├── a00000005.CatItemTypesByUUID.atx
+│   │       ├── a00000005.gdbindexes
+│   │       ├── a00000005.gdbtable
+│   │       ├── a00000005.gdbtablx
+│   │       ├── a00000006.CatRelsByDestinationID.atx
+│   │       ├── a00000006.CatRelsByOriginID.atx
+│   │       ├── a00000006.CatRelsByType.atx
+│   │       ├── a00000006.FDO_UUID.atx
+│   │       ├── a00000006.gdbindexes
+│   │       ├── a00000006.gdbtable
+│   │       ├── a00000006.gdbtablx
+│   │       ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │       ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │       ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │       ├── a00000007.CatRelTypesByName.atx
+│   │       ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │       ├── a00000007.CatRelTypesByUUID.atx
+│   │       ├── a00000007.gdbindexes
+│   │       ├── a00000007.gdbtable
+│   │       ├── a00000007.gdbtablx
+│   │       ├── a00000009.EditingTemplatesByDatasetGUID.atx
+│   │       ├── a00000009.EditingTemplatesByName.atx
+│   │       ├── a00000009.EditingTemplatesByType.atx
+│   │       ├── a00000009.FDO_GlobalID.atx
+│   │       ├── a00000009.gdbindexes
+│   │       ├── a00000009.gdbtable
+│   │       ├── a00000009.gdbtablx
+│   │       ├── a0000000a.EditingTemplateRelsByDestinationID.atx
+│   │       ├── a0000000a.EditingTemplateRelsByOriginID.atx
+│   │       ├── a0000000a.EditingTemplateRelsByType.atx
+│   │       ├── a0000000a.gdbindexes
+│   │       ├── a0000000a.gdbtable
+│   │       ├── a0000000a.gdbtablx
+│   │       ├── a0000000b.freelist
+│   │       ├── a0000000b.gdbindexes
+│   │       ├── a0000000b.gdbtable
+│   │       ├── a0000000b.gdbtablx
+│   │       ├── a0000000b.horizon
+│   │       ├── a0000000b.spx
+│   │       ├── gdb
+│   │       └── timestamps
+│   ├── datasets
+│   │   └── ssurgo_soildata
+│   │       ├── CA053
+│   │       │   ├── readme.txt
+│   │       │   ├── soil_metadata_ca053.txt
+│   │       │   ├── soil_metadata_ca053.xml
+│   │       │   ├── soildb_US_2003.mdb
+│   │       │   ├── spatial
+│   │       │   │   ├── soilmu_a_ca053.dbf
+│   │       │   │   ├── soilmu_a_ca053.prj
+│   │       │   │   ├── soilmu_a_ca053.shp
+│   │       │   │   ├── soilmu_a_ca053.shx
+│   │       │   │   ├── soilmu_l_ca053.dbf
+│   │       │   │   ├── soilmu_l_ca053.prj
+│   │       │   │   ├── soilmu_l_ca053.shp
+│   │       │   │   ├── soilmu_l_ca053.shx
+│   │       │   │   ├── soilmu_p_ca053.dbf
+│   │       │   │   ├── soilmu_p_ca053.prj
+│   │       │   │   ├── soilmu_p_ca053.shp
+│   │       │   │   ├── soilmu_p_ca053.shx
+│   │       │   │   ├── soilsa_a_ca053.dbf
+│   │       │   │   ├── soilsa_a_ca053.prj
+│   │       │   │   ├── soilsa_a_ca053.shp
+│   │       │   │   ├── soilsa_a_ca053.shx
+│   │       │   │   ├── soilsf_l_ca053.dbf
+│   │       │   │   ├── soilsf_l_ca053.prj
+│   │       │   │   ├── soilsf_l_ca053.shp
+│   │       │   │   ├── soilsf_l_ca053.shx
+│   │       │   │   ├── soilsf_p_ca053.dbf
+│   │       │   │   ├── soilsf_p_ca053.prj
+│   │       │   │   ├── soilsf_p_ca053.shp
+│   │       │   │   ├── soilsf_p_ca053.shx
+│   │       │   │   ├── soilsf_t_ca053.txt
+│   │       │   │   └── version.txt
+│   │       │   └── tabular
+│   │       │       ├── ccancov.txt
+│   │       │       ├── ccrpyd.txt
+│   │       │       ├── cdfeat.txt
+│   │       │       ├── cecoclas.txt
+│   │       │       ├── ceplants.txt
+│   │       │       ├── cerosnac.txt
+│   │       │       ├── cfprod.txt
+│   │       │       ├── cfprodo.txt
+│   │       │       ├── cgeomord.txt
+│   │       │       ├── chaashto.txt
+│   │       │       ├── chconsis.txt
+│   │       │       ├── chdsuffx.txt
+│   │       │       ├── chfrags.txt
+│   │       │       ├── chorizon.txt
+│   │       │       ├── chpores.txt
+│   │       │       ├── chstr.txt
+│   │       │       ├── chstrgrp.txt
+│   │       │       ├── chtexgrp.txt
+│   │       │       ├── chtexmod.txt
+│   │       │       ├── chtext.txt
+│   │       │       ├── chtextur.txt
+│   │       │       ├── chunifie.txt
+│   │       │       ├── chydcrit.txt
+│   │       │       ├── cinterp.txt
+│   │       │       ├── cmonth.txt
+│   │       │       ├── comp.txt
+│   │       │       ├── cpmat.txt
+│   │       │       ├── cpmatgrp.txt
+│   │       │       ├── cpwndbrk.txt
+│   │       │       ├── crstrcts.txt
+│   │       │       ├── csfrags.txt
+│   │       │       ├── csmoist.txt
+│   │       │       ├── csmorgc.txt
+│   │       │       ├── csmorhpp.txt
+│   │       │       ├── csmormr.txt
+│   │       │       ├── csmorss.txt
+│   │       │       ├── cstemp.txt
+│   │       │       ├── ctext.txt
+│   │       │       ├── ctreestm.txt
+│   │       │       ├── ctxfmmin.txt
+│   │       │       ├── ctxfmoth.txt
+│   │       │       ├── ctxmoicl.txt
+│   │       │       ├── distimd.txt
+│   │       │       ├── distlmd.txt
+│   │       │       ├── distmd.txt
+│   │       │       ├── lareao.txt
+│   │       │       ├── legend.txt
+│   │       │       ├── ltext.txt
+│   │       │       ├── mapunit.txt
+│   │       │       ├── msdomdet.txt
+│   │       │       ├── msdommas.txt
+│   │       │       ├── msidxdet.txt
+│   │       │       ├── msidxmas.txt
+│   │       │       ├── msrsdet.txt
+│   │       │       ├── msrsmas.txt
+│   │       │       ├── mstab.txt
+│   │       │       ├── mstabcol.txt
+│   │       │       ├── muaggatt.txt
+│   │       │       ├── muareao.txt
+│   │       │       ├── mucrpyd.txt
+│   │       │       ├── mutext.txt
+│   │       │       ├── sacatlog.txt
+│   │       │       ├── sainterp.txt
+│   │       │       ├── sdvalgorithm.txt
+│   │       │       ├── sdvattribute.txt
+│   │       │       ├── sdvfolder.txt
+│   │       │       ├── sdvfolderattribute.txt
+│   │       │       └── version.txt
+│   │       ├── CA069
+│   │       │   ├── readme.txt
+│   │       │   ├── soil_metadata_ca069.txt
+│   │       │   ├── soil_metadata_ca069.xml
+│   │       │   ├── soildb_US_2003.mdb
+│   │       │   ├── spatial
+│   │       │   │   ├── soilmu_a_ca069.dbf
+│   │       │   │   ├── soilmu_a_ca069.prj
+│   │       │   │   ├── soilmu_a_ca069.shp
+│   │       │   │   ├── soilmu_a_ca069.shx
+│   │       │   │   ├── soilmu_l_ca069.dbf
+│   │       │   │   ├── soilmu_l_ca069.prj
+│   │       │   │   ├── soilmu_l_ca069.shp
+│   │       │   │   ├── soilmu_l_ca069.shx
+│   │       │   │   ├── soilmu_p_ca069.dbf
+│   │       │   │   ├── soilmu_p_ca069.prj
+│   │       │   │   ├── soilmu_p_ca069.shp
+│   │       │   │   ├── soilmu_p_ca069.shx
+│   │       │   │   ├── soilsa_a_ca069.dbf
+│   │       │   │   ├── soilsa_a_ca069.prj
+│   │       │   │   ├── soilsa_a_ca069.shp
+│   │       │   │   ├── soilsa_a_ca069.shx
+│   │       │   │   ├── soilsf_l_ca069.dbf
+│   │       │   │   ├── soilsf_l_ca069.prj
+│   │       │   │   ├── soilsf_l_ca069.shp
+│   │       │   │   ├── soilsf_l_ca069.shx
+│   │       │   │   ├── soilsf_p_ca069.dbf
+│   │       │   │   ├── soilsf_p_ca069.prj
+│   │       │   │   ├── soilsf_p_ca069.shp
+│   │       │   │   ├── soilsf_p_ca069.shx
+│   │       │   │   ├── soilsf_t_ca069.txt
+│   │       │   │   └── version.txt
+│   │       │   └── tabular
+│   │       │       ├── ccancov.txt
+│   │       │       ├── ccrpyd.txt
+│   │       │       ├── cdfeat.txt
+│   │       │       ├── cecoclas.txt
+│   │       │       ├── ceplants.txt
+│   │       │       ├── cerosnac.txt
+│   │       │       ├── cfprod.txt
+│   │       │       ├── cfprodo.txt
+│   │       │       ├── cgeomord.txt
+│   │       │       ├── chaashto.txt
+│   │       │       ├── chconsis.txt
+│   │       │       ├── chdsuffx.txt
+│   │       │       ├── chfrags.txt
+│   │       │       ├── chorizon.txt
+│   │       │       ├── chpores.txt
+│   │       │       ├── chstr.txt
+│   │       │       ├── chstrgrp.txt
+│   │       │       ├── chtexgrp.txt
+│   │       │       ├── chtexmod.txt
+│   │       │       ├── chtext.txt
+│   │       │       ├── chtextur.txt
+│   │       │       ├── chunifie.txt
+│   │       │       ├── chydcrit.txt
+│   │       │       ├── cinterp.txt
+│   │       │       ├── cmonth.txt
+│   │       │       ├── comp.txt
+│   │       │       ├── cpmat.txt
+│   │       │       ├── cpmatgrp.txt
+│   │       │       ├── cpwndbrk.txt
+│   │       │       ├── crstrcts.txt
+│   │       │       ├── csfrags.txt
+│   │       │       ├── csmoist.txt
+│   │       │       ├── csmorgc.txt
+│   │       │       ├── csmorhpp.txt
+│   │       │       ├── csmormr.txt
+│   │       │       ├── csmorss.txt
+│   │       │       ├── cstemp.txt
+│   │       │       ├── ctext.txt
+│   │       │       ├── ctreestm.txt
+│   │       │       ├── ctxfmmin.txt
+│   │       │       ├── ctxfmoth.txt
+│   │       │       ├── ctxmoicl.txt
+│   │       │       ├── distimd.txt
+│   │       │       ├── distlmd.txt
+│   │       │       ├── distmd.txt
+│   │       │       ├── lareao.txt
+│   │       │       ├── legend.txt
+│   │       │       ├── ltext.txt
+│   │       │       ├── mapunit.txt
+│   │       │       ├── msdomdet.txt
+│   │       │       ├── msdommas.txt
+│   │       │       ├── msidxdet.txt
+│   │       │       ├── msidxmas.txt
+│   │       │       ├── msrsdet.txt
+│   │       │       ├── msrsmas.txt
+│   │       │       ├── mstab.txt
+│   │       │       ├── mstabcol.txt
+│   │       │       ├── muaggatt.txt
+│   │       │       ├── muareao.txt
+│   │       │       ├── mucrpyd.txt
+│   │       │       ├── mutext.txt
+│   │       │       ├── sacatlog.txt
+│   │       │       ├── sainterp.txt
+│   │       │       ├── sdvalgorithm.txt
+│   │       │       ├── sdvattribute.txt
+│   │       │       ├── sdvfolder.txt
+│   │       │       ├── sdvfolderattribute.txt
+│   │       │       └── version.txt
+│   │       ├── CA665
+│   │       │   ├── readme.txt
+│   │       │   ├── soil_metadata_ca665.txt
+│   │       │   ├── soil_metadata_ca665.xml
+│   │       │   ├── soildb_US_2003.mdb
+│   │       │   ├── spatial
+│   │       │   │   ├── soilmu_a_ca665.dbf
+│   │       │   │   ├── soilmu_a_ca665.prj
+│   │       │   │   ├── soilmu_a_ca665.shp
+│   │       │   │   ├── soilmu_a_ca665.shx
+│   │       │   │   ├── soilmu_l_ca665.dbf
+│   │       │   │   ├── soilmu_l_ca665.prj
+│   │       │   │   ├── soilmu_l_ca665.shp
+│   │       │   │   ├── soilmu_l_ca665.shx
+│   │       │   │   ├── soilmu_p_ca665.dbf
+│   │       │   │   ├── soilmu_p_ca665.prj
+│   │       │   │   ├── soilmu_p_ca665.shp
+│   │       │   │   ├── soilmu_p_ca665.shx
+│   │       │   │   ├── soilsa_a_ca665.dbf
+│   │       │   │   ├── soilsa_a_ca665.prj
+│   │       │   │   ├── soilsa_a_ca665.shp
+│   │       │   │   ├── soilsa_a_ca665.shx
+│   │       │   │   ├── soilsf_l_ca665.dbf
+│   │       │   │   ├── soilsf_l_ca665.prj
+│   │       │   │   ├── soilsf_l_ca665.shp
+│   │       │   │   ├── soilsf_l_ca665.shx
+│   │       │   │   ├── soilsf_p_ca665.dbf
+│   │       │   │   ├── soilsf_p_ca665.prj
+│   │       │   │   ├── soilsf_p_ca665.shp
+│   │       │   │   ├── soilsf_p_ca665.shx
+│   │       │   │   ├── soilsf_t_ca665.txt
+│   │       │   │   └── version.txt
+│   │       │   └── tabular
+│   │       │       ├── ccancov.txt
+│   │       │       ├── ccrpyd.txt
+│   │       │       ├── cdfeat.txt
+│   │       │       ├── cecoclas.txt
+│   │       │       ├── ceplants.txt
+│   │       │       ├── cerosnac.txt
+│   │       │       ├── cfprod.txt
+│   │       │       ├── cfprodo.txt
+│   │       │       ├── cgeomord.txt
+│   │       │       ├── chaashto.txt
+│   │       │       ├── chconsis.txt
+│   │       │       ├── chdsuffx.txt
+│   │       │       ├── chfrags.txt
+│   │       │       ├── chorizon.txt
+│   │       │       ├── chpores.txt
+│   │       │       ├── chstr.txt
+│   │       │       ├── chstrgrp.txt
+│   │       │       ├── chtexgrp.txt
+│   │       │       ├── chtexmod.txt
+│   │       │       ├── chtext.txt
+│   │       │       ├── chtextur.txt
+│   │       │       ├── chunifie.txt
+│   │       │       ├── chydcrit.txt
+│   │       │       ├── cinterp.txt
+│   │       │       ├── cmonth.txt
+│   │       │       ├── comp.txt
+│   │       │       ├── cpmat.txt
+│   │       │       ├── cpmatgrp.txt
+│   │       │       ├── cpwndbrk.txt
+│   │       │       ├── crstrcts.txt
+│   │       │       ├── csfrags.txt
+│   │       │       ├── csmoist.txt
+│   │       │       ├── csmorgc.txt
+│   │       │       ├── csmorhpp.txt
+│   │       │       ├── csmormr.txt
+│   │       │       ├── csmorss.txt
+│   │       │       ├── cstemp.txt
+│   │       │       ├── ctext.txt
+│   │       │       ├── ctreestm.txt
+│   │       │       ├── ctxfmmin.txt
+│   │       │       ├── ctxfmoth.txt
+│   │       │       ├── ctxmoicl.txt
+│   │       │       ├── distimd.txt
+│   │       │       ├── distlmd.txt
+│   │       │       ├── distmd.txt
+│   │       │       ├── lareao.txt
+│   │       │       ├── legend.txt
+│   │       │       ├── ltext.txt
+│   │       │       ├── mapunit.txt
+│   │       │       ├── msdomdet.txt
+│   │       │       ├── msdommas.txt
+│   │       │       ├── msidxdet.txt
+│   │       │       ├── msidxmas.txt
+│   │       │       ├── msrsdet.txt
+│   │       │       ├── msrsmas.txt
+│   │       │       ├── mstab.txt
+│   │       │       ├── mstabcol.txt
+│   │       │       ├── muaggatt.txt
+│   │       │       ├── muareao.txt
+│   │       │       ├── mucrpyd.txt
+│   │       │       ├── mutext.txt
+│   │       │       ├── sacatlog.txt
+│   │       │       ├── sainterp.txt
+│   │       │       ├── sdvalgorithm.txt
+│   │       │       ├── sdvattribute.txt
+│   │       │       ├── sdvfolder.txt
+│   │       │       ├── sdvfolderattribute.txt
+│   │       │       └── version.txt
+│   │       ├── CA772
+│   │       │   ├── readme.txt
+│   │       │   ├── soil_metadata_ca772.txt
+│   │       │   ├── soil_metadata_ca772.xml
+│   │       │   ├── soildb_US_2003.mdb
+│   │       │   ├── spatial
+│   │       │   │   ├── soilmu_a_ca772.dbf
+│   │       │   │   ├── soilmu_a_ca772.prj
+│   │       │   │   ├── soilmu_a_ca772.shp
+│   │       │   │   ├── soilmu_a_ca772.shx
+│   │       │   │   ├── soilmu_l_ca772.dbf
+│   │       │   │   ├── soilmu_l_ca772.prj
+│   │       │   │   ├── soilmu_l_ca772.shp
+│   │       │   │   ├── soilmu_l_ca772.shx
+│   │       │   │   ├── soilmu_p_ca772.dbf
+│   │       │   │   ├── soilmu_p_ca772.prj
+│   │       │   │   ├── soilmu_p_ca772.shp
+│   │       │   │   ├── soilmu_p_ca772.shx
+│   │       │   │   ├── soilsa_a_ca772.dbf
+│   │       │   │   ├── soilsa_a_ca772.prj
+│   │       │   │   ├── soilsa_a_ca772.shp
+│   │       │   │   ├── soilsa_a_ca772.shx
+│   │       │   │   ├── soilsf_l_ca772.dbf
+│   │       │   │   ├── soilsf_l_ca772.prj
+│   │       │   │   ├── soilsf_l_ca772.shp
+│   │       │   │   ├── soilsf_l_ca772.shx
+│   │       │   │   ├── soilsf_p_ca772.dbf
+│   │       │   │   ├── soilsf_p_ca772.prj
+│   │       │   │   ├── soilsf_p_ca772.shp
+│   │       │   │   ├── soilsf_p_ca772.shx
+│   │       │   │   ├── soilsf_t_ca772.txt
+│   │       │   │   └── version.txt
+│   │       │   └── tabular
+│   │       │       ├── ccancov.txt
+│   │       │       ├── ccrpyd.txt
+│   │       │       ├── cdfeat.txt
+│   │       │       ├── cecoclas.txt
+│   │       │       ├── ceplants.txt
+│   │       │       ├── cerosnac.txt
+│   │       │       ├── cfprod.txt
+│   │       │       ├── cfprodo.txt
+│   │       │       ├── cgeomord.txt
+│   │       │       ├── chaashto.txt
+│   │       │       ├── chconsis.txt
+│   │       │       ├── chdsuffx.txt
+│   │       │       ├── chfrags.txt
+│   │       │       ├── chorizon.txt
+│   │       │       ├── chpores.txt
+│   │       │       ├── chstr.txt
+│   │       │       ├── chstrgrp.txt
+│   │       │       ├── chtexgrp.txt
+│   │       │       ├── chtexmod.txt
+│   │       │       ├── chtext.txt
+│   │       │       ├── chtextur.txt
+│   │       │       ├── chunifie.txt
+│   │       │       ├── chydcrit.txt
+│   │       │       ├── cinterp.txt
+│   │       │       ├── cmonth.txt
+│   │       │       ├── comp.txt
+│   │       │       ├── cpmat.txt
+│   │       │       ├── cpmatgrp.txt
+│   │       │       ├── cpwndbrk.txt
+│   │       │       ├── crstrcts.txt
+│   │       │       ├── csfrags.txt
+│   │       │       ├── csmoist.txt
+│   │       │       ├── csmorgc.txt
+│   │       │       ├── csmorhpp.txt
+│   │       │       ├── csmormr.txt
+│   │       │       ├── csmorss.txt
+│   │       │       ├── cstemp.txt
+│   │       │       ├── ctext.txt
+│   │       │       ├── ctreestm.txt
+│   │       │       ├── ctxfmmin.txt
+│   │       │       ├── ctxfmoth.txt
+│   │       │       ├── ctxmoicl.txt
+│   │       │       ├── distimd.txt
+│   │       │       ├── distlmd.txt
+│   │       │       ├── distmd.txt
+│   │       │       ├── lareao.txt
+│   │       │       ├── legend.txt
+│   │       │       ├── ltext.txt
+│   │       │       ├── mapunit.txt
+│   │       │       ├── msdomdet.txt
+│   │       │       ├── msdommas.txt
+│   │       │       ├── msidxdet.txt
+│   │       │       ├── msidxmas.txt
+│   │       │       ├── msrsdet.txt
+│   │       │       ├── msrsmas.txt
+│   │       │       ├── mstab.txt
+│   │       │       ├── mstabcol.txt
+│   │       │       ├── muaggatt.txt
+│   │       │       ├── muareao.txt
+│   │       │       ├── mucrpyd.txt
+│   │       │       ├── mutext.txt
+│   │       │       ├── sacatlog.txt
+│   │       │       ├── sainterp.txt
+│   │       │       ├── sdvalgorithm.txt
+│   │       │       ├── sdvattribute.txt
+│   │       │       ├── sdvfolder.txt
+│   │       │       ├── sdvfolderattribute.txt
+│   │       │       └── version.txt
+│   │       ├── CA788
+│   │       │   ├── readme.txt
+│   │       │   ├── soil_metadata_ca788.txt
+│   │       │   ├── soil_metadata_ca788.xml
+│   │       │   ├── soildb_US_2003.mdb
+│   │       │   ├── spatial
+│   │       │   │   ├── soilmu_a_ca788.dbf
+│   │       │   │   ├── soilmu_a_ca788.prj
+│   │       │   │   ├── soilmu_a_ca788.shp
+│   │       │   │   ├── soilmu_a_ca788.shx
+│   │       │   │   ├── soilmu_l_ca788.dbf
+│   │       │   │   ├── soilmu_l_ca788.prj
+│   │       │   │   ├── soilmu_l_ca788.shp
+│   │       │   │   ├── soilmu_l_ca788.shx
+│   │       │   │   ├── soilmu_p_ca788.dbf
+│   │       │   │   ├── soilmu_p_ca788.prj
+│   │       │   │   ├── soilmu_p_ca788.shp
+│   │       │   │   ├── soilmu_p_ca788.shx
+│   │       │   │   ├── soilsa_a_ca788.dbf
+│   │       │   │   ├── soilsa_a_ca788.prj
+│   │       │   │   ├── soilsa_a_ca788.shp
+│   │       │   │   ├── soilsa_a_ca788.shx
+│   │       │   │   ├── soilsf_l_ca788.dbf
+│   │       │   │   ├── soilsf_l_ca788.prj
+│   │       │   │   ├── soilsf_l_ca788.shp
+│   │       │   │   ├── soilsf_l_ca788.shx
+│   │       │   │   ├── soilsf_p_ca788.dbf
+│   │       │   │   ├── soilsf_p_ca788.prj
+│   │       │   │   ├── soilsf_p_ca788.shp
+│   │       │   │   ├── soilsf_p_ca788.shx
+│   │       │   │   ├── soilsf_t_ca788.txt
+│   │       │   │   └── version.txt
+│   │       │   └── tabular
+│   │       │       ├── ccancov.txt
+│   │       │       ├── ccrpyd.txt
+│   │       │       ├── cdfeat.txt
+│   │       │       ├── cecoclas.txt
+│   │       │       ├── ceplants.txt
+│   │       │       ├── cerosnac.txt
+│   │       │       ├── cfprod.txt
+│   │       │       ├── cfprodo.txt
+│   │       │       ├── cgeomord.txt
+│   │       │       ├── chaashto.txt
+│   │       │       ├── chconsis.txt
+│   │       │       ├── chdsuffx.txt
+│   │       │       ├── chfrags.txt
+│   │       │       ├── chorizon.txt
+│   │       │       ├── chpores.txt
+│   │       │       ├── chstr.txt
+│   │       │       ├── chstrgrp.txt
+│   │       │       ├── chtexgrp.txt
+│   │       │       ├── chtexmod.txt
+│   │       │       ├── chtext.txt
+│   │       │       ├── chtextur.txt
+│   │       │       ├── chunifie.txt
+│   │       │       ├── chydcrit.txt
+│   │       │       ├── cinterp.txt
+│   │       │       ├── cmonth.txt
+│   │       │       ├── comp.txt
+│   │       │       ├── cpmat.txt
+│   │       │       ├── cpmatgrp.txt
+│   │       │       ├── cpwndbrk.txt
+│   │       │       ├── crstrcts.txt
+│   │       │       ├── csfrags.txt
+│   │       │       ├── csmoist.txt
+│   │       │       ├── csmorgc.txt
+│   │       │       ├── csmorhpp.txt
+│   │       │       ├── csmormr.txt
+│   │       │       ├── csmorss.txt
+│   │       │       ├── cstemp.txt
+│   │       │       ├── ctext.txt
+│   │       │       ├── ctreestm.txt
+│   │       │       ├── ctxfmmin.txt
+│   │       │       ├── ctxfmoth.txt
+│   │       │       ├── ctxmoicl.txt
+│   │       │       ├── distimd.txt
+│   │       │       ├── distlmd.txt
+│   │       │       ├── distmd.txt
+│   │       │       ├── lareao.txt
+│   │       │       ├── legend.txt
+│   │       │       ├── ltext.txt
+│   │       │       ├── mapunit.txt
+│   │       │       ├── msdomdet.txt
+│   │       │       ├── msdommas.txt
+│   │       │       ├── msidxdet.txt
+│   │       │       ├── msidxmas.txt
+│   │       │       ├── msrsdet.txt
+│   │       │       ├── msrsmas.txt
+│   │       │       ├── mstab.txt
+│   │       │       ├── mstabcol.txt
+│   │       │       ├── muaggatt.txt
+│   │       │       ├── muareao.txt
+│   │       │       ├── mucrpyd.txt
+│   │       │       ├── mutext.txt
+│   │       │       ├── sacatlog.txt
+│   │       │       ├── sainterp.txt
+│   │       │       ├── sdvalgorithm.txt
+│   │       │       ├── sdvattribute.txt
+│   │       │       ├── sdvfolder.txt
+│   │       │       ├── sdvfolderattribute.txt
+│   │       │       └── version.txt
+│   │       └── NHD_H_18060005_HU8_GDB.gdb
+│   │           ├── a00000001.TablesByName.atx
+│   │           ├── a00000001.freelist
+│   │           ├── a00000001.gdbindexes
+│   │           ├── a00000001.gdbtable
+│   │           ├── a00000001.gdbtablx
+│   │           ├── a00000002.gdbtable
+│   │           ├── a00000002.gdbtablx
+│   │           ├── a00000003.gdbindexes
+│   │           ├── a00000003.gdbtable
+│   │           ├── a00000003.gdbtablx
+│   │           ├── a00000004.CatItemsByPhysicalName.atx
+│   │           ├── a00000004.CatItemsByType.atx
+│   │           ├── a00000004.FDO_UUID.atx
+│   │           ├── a00000004.freelist
+│   │           ├── a00000004.gdbindexes
+│   │           ├── a00000004.gdbtable
+│   │           ├── a00000004.gdbtablx
+│   │           ├── a00000004.horizon
+│   │           ├── a00000005.CatItemTypesByName.atx
+│   │           ├── a00000005.CatItemTypesByParentTypeID.atx
+│   │           ├── a00000005.CatItemTypesByUUID.atx
+│   │           ├── a00000005.gdbindexes
+│   │           ├── a00000005.gdbtable
+│   │           ├── a00000005.gdbtablx
+│   │           ├── a00000006.CatRelsByDestinationID.atx
+│   │           ├── a00000006.CatRelsByOriginID.atx
+│   │           ├── a00000006.CatRelsByType.atx
+│   │           ├── a00000006.FDO_UUID.atx
+│   │           ├── a00000006.gdbindexes
+│   │           ├── a00000006.gdbtable
+│   │           ├── a00000006.gdbtablx
+│   │           ├── a00000007.CatRelTypesByBackwardLabel.atx
+│   │           ├── a00000007.CatRelTypesByDestItemTypeID.atx
+│   │           ├── a00000007.CatRelTypesByForwardLabel.atx
+│   │           ├── a00000007.CatRelTypesByName.atx
+│   │           ├── a00000007.CatRelTypesByOriginItemTypeID.atx
+│   │           ├── a00000007.CatRelTypesByUUID.atx
+│   │           ├── a00000007.gdbindexes
+│   │           ├── a00000007.gdbtable
+│   │           ├── a00000007.gdbtablx
+│   │           ├── a00000009.gdbindexes
+│   │           ├── a00000009.gdbtable
+│   │           ├── a00000009.gdbtablx
+│   │           ├── a0000000a.gdbindexes
+│   │           ├── a0000000a.gdbtable
+│   │           ├── a0000000a.gdbtablx
+│   │           ├── a0000000b.gdbindexes
+│   │           ├── a0000000b.gdbtable
+│   │           ├── a0000000b.gdbtablx
+│   │           ├── a0000000c.gdbindexes
+│   │           ├── a0000000c.gdbtable
+│   │           ├── a0000000c.gdbtablx
+│   │           ├── a0000000d.gdbindexes
+│   │           ├── a0000000d.gdbtable
+│   │           ├── a0000000d.gdbtablx
+│   │           ├── a0000000e.gdbindexes
+│   │           ├── a0000000e.gdbtable
+│   │           ├── a0000000e.gdbtablx
+│   │           ├── a0000000f.gdbindexes
+│   │           ├── a0000000f.gdbtable
+│   │           ├── a0000000f.gdbtablx
+│   │           ├── a00000010.gdbindexes
+│   │           ├── a00000010.gdbtable
+│   │           ├── a00000010.gdbtablx
+│   │           ├── a00000011.gdbindexes
+│   │           ├── a00000011.gdbtable
+│   │           ├── a00000011.gdbtablx
+│   │           ├── a00000012.gdbindexes
+│   │           ├── a00000012.gdbtable
+│   │           ├── a00000012.gdbtablx
+│   │           ├── a00000013.gdbindexes
+│   │           ├── a00000013.gdbtable
+│   │           ├── a00000013.gdbtablx
+│   │           ├── a00000014.gdbindexes
+│   │           ├── a00000014.gdbtable
+│   │           ├── a00000014.gdbtablx
+│   │           ├── a00000015.gdbindexes
+│   │           ├── a00000015.gdbtable
+│   │           ├── a00000015.gdbtablx
+│   │           ├── a00000015.spx
+│   │           ├── a00000016.gdbindexes
+│   │           ├── a00000016.gdbtable
+│   │           ├── a00000016.gdbtablx
+│   │           ├── a00000016.spx
+│   │           ├── a00000017.gdbindexes
+│   │           ├── a00000017.gdbtable
+│   │           ├── a00000017.gdbtablx
+│   │           ├── a00000017.spx
+│   │           ├── a00000018.gdbindexes
+│   │           ├── a00000018.gdbtable
+│   │           ├── a00000018.gdbtablx
+│   │           ├── a00000018.spx
+│   │           ├── a00000019.gdbindexes
+│   │           ├── a00000019.gdbtable
+│   │           ├── a00000019.gdbtablx
+│   │           ├── a00000019.spx
+│   │           ├── a0000001a.gdbindexes
+│   │           ├── a0000001a.gdbtable
+│   │           ├── a0000001a.gdbtablx
+│   │           ├── a0000001a.spx
+│   │           ├── a0000001b.freelist
+│   │           ├── a0000001b.gdbindexes
+│   │           ├── a0000001b.gdbtable
+│   │           ├── a0000001b.gdbtablx
+│   │           ├── a0000001b.spx
+│   │           ├── a0000001c.gdbindexes
+│   │           ├── a0000001c.gdbtable
+│   │           ├── a0000001c.gdbtablx
+│   │           ├── a0000001c.spx
+│   │           ├── a0000001d.gdbindexes
+│   │           ├── a0000001d.gdbtable
+│   │           ├── a0000001d.gdbtablx
+│   │           ├── a0000001d.spx
+│   │           ├── a0000001e.gdbindexes
+│   │           ├── a0000001e.gdbtable
+│   │           ├── a0000001e.gdbtablx
+│   │           ├── a0000001e.spx
+│   │           ├── a0000001f.gdbindexes
+│   │           ├── a0000001f.gdbtable
+│   │           ├── a0000001f.gdbtablx
+│   │           ├── a0000001f.spx
+│   │           ├── a00000020.gdbindexes
+│   │           ├── a00000020.gdbtable
+│   │           ├── a00000020.gdbtablx
+│   │           ├── a00000020.spx
+│   │           ├── a00000021.gdbindexes
+│   │           ├── a00000021.gdbtable
+│   │           ├── a00000021.gdbtablx
+│   │           ├── a00000021.spx
+│   │           ├── a00000022.gdbindexes
+│   │           ├── a00000022.gdbtable
+│   │           ├── a00000022.gdbtablx
+│   │           ├── a00000022.spx
+│   │           ├── a00000023.gdbindexes
+│   │           ├── a00000023.gdbtable
+│   │           ├── a00000023.gdbtablx
+│   │           ├── a00000023.spx
+│   │           ├── a00000024.gdbindexes
+│   │           ├── a00000024.gdbtable
+│   │           ├── a00000024.gdbtablx
+│   │           ├── a00000024.spx
+│   │           ├── a00000025.gdbindexes
+│   │           ├── a00000025.gdbtable
+│   │           ├── a00000025.gdbtablx
+│   │           ├── a00000025.spx
+│   │           ├── a00000026.gdbindexes
+│   │           ├── a00000026.gdbtable
+│   │           ├── a00000026.gdbtablx
+│   │           ├── a00000026.spx
+│   │           ├── a00000027.gdbindexes
+│   │           ├── a00000027.gdbtable
+│   │           ├── a00000027.gdbtablx
+│   │           ├── a00000028.N_1_Desc_0.atx
+│   │           ├── a00000028.N_1_Desc_1.atx
+│   │           ├── a00000028.gdbindexes
+│   │           ├── a00000028.gdbtable
+│   │           ├── a00000028.gdbtablx
+│   │           ├── a00000029.N_1_JTopo_0.atx
+│   │           ├── a00000029.gdbindexes
+│   │           ├── a00000029.gdbtable
+│   │           ├── a00000029.gdbtablx
+│   │           ├── a0000002a.N_1_JTopo2_0.atx
+│   │           ├── a0000002a.gdbindexes
+│   │           ├── a0000002a.gdbtable
+│   │           ├── a0000002a.gdbtablx
+│   │           ├── a0000002b.N_1_JDesc_0.atx
+│   │           ├── a0000002b.gdbindexes
+│   │           ├── a0000002b.gdbtable
+│   │           ├── a0000002b.gdbtablx
+│   │           ├── a0000002c.N_1_JStatus_0.atx
+│   │           ├── a0000002c.gdbindexes
+│   │           ├── a0000002c.gdbtable
+│   │           ├── a0000002c.gdbtablx
+│   │           ├── a0000002d.N_1_ETopo_0.atx
+│   │           ├── a0000002d.gdbindexes
+│   │           ├── a0000002d.gdbtable
+│   │           ├── a0000002d.gdbtablx
+│   │           ├── a0000002e.N_1_EDesc_0.atx
+│   │           ├── a0000002e.gdbindexes
+│   │           ├── a0000002e.gdbtable
+│   │           ├── a0000002e.gdbtablx
+│   │           ├── a0000002f.N_1_EStatus_0.atx
+│   │           ├── a0000002f.gdbindexes
+│   │           ├── a0000002f.gdbtable
+│   │           ├── a0000002f.gdbtablx
+│   │           ├── a00000030.N_1_FloDir_0.atx
+│   │           ├── a00000030.gdbindexes
+│   │           ├── a00000030.gdbtable
+│   │           ├── a00000030.gdbtablx
+│   │           ├── a00000031.freelist
+│   │           ├── a00000031.gdbindexes
+│   │           ├── a00000031.gdbtable
+│   │           ├── a00000031.gdbtablx
+│   │           ├── a00000031.spx
+│   │           ├── gdb
+│   │           └── timestamps
+│   ├── elevation
+│   │   └── dem_watershed_10m.tif
+│   ├── groundwater_nitrate_clean.csv
+│   ├── groundwaterdata.csv
+│   ├── outputs
+│   │   ├── risk_map_500m.gpkg
+│   │   ├── risk_map_500m_hybrid_probability.tif
+│   │   └── risk_map_500m_model_probability.tif
+│   ├── prism_points.gpkg
+│   ├── processed
+│   │   ├── crop_features_lag1_2021_2024.csv
+│   │   ├── groundwater_ml_integration_lag1_2021_2024_with_climate.csv
+│   │   ├── groundwater_nitrate_clean.csv
+│   │   ├── groundwater_nitrate_clean.gpkg
+│   │   ├── groundwater_well_buffers_500m.gpkg
+│   │   └── prism_climate_monthly_clean.csv
+│   ├── salinas_valley_subbasins.geojson
+│   └── soils
+│       └── soils_huc8_attributes.gpkg
+├── environment.yml
+├── images
+│   ├── karuna.jpg
+│   └── profile1.jpg
+├── notebooks
+│   ├── __pycache__
+│   │   └── interactive_risk_map.cpython-312.pyc
+│   ├── classification_models.ipynb
+│   ├── data_cleaning
+│   │   ├── crop_mapping
+│   │   │   ├── crop_mapping_annual_2021_2024.ipynb
+│   │   │   ├── crop_mapping_eda.ipynb
+│   │   │   ├── crop_mapping_feature_selection.csv
+│   │   │   ├── crop_mapping_feature_selection.ipynb
+│   │   │   ├── figures
+│   │   │   │   ├── boxplot_multicrop.png
+│   │   │   │   ├── boxplot_veg_berry.png
+│   │   │   │   ├── correlation_heatmap.png
+│   │   │   │   ├── crop_history_lag.png
+│   │   │   │   ├── distributions.png
+│   │   │   │   ├── lag_scatter_1997.png
+│   │   │   │   ├── map_crops_2023.png
+│   │   │   │   ├── missingness.png
+│   │   │   │   ├── scatter_veg_berry.png
+│   │   │   │   ├── selected_features_corr.png
+│   │   │   │   ├── target_boxplot.png
+│   │   │   │   └── target_vs_features.png
+│   │   │   ├── selected_features.txt
+│   │   │   ├── well_crop_features_all.csv
+│   │   │   └── wells_nitrate.csv
+│   │   ├── groundwater
+│   │   │   ├── groundwater_spatial_eda.ipynb
+│   │   │   └── gwater_clean.ipynb
+│   │   ├── groundwater_depth
+│   │   │   ├── depth_groundwater.csv
+│   │   │   ├── groundwater_depth_clean.csv
+│   │   │   ├── groundwater_depth_eda.ipynb
+│   │   │   └── thiessen_polygons.gpkg
+│   │   ├── precipitation
+│   │   │   └── prism_climate_cleaning_final.ipynb
+│   │   └── soils
+│   │       └── Soil_data_cleanup_team.ipynb
+│   ├── data_merge
+│   │   ├── all_merge_EDA_Final.ipynb
+│   │   └── all_merge_final.ipynb
+│   ├── data_splitting.ipynb
+│   ├── feature_selection.ipynb
+│   ├── final_results.ipynb
+│   ├── regression_models.ipynb
+│   ├── risk_map_random_forest.ipynb
+│   └── robustness_subbasin_balanced_holdout.ipynb
+├── results
+│   ├── classification
+│   │   ├── confusion_matrices_by_threshold_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.25_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.35_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.3_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.45_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.4_10km_subbasin_subbasin1.png
+│   │   ├── confusion_matrices_t0.5_10km_subbasin_subbasin1.png
+│   │   ├── fold_metrics_probability_10km_subbasin_subbasin1.png
+│   │   ├── fold_metrics_threshold_10km_subbasin_subbasin1.png
+│   │   ├── model_comparison_10km_subbasin_subbasin1.png
+│   │   ├── pr_roc_calibration_10km_subbasin_subbasin1.png
+│   │   ├── probability_distributions_10km_subbasin_subbasin1.png
+│   │   └── threshold_metrics_10km_subbasin_subbasin1.png
+│   ├── evaluation
+│   │   ├── estimated_leakage_by_split.png
+│   │   ├── spatial_folds_map_10km.png
+│   │   ├── spatial_folds_map_10km_subbasin.png
+│   │   ├── spatial_folds_map_5km_subbasin.png
+│   │   ├── spatial_folds_map_7.5km_subbasin.png
+│   │   ├── spatial_folds_maps_all_splits.png
+│   │   └── subbasin_mix_by_fold.png
+│   ├── feature_selection.csv
+│   ├── final
+│   │   ├── classification_holdout.png
+│   │   ├── final_scores_holdout.csv
+│   │   ├── folds_composition.png
+│   │   ├── folds_map.png
+│   │   ├── folds_performance.png
+│   │   └── regression_holdout.png
+│   ├── interpretability
+│   │   ├── permutation_importance_classifier_holdout.csv
+│   │   └── permutation_importance_classifier_holdout.png
+│   ├── model_comparison.csv
+│   ├── model_runs
+│   │   ├── andrea__lasso__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__lasso__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__lasso__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__linear-regression__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__linear-regression__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic-l1__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l1__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic-l2__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic-l2__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__logistic__classification__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__logistic__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__10km__subbasin0__noelev0.csv
+│   │   ├── andrea__ridge__regression__10km__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── andrea__ridge__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__10km__subbasin0__noelev0.csv
+│   │   ├── charlsey__random-forest__classification__10km__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__10km__subbasin0__noelev0.csv
+│   │   ├── charlsey__random-forest__regression__10km__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── charlsey__random-forest__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__10km__subbasin0__noelev0.csv
+│   │   ├── gavin__decision-tree__classification__10km__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__10km__subbasin0__noelev0.csv
+│   │   ├── gavin__decision-tree__regression__10km__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── gavin__decision-tree__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__10km__subbasin0__noelev0.csv
+│   │   ├── karuna__xgboost-brt__classification__10km__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__10km__subbasin0__noelev0.csv
+│   │   ├── karuna__xgboost-brt__regression__10km__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── karuna__xgboost-brt__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__10km__subbasin0__noelev0.csv
+│   │   ├── team__dummy-mean__regression__10km__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-mean__regression__7-5km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__10km-subbasin__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__10km__subbasin0__noelev0.csv
+│   │   ├── team__dummy-prior__classification__10km__subbasin1__noelev1.csv
+│   │   ├── team__dummy-prior__classification__5km-subbasin__subbasin1__noelev1.csv
+│   │   └── team__dummy-prior__classification__7-5km-subbasin__subbasin1__noelev1.csv
+│   ├── predictions
+│   │   ├── classification__10km__subbasin0.csv.gz
+│   │   ├── classification__10km__subbasin1.csv.gz
+│   │   ├── classification__10km_subbasin__subbasin1.csv.gz
+│   │   ├── classification__5km_subbasin__subbasin1.csv.gz
+│   │   ├── classification__7.5km_subbasin__subbasin1.csv.gz
+│   │   ├── regression__10km__subbasin0.csv.gz
+│   │   ├── regression__10km__subbasin1.csv.gz
+│   │   ├── regression__10km_subbasin__subbasin1.csv.gz
+│   │   ├── regression__5km_subbasin__subbasin1.csv.gz
+│   │   └── regression__7.5km_subbasin__subbasin1.csv.gz
+│   ├── regression
+│   │   ├── fold_metrics_10km_subbasin_subbasin1.png
+│   │   ├── model_comparison_10km_subbasin.png
+│   │   ├── observed_vs_predicted_10km_subbasin_subbasin1.png
+│   │   └── residuals_10km_subbasin_subbasin1.png
+│   ├── risk_map
+│   │   ├── risk_map_500m.csv
+│   │   ├── risk_map_500m_comparison.png
+│   │   ├── risk_map_500m_hybrid.png
+│   │   ├── risk_map_500m_hybrid_binary.png
+│   │   ├── risk_map_500m_model.png
+│   │   └── risk_map_500m_monitoring_priority.png
+│   ├── robustness
+│   │   ├── subbasin_balanced_holdouts.csv
+│   │   └── subbasin_balanced_holdouts.png
+│   └── splits
+│       ├── well_5_folds_10000m_exceedance_seed0.csv
+│       ├── well_5_folds_10000m_exceedance_seed0.json
+│       ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.csv
+│       ├── well_5_folds_10000m_subbasin_x_exceedance_seed0.json
+│       ├── well_5_folds_5000m_subbasin_x_exceedance_seed0.csv
+│       ├── well_5_folds_5000m_subbasin_x_exceedance_seed0.json
+│       ├── well_5_folds_7500m_subbasin_x_exceedance_seed0.csv
+│       └── well_5_folds_7500m_subbasin_x_exceedance_seed0.json
+├── run.sh
+├── run_pipeline.md
+├── src
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   └── paths.cpython-312.pyc
+│   ├── data
+│   │   ├── __pycache__
+│   │   │   ├── cleaning.cpython-312.pyc
+│   │   │   └── crop_mapping.cpython-312.pyc
+│   │   ├── cleaning.py
+│   │   └── crop_mapping.py
+│   ├── evaluation
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── leakage.cpython-312.pyc
+│   │   │   ├── make_splits.cpython-312.pyc
+│   │   │   ├── results_log.cpython-312.pyc
+│   │   │   └── splits.cpython-312.pyc
+│   │   ├── leakage.py
+│   │   ├── make_splits.py
+│   │   ├── results_log.py
+│   │   └── splits.py
+│   ├── features
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── preprocessing.cpython-312.pyc
+│   │   │   └── transformers.cpython-312.pyc
+│   │   ├── preprocessing.py
+│   │   └── transformers.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── evaluate.cpython-312.pyc
+│   │   │   ├── interactive_risk_map.cpython-312.pyc
+│   │   │   └── random_forest.cpython-312.pyc
+│   │   ├── evaluate.py
+│   │   └── interactive_risk_map.py
+│   └── paths.py
+├── styles.css
+├── summary.qmd
+└── summary.quarto_ipynb
+
+120 directories, 1522 files
