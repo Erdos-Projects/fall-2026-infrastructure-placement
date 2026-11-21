@@ -17,7 +17,7 @@ team:
     website: https://karunasangam.com/
 
   - name: Andrea Lomelin
-    image: images/profile1.jpg
+    #image: images/profile1.jpg
     alt: Alt text
     github: https://github.com/lomelincandrea-cloud
     # linkedin: TBA
@@ -25,7 +25,7 @@ team:
     # scholar: TBA
 
   - name: Gavin Niendorf
-    image: images/profile1.jpg
+    #image: images/profile1.jpg
     alt: Alt text
     github: https://github.com/GNiendorf
     # linkedin: TBA

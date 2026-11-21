@@ -26,6 +26,28 @@ Numbers (1.–9.) give the order to run the pipeline.
  └── summary.qmd                                              # Project summary and website homepage
 ```
 
+
+`Folders related to the website only`
+```
+├── _extensions
+│   └── authors
+│       ├── _extension.yml
+│       └── authors.lua
+├── _freeze
+│   ├── site_libs
+│   │   └── clipboard
+│   │       └── clipboard.min.js
+│   └── summary
+│       └── execute-results
+│           └── html.json
+├── .github
+│       └── workflows
+│           └── publish.yml                                  # Autoupdate the website 
+└── images                                                   # Misc. images for the website 
+
+```
+
+
 `data/`
 
 ```
@@ -127,7 +149,7 @@ Numbers (1.–9.) give the order to run the pipeline.
     ├── paths.py                                             # every input and output location
     ├── data
     │   ├── crop_mapping.py                                  # 0. downloads the DWR crop maps
-    │   └── cleaning.py                                  # 1. functions for data cleaning
+    │   └── cleaning.py                                      # 1. functions for data cleaning
     ├── evaluation
     │   ├── __init__.py
     │   ├── leakage.py                                       # spatial leakage diagnostics

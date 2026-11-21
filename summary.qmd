@@ -21,7 +21,7 @@ This project will predict areas with higher risk of nitrate pollution in the Sal
 # Interactive groundwater nitrate risk map
 
 ```{python}
-#| fig-cap: "Interactive map of the Salinas Valley, colored by low, moderate, and high risk of nitrate groundwater contamination predictions from our modelling. The layers show the risk assessment from our fitted Random Forest Classifer (Random Forest Model) and a hybrid model using our fitted Random Forest Classifer and the last groundwater measurement in that area (Hybrid Model)."
+#| fig-cap: "Interactive map of the Salinas Valley, colored by low, moderate, and high risk of nitrate groundwater contamination predictions from our modelling. The layers show the risk assessment from our fitted Random Forest Classifier (Random Forest Model) and a hybrid model using our fitted Random Forest Classifier and the last groundwater measurement in that area (Hybrid Model)."
 import sys
 from pathlib import Path
 
@@ -80,9 +80,9 @@ We approached modeling from two angles: regression and classification. The regre
 
 The classification task seeks to classify locations as exceedances (above nitrate concentrations of 10 mg/L) or non-exceedances. We compared a dummy model and simple logistic model to logistic models with two regularization strategies (L1 and L2), a decision tree model, a random forest model, and an XGBoost classifier. Our basic scoring metric was AUC score, where again the random forest was the strongest performing, averaging 0.827 across training folds,, compared to the weakest performing, the decision tree model, with an AUC of 0.765. Per our KPIs, the f1 score, balancing recall and precision, was highest for the random forest model with the slightly lower cutoff threshold of \~0.4, with an f1 of 0.673. We found the random forest model to be the most stable across folds and perform the strongest overall.
 
-On our final model evaluation with the holdout set, our random forest classifer performance ended up being weaker, with an AUC of 0.741, compared with 0.827. Similarly, the f1 dips to 0.654 at a cutoff threshold of 0.4. Upon some investigation, we found that this particular fold had a much higher percentage of exceedances (42%, compared to \~30% in the training folds), which suggests weaker extrapolation to the unseen data. Essentially, the model generalizes to unseen areas about as well as cross-validation suggests when every subbasin is represented, but it performs worse where a heavily contaminated subbasin is under-represented in training. In the future, we should be more thorough in our splitting strategy, ensuring that the training and holdout contained more general representations of the dataset.
+On our final model evaluation with the holdout set, our random forest classifier performance ended up being weaker, with an AUC of 0.741, compared with 0.827. Similarly, the f1 dips to 0.654 at a cutoff threshold of 0.4. Upon some investigation, we found that this particular fold had a much higher percentage of exceedances (42%, compared to \~30% in the training folds), which suggests weaker extrapolation to the unseen data. Essentially, the model generalizes to unseen areas about as well as cross-validation suggests when every subbasin is represented, but it performs worse where a heavily contaminated subbasin is under-represented in training. In the future, we should be more thorough in our splitting strategy, ensuring that the training and holdout contained more general representations of the dataset.
 
-![The ROC AUC curve, precision-recall tradeoff, calibration, and confusion matrix for our fitted Random Forest Classifer on the final holdout set.](results/final/classification_holdout.png){width=100% fig-alt="XX." #fig-final}
+![The ROC AUC curve, precision-recall tradeoff, calibration, and confusion matrix for our fitted Random Forest Classifier on the final holdout set.](results/final/classification_holdout.png){width=100% fig-alt="XX." #fig-final}
 
 # Next steps
 
