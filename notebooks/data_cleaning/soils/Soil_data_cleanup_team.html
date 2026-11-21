@@ -238,11 +238,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4>Karuna Sangam</h4>
 <div class="author-links"><a href="https://github.com/karunasangam" target="_blank"><i class="bi bi-github"></i> GitHub</a><a href="https://www.linkedin.com/in/karuna-sangam-b1137498/" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a><a href="https://karunasangam.com/" target="_blank"><i class="bi bi-globe"></i> Website</a></div></div>
 <div class="author-card">
-<img src="../../../images/profile1.jpg" alt="Alt text" class="author-image">
+<img src="../../../images/placeholder.png" alt="Alt text" class="author-image">
 <h4>Andrea Lomelin</h4>
 <div class="author-links"><a href="https://github.com/lomelincandrea-cloud" target="_blank"><i class="bi bi-github"></i> GitHub</a></div></div>
 <div class="author-card">
-<img src="../../../images/profile1.jpg" alt="Alt text" class="author-image">
+<img src="../../../images/placeholder.png" alt="Alt text" class="author-image">
 <h4>Gavin Niendorf</h4>
 <div class="author-links"><a href="https://github.com/GNiendorf" target="_blank"><i class="bi bi-github"></i> GitHub</a></div></div>
 </div>
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#soil-polygons-clipped-to-the-watershed" id="toc-soil-polygons-clipped-to-the-watershed" class="nav-link active" data-scroll-target="#soil-polygons-clipped-to-the-watershed">1. Soil polygons clipped to the watershed</a></li>
-  <li><a href="#ssurgo-attribute-tables" id="toc-ssurgo-attribute-tables" class="nav-link" data-scroll-target="#ssurgo-attribute-tables">2. SSURGO attribute tables</a></li>
+  <li><a href="#assign-column-names" id="toc-assign-column-names" class="nav-link" data-scroll-target="#assign-column-names">2. Assign column names</a></li>
   <li><a href="#select-soil-attributes" id="toc-select-soil-attributes" class="nav-link" data-scroll-target="#select-soil-attributes">3. Select soil attributes</a></li>
   <li><a href="#join-attributes-to-polygons-and-check-the-result" id="toc-join-attributes-to-polygons-and-check-the-result" class="nav-link" data-scroll-target="#join-attributes-to-polygons-and-check-the-result">4. Join attributes to polygons and check the result</a></li>
   <li><a href="#save" id="toc-save" class="nav-link" data-scroll-target="#save">5. Save</a></li>
@@ -287,10 +287,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Objective:</strong> Build one soil polygon layer for the Salinas River watershed (HUC8 18060005) with the SSURGO attributes used as model features: slope, depth to bedrock, available water storage, drainage class, and hydrologic soil group.</p>
-<p><strong>Inputs (local only, not tracked by Git)</strong> - SSURGO survey downloads (one folder per survey area), each with <code>spatial/soilmu_a_*.shp</code> and <code>tabular/comp.txt</code>, <code>muaggatt.txt</code>, <code>mstabcol.txt</code> - NHD HU8 geodatabase <code>NHD_H_18060005_HU8_GDB.gdb</code> (layer <code>WBDHU8</code>), used as the watershed boundary</p>
-<p><strong>Output (local only):</strong> <code>data/soils/soils_huc8_attributes.gpkg</code>, one row per soil polygon with its map-unit attributes. It is read by <code>notebooks/merge/all_merge_final.ipynb</code>, which computes area-weighted features within each well buffer.</p>
-<p>Set the two input paths in the next cell before running.</p>
-<div id="s01" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:31.097514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:31.097368Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:31.436463Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:31.435811Z&quot;}}" data-execution_count="1">
+<p><strong>Steps</strong>:</p>
+<ol type="1">
+<li><p>Soil polygons clipped to the watershed area</p></li>
+<li><p>Assign column names</p></li>
+<li><p>Select soil attributes</p></li>
+<li><p>Join soil attributes to polygons and check result</p></li>
+<li><p>Save files</p></li>
+</ol>
+<p><strong>Inputs (local only, not tracked by Git)</strong>:</p>
+<ul>
+<li><p>SSURGO survey downloads (one folder per survey area), each with <code>spatial/soilmu_a_*.shp</code> and <code>tabular/comp.txt</code>, <code>muaggatt.txt</code>, <code>mstabcol.txt</code></p></li>
+<li><p>NHD HU8 geodatabase <code>NHD_H_18060005_HU8_GDB.gdb</code> (layer <code>WBDHU8</code>), used as the watershed boundary</p></li>
+</ul>
+<p><strong>Outputs (local only):</strong></p>
+<ul>
+<li><code>data/soils/soils_huc8_attributes.gpkg</code>, one row per soil polygon with its map-unit attributes. It is read by <code>notebooks/merge/all_merge_final.ipynb</code>, which computes area-weighted features within each well buffer.</li>
+</ul>
+<div id="s01" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:31.097514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:31.097368Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:31.436463Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:31.435811Z&quot;}}" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -313,352 +327,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="op">=</span> paths.SOILS</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>paths.require(SOIL_FOLDER, HUC8_GDB)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SSURGO folder:"</span>, SOIL_FOLDER)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HUC8 geodatabase:"</span>, HUC8_GDB)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Output:"</span>, OUTPUT_PATH)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#print("SSURGO folder:", SOIL_FOLDER)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#print("HUC8 geodatabase:", HUC8_GDB)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Output:", OUTPUT_PATH)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.data.soils <span class="im">import</span> clip_to_watershed, column_names, soil_attributes, join_attributes_to_polygons</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>SSURGO folder: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/datasets/ssurgo_soildata
-HUC8 geodatabase: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/NHD_H_18060005_HU8_GDB/NHD_H_18060005_HU8_GDB.gdb
-Output: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastructure-placement/data/soils/soils_huc8_attributes.gpkg</code></pre>
-</div>
 </div>
 <section id="soil-polygons-clipped-to-the-watershed" class="level2">
 <h2 class="anchored" data-anchor-id="soil-polygons-clipped-to-the-watershed">1. Soil polygons clipped to the watershed</h2>
 <p>Read every SSURGO survey’s map-unit polygons, combine them, and keep only the area inside the Salinas HUC8 boundary.</p>
-<div id="s03" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:31.438212Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:31.437973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:34.569782Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:34.569025Z&quot;}}" data-execution_count="2">
+<div id="1cc705f9" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find and combine all SSURGO soil polygon shapefiles</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>soil_shps <span class="op">=</span> <span class="bu">sorted</span>(SOIL_FOLDER.rglob(<span class="st">"soilmu_a_*.shp"</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>soil_layers <span class="op">=</span> [gpd.read_file(path) <span class="cf">for</span> path <span class="kw">in</span> soil_shps]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>soils <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    pd.concat(soil_layers, ignore_index<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span>soil_layers[<span class="dv">0</span>].crs</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(soil_shps)<span class="sc">}</span><span class="ss"> survey areas | </span><span class="sc">{</span><span class="bu">len</span>(soils)<span class="sc">:,}</span><span class="ss"> polygons"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>soils_huc8 <span class="op">=</span> clip_to_watershed(SOIL_FOLDER, HUC8_GDB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>5 survey areas | 27,653 polygons</code></pre>
-</div>
-</div>
-<div id="s04" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:34.571811Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:34.571610Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.267783Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.266933Z&quot;}}" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load HUC8 watershed boundary</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>huc8 <span class="op">=</span> gpd.read_file(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    HUC8_GDB,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    layer<span class="op">=</span><span class="st">"WBDHU8"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Match coordinate systems</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>huc8 <span class="op">=</span> huc8.to_crs(soils.crs)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip soils to the watershed</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>soils_huc8 <span class="op">=</span> gpd.clip(soils, huc8)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>soils_huc8.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>(15906, 5)</code></pre>
+<pre><code>Find and combine all SSURGO soil polygon shapefiles.
+5 survey areas in the raw data with 27,653 polygons
+
+Clip soils to the watershed:
+Dataframe reduced to (15906, 5) out of (27653, 5)</code></pre>
 </div>
 </div>
 </section>
-<section id="ssurgo-attribute-tables" class="level2">
-<h2 class="anchored" data-anchor-id="ssurgo-attribute-tables">2. SSURGO attribute tables</h2>
-<p>The tabular files have no headers; column names come from the SSURGO metadata table <code>mstabcol.txt</code>, which is identical in every survey. Only map units inside the watershed are kept.</p>
-<div id="s06" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.269783Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.269600Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.455268Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.454533Z&quot;}}" data-execution_count="4">
+<section id="assign-column-names" class="level2">
+<h2 class="anchored" data-anchor-id="assign-column-names">2. Assign column names</h2>
+<p>The tabular raw files for the soil data have no headers, so we add in column names from the SSURGO metadata table <code>mstabcol.txt</code>, which is identical in every survey. <!-- Only map units inside the watershed are kept.--></p>
+<div id="782196b2" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all SSURGO component tables </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>comp_files <span class="op">=</span> <span class="bu">sorted</span>(SOIL_FOLDER.rglob(<span class="st">"comp.txt"</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine all SSURGO component tables</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>component_tables <span class="op">=</span> [</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    pd.read_csv(path, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> comp_files</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>components <span class="op">=</span> pd.concat(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    component_tables,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">True</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>components.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>muaggatt_huc8 <span class="op">=</span> column_names(soils_huc8, SOIL_FOLDER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">0</th>
-<th data-quarto-table-cell-role="th">1</th>
-<th data-quarto-table-cell-role="th">2</th>
-<th data-quarto-table-cell-role="th">3</th>
-<th data-quarto-table-cell-role="th">4</th>
-<th data-quarto-table-cell-role="th">5</th>
-<th data-quarto-table-cell-role="th">6</th>
-<th data-quarto-table-cell-role="th">7</th>
-<th data-quarto-table-cell-role="th">8</th>
-<th data-quarto-table-cell-role="th">9</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">99</th>
-<th data-quarto-table-cell-role="th">100</th>
-<th data-quarto-table-cell-role="th">101</th>
-<th data-quarto-table-cell-role="th">102</th>
-<th data-quarto-table-cell-role="th">103</th>
-<th data-quarto-table-cell-role="th">104</th>
-<th data-quarto-table-cell-role="th">105</th>
-<th data-quarto-table-cell-role="th">106</th>
-<th data-quarto-table-cell-role="th">107</th>
-<th data-quarto-table-cell-role="th">108</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>NaN</td>
-<td>2</td>
-<td>NaN</td>
-<td>Linne</td>
-<td>Series</td>
-<td>No</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>455540</td>
-<td>29305552</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>NaN</td>
-<td>2</td>
-<td>NaN</td>
-<td>Diablo</td>
-<td>Series</td>
-<td>No</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>455540</td>
-<td>29305553</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>NaN</td>
-<td>2</td>
-<td>NaN</td>
-<td>Los Osos</td>
-<td>Series</td>
-<td>No</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>455540</td>
-<td>29305554</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>NaN</td>
-<td>2</td>
-<td>NaN</td>
-<td>Gazos</td>
-<td>Series</td>
-<td>No</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>455540</td>
-<td>29305555</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>NaN</td>
-<td>2</td>
-<td>NaN</td>
-<td>Millsholm</td>
-<td>Series</td>
-<td>No</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>455540</td>
-<td>29305556</td>
-</tr>
-</tbody>
-</table>
-
-<p>5 rows × 109 columns</p>
-</div>
-</div>
-</div>
-<div id="s07" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.456954Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.456797Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.501218Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.500631Z&quot;}}" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load SSURGO metadata</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>meta <span class="op">=</span> pd.read_csv(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">next</span>(SOIL_FOLDER.rglob(<span class="st">"mstabcol.txt"</span>)),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">"|"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    header<span class="op">=</span><span class="va">None</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the real column names for the component table</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>component_cols <span class="op">=</span> (</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    meta[meta[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"component"</span>]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="dv">1</span>)[<span class="dv">2</span>]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    .tolist()</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the column names</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>components.columns <span class="op">=</span> component_cols</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>components.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['comppct_l', 'comppct_r', 'comppct_h', 'compname', 'compkind',
+<div class="cell-output cell-output-stdout">
+<pre><code>Column names from metadata:
+Index(['comppct_l', 'comppct_r', 'comppct_h', 'compname', 'compkind',
        'majcompflag', 'otherph', 'localphase', 'slope_l', 'slope_r',
        ...
        'flsoilleachpot', 'flsoirunoffpot', 'fltemik2use', 'fltriumph2use',
        'indraingrp', 'innitrateleachi', 'misoimgmtgrp', 'vasoimgtgrp', 'mukey',
        'cokey'],
-      dtype='str', length=109)</code></pre>
-</div>
-</div>
-<div id="s08" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.502850Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.502695Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.515723Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.515134Z&quot;}}" data-execution_count="6">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get only the MUKEY values that are inside the HUC8</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>huc8_mukeys <span class="op">=</span> soils_huc8[<span class="st">"MUKEY"</span>].astype(<span class="bu">str</span>).unique()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only components belonging to soil map units inside the HUC8</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>components_huc8 <span class="op">=</span> components[</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    components[<span class="st">"mukey"</span>].astype(<span class="bu">str</span>).isin(huc8_mukeys)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>components_huc8.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>(3074, 109)</code></pre>
-</div>
-</div>
-<div id="s09" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.517467Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.517268Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.646243Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.645571Z&quot;}}" data-execution_count="7">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find, read and combine the map-unit aggregate tables (one per survey)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>muaggatt_files <span class="op">=</span> <span class="bu">sorted</span>(SOIL_FOLDER.rglob(<span class="st">"muaggatt.txt"</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>muaggatt_tables <span class="op">=</span> [</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    pd.read_csv(path, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> muaggatt_files</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>muaggatt <span class="op">=</span> pd.concat(</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    muaggatt_tables,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">True</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="s10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.648080Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.647916Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.653183Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.652581Z&quot;}}" data-execution_count="8">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>muaggatt_cols <span class="op">=</span> (</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    meta[meta[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"muaggatt"</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="dv">1</span>)[<span class="dv">2</span>]</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .tolist()</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>muaggatt.columns <span class="op">=</span> muaggatt_cols</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="s11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.654883Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.654721Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.662790Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.662218Z&quot;}}" data-execution_count="9">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>muaggatt_huc8 <span class="op">=</span> muaggatt[</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    muaggatt[<span class="st">"mukey"</span>].astype(<span class="bu">str</span>).isin(huc8_mukeys)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>muaggatt_huc8.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>(492, 40)</code></pre>
+      dtype='str', length=109)
+
+Get only the MUKEY values that are inside the HUC8 watershed.
+Dataframe reduced to size:
+(3074, 109)
+
+Find, read and combine the map-unit aggregate tables, creating dataframe of size:
+(492, 40)
+</code></pre>
 </div>
 </div>
 </section>
 <section id="select-soil-attributes" class="level2">
 <h2 class="anchored" data-anchor-id="select-soil-attributes">3. Select soil attributes</h2>
 <p>Candidate attributes related to nitrate leaching and hydrology are selected first, then checked for missing values at the map-unit level. Water-table depth and flooding frequency were dropped after the coverage check; the five attributes kept are listed below.</p>
-<div id="s13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.664333Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.664177Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.672755Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.672148Z&quot;}}" data-execution_count="10">
+<div id="3c4f0bf8" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select soil variables relevant to nitrate transport and hydrology</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>soil_vars <span class="op">=</span> [</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mukey"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"slopegradwta"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"brockdepmin"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wtdepannmin"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"aws0150wta"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"drclassdcd"</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hydgrpdcd"</span>,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"flodfreqdcd"</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>soils_attributes <span class="op">=</span> muaggatt_huc8[soil_vars]</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>soils_attributes.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>soils_attributes <span class="op">=</span> soil_attributes(muaggatt_huc8)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>Select soil variables relevant to nitrate transport and hydrology:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
 <div>
 
 
@@ -737,68 +469,102 @@ Output: /mnt/c/Users/Charl/Documents/WORK/ERDOS_SCHOOL_FILES/fall-2026-infrastru
 
 </div>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Keep soil predictors with good data coverage:</code></pre>
 </div>
-<div id="s14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.674635Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.674462Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.678673Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.678080Z&quot;}}" data-execution_count="11">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep soil predictors with good data coverage</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>soil_vars_final <span class="op">=</span> [</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mukey"</span>,<span class="co"># mukey = unique ID for each SSURGO soil map unit</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"slopegradwta"</span>,<span class="co"># slopegradwta = weighted average slope gradient for the map unit</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"brockdepmin"</span>, <span class="co"># brockdepmin = minimum depth to bedrock within the map unit</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"aws0150wta"</span>, <span class="co"># aws0150wta = weighted average available water storage in the top 150 cm of soil</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"drclassdcd"</span>,<span class="co"># drclassdcd = dominant drainage class of the map unit</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hydgrpdcd"</span><span class="co"># hydgrpdcd = dominant hydrologic soil group of the map unit</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>soils_attributes <span class="op">=</span> muaggatt_huc8[soil_vars_final]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mukey</th>
+<th data-quarto-table-cell-role="th">slopegradwta</th>
+<th data-quarto-table-cell-role="th">brockdepmin</th>
+<th data-quarto-table-cell-role="th">aws0150wta</th>
+<th data-quarto-table-cell-role="th">drclassdcd</th>
+<th data-quarto-table-cell-role="th">hydgrpdcd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>455537</td>
+<td>6.0</td>
+<td>91.0</td>
+<td>14.56</td>
+<td>Well drained</td>
+<td>D</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>455538</td>
+<td>12.0</td>
+<td>91.0</td>
+<td>14.56</td>
+<td>Well drained</td>
+<td>D</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>455539</td>
+<td>23.0</td>
+<td>91.0</td>
+<td>14.56</td>
+<td>Well drained</td>
+<td>D</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>455540</td>
+<td>40.0</td>
+<td>91.0</td>
+<td>14.56</td>
+<td>Well drained</td>
+<td>D</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>455541</td>
+<td>38.0</td>
+<td>43.0</td>
+<td>12.00</td>
+<td>Well drained</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+mukey = unique ID for each SSURGO soil map unit
+slopegradwta = weighted average slope gradient for the map unit
+brockdepmin = minimum depth to bedrock within the map unit
+aws0150wta = weighted average available water storage in the top 150 cm of soil
+drclassdcd = dominant drainage class of the map unit
+hydgrpdcd = dominant hydrologic soil group of the map unit
+</code></pre>
+</div>
 </div>
 </section>
 <section id="join-attributes-to-polygons-and-check-the-result" class="level2">
 <h2 class="anchored" data-anchor-id="join-attributes-to-polygons-and-check-the-result">4. Join attributes to polygons and check the result</h2>
-<div id="s16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.680362Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.680211Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.720144Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.719523Z&quot;}}" data-execution_count="12">
+<div id="44bfcc5d" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make MUKEY the same data type in both tables</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>soils_huc8[<span class="st">"MUKEY"</span>] <span class="op">=</span> soils_huc8[<span class="st">"MUKEY"</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>soils_attributes[<span class="st">"mukey"</span>] <span class="op">=</span> soils_attributes[<span class="st">"mukey"</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Join soil attributes to the HUC8 soil polygons</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>soils_model <span class="op">=</span> soils_huc8.merge(</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    soils_attributes,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    left_on<span class="op">=</span><span class="st">"MUKEY"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    right_on<span class="op">=</span><span class="st">"mukey"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>soils_model.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>soils_model <span class="op">=</span> join_attributes_to_polygons(soils_huc8, soils_attributes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>(15906, 11)</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>Check missing values at the unique soil map-unit level.
+
+Missing values:</code></pre>
 </div>
-</div>
-<div id="s17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.721897Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.721713Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.725837Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.725279Z&quot;}}" data-execution_count="13">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicate join key</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>soils_model <span class="op">=</span> soils_model.drop(columns<span class="op">=</span>[<span class="st">"mukey"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="s18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.727370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.727234Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:58.734044Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:58.733461Z&quot;}}" data-execution_count="14">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values at the unique soil map-unit level</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>soil_units <span class="op">=</span> (</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    soils_model</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    .drop_duplicates(<span class="st">"MUKEY"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>soil_units[</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"slopegradwta"</span>, <span class="st">"brockdepmin"</span>, <span class="st">"aws0150wta"</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>     <span class="st">"drclassdcd"</span>, <span class="st">"hydgrpdcd"</span>]</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>].isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display">
 <pre><code>slopegradwta      1
 brockdepmin     234
 aws0150wta       16
@@ -806,31 +572,26 @@ drclassdcd       31
 hydgrpdcd        23
 dtype: int64</code></pre>
 </div>
-</div>
-<div id="s19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:58.735528Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:58.735385Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:59.143136Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:59.142417Z&quot;}}" data-execution_count="15">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Duplicated rows and invalid geometries (both should be 0)</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Duplicated rows:"</span>, soils_model.duplicated().<span class="bu">sum</span>())</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Invalid geometries:"</span>, (<span class="op">~</span>soils_model.geometry.is_valid).<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Duplicated rows: 0
-Invalid geometries: 0</code></pre>
+<pre><code>
+Check for duplicated rows and invalid geometries (both should be 0)
+Duplicated rows: 0
+Invalid geometries: 0
+</code></pre>
 </div>
 </div>
 </section>
 <section id="save" class="level2">
 <h2 class="anchored" data-anchor-id="save">5. Save</h2>
-<div id="s21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:59.144838Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:59.144675Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:28.940444Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:28.939828Z&quot;}}" data-execution_count="16">
+<div id="s21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:59.144838Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:59.144675Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:27:28.940444Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:27:28.939828Z&quot;}}" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>soils_model.to_file(OUTPUT_PATH, layer<span class="op">=</span><span class="st">"soils_huc8_attributes"</span>, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved </span><span class="sc">{</span><span class="bu">len</span>(soils_model)<span class="sc">:,}</span><span class="ss"> polygons to </span><span class="sc">{</span>OUTPUT_PATH<span class="sc">.</span>relative_to(PROJECT_ROOT)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>soils_model.to_file(OUTPUT_PATH, layer<span class="op">=</span><span class="st">"soils_huc8_attributes"</span>, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved </span><span class="sc">{</span><span class="bu">len</span>(soils_model)<span class="sc">:,}</span><span class="ss"> polygons to </span><span class="sc">{</span>OUTPUT_PATH<span class="sc">.</span>relative_to(PROJECT_ROOT)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Saved 15,906 polygons to data/soils/soils_huc8_attributes.gpkg</code></pre>
+<pre><code>Saved 15,906 polygons to data\soils\soils_huc8_attributes.gpkg</code></pre>
 </div>
 </div>
 </section>

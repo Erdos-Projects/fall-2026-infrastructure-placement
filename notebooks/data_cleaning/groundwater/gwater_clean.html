@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Groundwater well measurements data cleaning – Predicting Areas of High-Risk Nitrate Pollution</title>
+<title>Groundwater well measurements: cleaning and analyzing the dataset – Predicting Areas of High-Risk Nitrate Pollution</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item">Groundwater well measurements data cleaning</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item">Groundwater well measurements: cleaning and analyzing the dataset</li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -238,11 +238,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4>Karuna Sangam</h4>
 <div class="author-links"><a href="https://github.com/karunasangam" target="_blank"><i class="bi bi-github"></i> GitHub</a><a href="https://www.linkedin.com/in/karuna-sangam-b1137498/" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a><a href="https://karunasangam.com/" target="_blank"><i class="bi bi-globe"></i> Website</a></div></div>
 <div class="author-card">
-<img src="../../../images/profile1.jpg" alt="Alt text" class="author-image">
+<img src="../../../images/placeholder.png" alt="Alt text" class="author-image">
 <h4>Andrea Lomelin</h4>
 <div class="author-links"><a href="https://github.com/lomelincandrea-cloud" target="_blank"><i class="bi bi-github"></i> GitHub</a></div></div>
 <div class="author-card">
-<img src="../../../images/profile1.jpg" alt="Alt text" class="author-image">
+<img src="../../../images/placeholder.png" alt="Alt text" class="author-image">
 <h4>Gavin Niendorf</h4>
 <div class="author-links"><a href="https://github.com/GNiendorf" target="_blank"><i class="bi bi-github"></i> GitHub</a></div></div>
 </div>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Groundwater well measurements data cleaning</h1>
+<h1 class="title">Groundwater well measurements: cleaning and analyzing the dataset</h1>
 </div>
 
 
@@ -289,40 +289,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="00b0b25a" class="cell" data-execution_count="11">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload</code></pre>
-</div>
-</div>
 <p><strong>Objective:</strong> Prepare groundwater nitrate measurements for modeling within the Salinas Valley watershed. Assess the data for outliers, and see how the data is temporally distributed.</p>
-<p><strong>Steps:</strong> 1. Load in the raw groundwater data from <code>data/</code> and clean the dataset 2. Check the data for outliers 3. Check the temporal distribution of points 4. Save files</p>
-<p><strong>Inputs:</strong>: <code>paths.RAW_GROUNDWATER</code>, <code>paths.HUC8_GDB</code></p>
-<p><strong>Outputs:</strong> <code>paths.NITRATE_CLEAN</code>, <code>paths.NITRATE_CLEAN_GPKG</code>, <code>paths.WELL_BUFFERS</code></p>
-<div id="772825d4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:20.349498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:20.349339Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:20.963892Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:20.963199Z&quot;}}" data-execution_count="12">
+<p><strong>Steps:</strong> 1. Load in the raw groundwater data from <code>data/</code> and clean the dataset</p>
+<ol start="2" type="1">
+<li><p>Check the data for outliers</p></li>
+<li><p>Check the temporal distribution of points</p></li>
+<li><p>Save files</p></li>
+</ol>
+<p><strong>Inputs:</strong>: - <code>data/groundwaterdata.csv</code> - <code>data/NHD_H_18060005_HU8_GDB/NHD_H_18060005_HU8_GDB.gdb</code></p>
+<p><strong>Outputs:</strong> - <code>data/processed/groundwater_nitrate_clean.csv</code> - <code>data/processed/groundwater_nitrate_clean.gpkg</code> - <code>data/processed/groundwater_well_buffers_500m.gpkg</code></p>
+<div id="772825d4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:20.349498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:20.349339Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:20.963892Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:20.963199Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make src importable from any notebook folder (identical in every notebook)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(<span class="bu">next</span>(p <span class="cf">for</span> p <span class="kw">in</span> [Path.cwd(), <span class="op">*</span>Path.cwd().parents] <span class="cf">if</span> (p <span class="op">/</span> <span class="st">"src"</span>).is_dir())))</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src <span class="im">import</span> paths</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> paths.ROOT</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.data.cleaning <span class="im">import</span> groundwater_cleaning, groundwater_outliers, temporal_analysis1, <span class="op">\</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>change_over_time, temporal_analysis2</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make src importable from any notebook folder (identical in every notebook)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(<span class="bu">next</span>(p <span class="cf">for</span> p <span class="kw">in</span> [Path.cwd(), <span class="op">*</span>Path.cwd().parents] <span class="cf">if</span> (p <span class="op">/</span> <span class="st">"src"</span>).is_dir())))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src <span class="im">import</span> paths</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> paths.ROOT</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.data.groundwater <span class="im">import</span> groundwater_cleaning, groundwater_outliers, temporal_analysis1, <span class="op">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>change_over_time, temporal_analysis2</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="load-in-files-and-clean-up-the-dataset" class="level2">
@@ -330,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="c2c2bda0" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>groundwater_final <span class="op">=</span> groundwater_cleaning()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>groundwater_final <span class="op">=</span> groundwater_cleaning()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Load the groundwater data.
@@ -689,7 +683,7 @@ dtype: int64</code></pre>
 <div id="4e4577f7" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>groundwater_outliers(groundwater_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>groundwater_outliers(groundwater_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>We can assess the number of datapoints above the 75% percentile.
@@ -780,7 +774,7 @@ This figure visually represents all the measurements above the 75th percentile a
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-5-output-4.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-4-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -797,7 +791,7 @@ We decide to leave the groundwater data as is, no outliers removed based on this
 <div id="ff88eb38" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>groundwater <span class="op">=</span> temporal_analysis1(groundwater_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>groundwater <span class="op">=</span> temporal_analysis1(groundwater_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>We have 3191 number of unique geographical points out of 10665
@@ -813,7 +807,7 @@ Here we plot the number of unique timepoints as a function of a geographic index
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -824,7 +818,7 @@ Here we plot the difference between the maximum and minimum results as a functio
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-6-output-4.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-5-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -959,7 +953,7 @@ Measurements within 2022-2025 have more consistently been performed.</code></pre
 <div id="52a2fba3" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>groundwater_period <span class="op">=</span> temporal_analysis2(groundwater)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>groundwater_period <span class="op">=</span> temporal_analysis2(groundwater)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Year = 2022
@@ -977,14 +971,14 @@ Remaining measurements: 5280</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-3.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1005,14 +999,14 @@ Remaining measurements: 5280</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-5.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-6.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-6.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1033,14 +1027,14 @@ Remaining measurements: 5280</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-8.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-8.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-9.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-9.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1061,14 +1055,14 @@ Remaining measurements: 5280</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-11.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-11.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-7-output-12.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-6-output-12.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1168,7 +1162,7 @@ Display the excluded outlier datapoints:</code></pre>
 <div id="03124158" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>change_over_time(groundwater_period)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>change_over_time(groundwater_period)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>We want to see how the nitrate concentration changes over time.
@@ -1304,7 +1298,7 @@ We plot the range of nitrate concentrate over the time span per location.</code>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gwater_clean_files/figure-html/cell-8-output-4.png" class="img-fluid figure-img"></p>
+<p><img src="gwater_clean_files/figure-html/cell-7-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1317,52 +1311,51 @@ Again, some locations have a wide variation in measurement.</code></pre>
 </section>
 <section id="saving-files" class="level2">
 <h2 class="anchored" data-anchor-id="saving-files">4. Saving Files</h2>
-<div id="152c971b-50e8-4f70-ba89-666c39056c31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:26.641012Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:26.640803Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:27.494931Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:27.494305Z&quot;}}" data-execution_count="18">
+<div id="152c971b-50e8-4f70-ba89-666c39056c31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-05T23:26:26.641012Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-05T23:26:26.640803Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-05T23:26:27.494931Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-05T23:26:27.494305Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Save cleaned groundwater target dataset."</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>groundwater_period.to_csv(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    paths.NITRATE_CLEAN,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Convert final groundwater table back to a GeoDataFrame."</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>groundwater_final_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    groundwater_period,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>        groundwater_period[<span class="st">"gm_longitude"</span>],</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>        groundwater_period[<span class="st">"gm_latitude"</span>]</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:4326"</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Save spatial version."</span>)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>groundwater_final_gdf.to_file(</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    paths.NITRATE_CLEAN_GPKG,</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    layer<span class="op">=</span><span class="st">"groundwater_nitrate"</span>,</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    driver<span class="op">=</span><span class="st">"GPKG"</span></span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Create 500 m buffers around each well, used for the area-weighted soil features in data_merge/all_merge_final.ipynb."</span>)</span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>BUFFER_M <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>EQUAL_AREA_CRS <span class="op">=</span> <span class="st">"EPSG:3310"</span></span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>wells <span class="op">=</span> groundwater_period.drop_duplicates(<span class="st">"gm_well_id"</span>)[[<span class="st">"gm_well_id"</span>, <span class="st">"gm_latitude"</span>, <span class="st">"gm_longitude"</span>]]</span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>well_buffers <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>    wells.assign(buffer_m<span class="op">=</span>BUFFER_M),</span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(wells[<span class="st">"gm_longitude"</span>], wells[<span class="st">"gm_latitude"</span>]),</span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:4326"</span>,</span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>).to_crs(EQUAL_AREA_CRS)</span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>well_buffers[<span class="st">"geometry"</span>] <span class="op">=</span> well_buffers.<span class="bu">buffer</span>(BUFFER_M, quad_segs<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>paths.WELL_BUFFERS.unlink(missing_ok<span class="op">=</span><span class="va">True</span>)   <span class="co"># GPKG appends new layers; start from a clean file</span></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>well_buffers.to_file(paths.WELL_BUFFERS, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(well_buffers)<span class="sc">}</span><span class="ss"> well buffers of </span><span class="sc">{</span>BUFFER_M<span class="sc">}</span><span class="ss"> m saved"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Save cleaned groundwater target dataset:"</span>, paths.NITRATE_CLEAN)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>groundwater_period.to_csv(</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    paths.NITRATE_CLEAN,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Convert final groundwater table back to a GeoDataFrame:"</span>, paths.NITRATE_CLEAN_GPKG)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>groundwater_final_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    groundwater_period,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        groundwater_period[<span class="st">"gm_longitude"</span>],</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        groundwater_period[<span class="st">"gm_latitude"</span>]</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:4326"</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>groundwater_final_gdf.to_file(</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    paths.NITRATE_CLEAN_GPKG,</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    layer<span class="op">=</span><span class="st">"groundwater_nitrate"</span>,</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    driver<span class="op">=</span><span class="st">"GPKG"</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Create 500 m buffers around each well, used for the area-weighted soil features in data_merge/all_merge_final.ipynb."</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>BUFFER_M <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>EQUAL_AREA_CRS <span class="op">=</span> <span class="st">"EPSG:3310"</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>wells <span class="op">=</span> groundwater_period.drop_duplicates(<span class="st">"gm_well_id"</span>)[[<span class="st">"gm_well_id"</span>, <span class="st">"gm_latitude"</span>, <span class="st">"gm_longitude"</span>]]</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>well_buffers <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>    wells.assign(buffer_m<span class="op">=</span>BUFFER_M),</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(wells[<span class="st">"gm_longitude"</span>], wells[<span class="st">"gm_latitude"</span>]),</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:4326"</span>,</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>).to_crs(EQUAL_AREA_CRS)</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>well_buffers[<span class="st">"geometry"</span>] <span class="op">=</span> well_buffers.<span class="bu">buffer</span>(BUFFER_M, quad_segs<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>paths.WELL_BUFFERS.unlink(missing_ok<span class="op">=</span><span class="va">True</span>)   <span class="co"># GPKG appends new layers; start from a clean file</span></span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>well_buffers.to_file(paths.WELL_BUFFERS, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(well_buffers)<span class="sc">}</span><span class="ss"> well buffers of </span><span class="sc">{</span>BUFFER_M<span class="sc">}</span><span class="ss"> m saved:"</span>, paths.WELL_BUFFERS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Save cleaned groundwater target dataset.
