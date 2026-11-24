@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/index.html</loc>
-    <lastmod>2026-11-21T21:53:26.219Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.333Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/robustness_subbasin_balanced_holdout.html</loc>
-    <lastmod>2026-11-21T21:53:26.179Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.289Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_merge/all_merge_EDA_Final.html</loc>
-    <lastmod>2026-11-21T21:53:26.162Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.271Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/final_results.html</loc>
-    <lastmod>2026-11-21T21:53:26.169Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.278Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/groundwater/groundwater_spatial_eda.html</loc>
-    <lastmod>2026-11-21T21:53:26.136Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.244Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/crop_mapping/crop_mapping_feature_selection.html</loc>
-    <lastmod>2026-11-21T21:53:26.112Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.219Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/crop_mapping/crop_mapping_annual_2021_2024.html</loc>
-    <lastmod>2026-11-21T21:53:26.106Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.213Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/groundwater_depth/groundwater_depth_eda.html</loc>
-    <lastmod>2026-11-21T21:53:26.158Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.266Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_splitting.html</loc>
-    <lastmod>2026-11-21T21:53:26.166Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.275Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/risk_map_random_forest.html</loc>
-    <lastmod>2026-11-21T21:53:26.179Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.289Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/classification_models.html</loc>
-    <lastmod>2026-11-21T21:53:26.105Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.212Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/regression_models.html</loc>
-    <lastmod>2026-11-21T21:53:26.175Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.285Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/soils/Soil_data_cleanup_team.html</loc>
-    <lastmod>2026-11-21T21:53:26.162Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.270Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/crop_mapping/crop_mapping_eda.html</loc>
-    <lastmod>2026-11-21T21:53:26.109Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.216Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/precipitation/prism_climate_cleaning_final.html</loc>
-    <lastmod>2026-11-21T21:53:26.162Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.270Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_cleaning/groundwater/gwater_clean.html</loc>
-    <lastmod>2026-11-21T21:53:26.139Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.246Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/feature_selection.html</loc>
-    <lastmod>2026-11-21T21:53:26.167Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.275Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/notebooks/data_merge/all_merge_final.html</loc>
-    <lastmod>2026-11-21T21:53:26.164Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.273Z</lastmod>
   </url>
   <url>
     <loc>https://Erdos-Projects.github.io/fall-2026-infrastructure-placement/run_pipeline.html</loc>
-    <lastmod>2026-11-21T21:53:26.218Z</lastmod>
+    <lastmod>2026-11-24T03:28:52.332Z</lastmod>
   </url>
 </urlset>
